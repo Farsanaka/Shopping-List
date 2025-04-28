@@ -1,8 +1,11 @@
 import BackgroundLayout from "../components/BackgroudLayout";
 import Logo from "../components/Logo";
 import Header from "../components/Header";
+import { useNavigate } from "react-router-dom";
 
 function AddList() {
+  const navigate = useNavigate();
+
   return (
     <BackgroundLayout bgImage="/img/homebg.jpg">
       <Header />
@@ -23,7 +26,10 @@ function AddList() {
             <button className="px-4 py-1 bg-gradient-to-r from-green-400  to-gray-400 rounded-lg font-semibold">
               Add List
             </button>
-            <button className="px-4 py-1 bg-gradient-to-r from-fuchsia-300  to-gray-400 rounded-lg font-semibold">
+            <button
+              onClick={() => navigate("/home/addcategory")}
+              className="px-4 py-1 bg-gradient-to-r from-fuchsia-300  to-gray-400 rounded-lg font-semibold"
+            >
               Add Category
             </button>
           </div>

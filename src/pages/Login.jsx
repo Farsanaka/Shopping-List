@@ -1,5 +1,6 @@
 import Logo from "../components/Logo";
 import { useNavigate } from "react-router-dom";
+
 function Login() {
   const navigate = useNavigate(); // React Router hook for navigation
 
@@ -8,6 +9,7 @@ function Login() {
 
     navigate("/home");
   };
+
   return (
     <div className="relative bg-[url(/img/bg.jpg)] h-screen bg-cover bg-center  ">
       <div className="relative z-10">
@@ -22,7 +24,7 @@ function Login() {
                 type="email"
                 placeholder="Username"
                 name="uname"
-                class="px-20 my-2 py-1 text-center border border-gray-300 rounded-lg"
+                className="px-20 my-2 py-1 text-center border border-gray-300 rounded-lg"
                 required
               />
             </div>
@@ -31,7 +33,7 @@ function Login() {
                 type="password"
                 placeholder="Password"
                 name="uname"
-                class="px-20 my-2 py-1 text-center border border-gray-300 rounded-lg"
+                className="px-20 my-2 py-1 text-center border border-gray-300 rounded-lg"
                 required
               />
             </div>
