@@ -1,0 +1,32 @@
+{
+  "list": [
+    {
+      "id": 1,
+      "name": "Onam Shopping",
+      "category": "Grocery",
+      "status": "Pending",
+      "items": []
+    },
+    {
+      "id": 2,
+      "name": "Sam's Clothes Shopping",
+      "category": "Clothes",
+      "status": "Pending",
+      "items": []
+    },
+    {
+      "id": 3,
+      "name": "Weekend Shopping",
+      "category": "Misc",
+      "status": "Pending",
+      "items": []
+    },
+    {
+      "id": 4,
+      "name": "New name",
+      "category": "Clothes",
+      "status": "Pending",
+      "items": []
+    }
+  ]
+}
