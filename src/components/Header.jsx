@@ -1,8 +1,14 @@
 import Logo from "./Logo";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
-import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { logoutUser } from "../services/auth";
 function NavBar() {
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    logoutUser();
+    navigate("/login");
+  };
   return (
     <div>
       <nav className="flex p-3 place-content-between bg-black">
@@ -10,9 +16,9 @@ function NavBar() {
         <div className="flex gap-4">
           <FontAwesomeIcon icon={faUser} className="mt-4 text-white " />
 
-          <NavLink to="/login" className="text-white mt-4">
+          <button onClick={handleLogout} className="text-white ">
             Logout
-          </NavLink>
+          </button>
         </div>
       </nav>
     </div>
