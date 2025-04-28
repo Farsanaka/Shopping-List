@@ -3,11 +3,13 @@
     {
       "id": 1,
       "username": "karun@gmail.com",
+      "name":"Karun",
       "password": "karun123"
     },
     {
       "id": 2,
       "username": "farsana@gmail.com",
+      "name":"Farsana",
       "password": "farsana123"
     }
   ]
