@@ -1,14 +1,42 @@
 import Logo from "../components/Logo";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { fetchUsers } from "../services/api";
+import { loginUser } from "../services/auth";
 function Login() {
   const navigate = useNavigate(); // React Router hook for navigation
+  const [data, setData] = useState({
+    username: "",
+    password: "",
+  });
+  const { username, password } = data;
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-
-    navigate("/home");
+  const changeHandler = async (e) => {
+    setData({ ...data, [e.target.name]: e.target.value });
   };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await checkUser();
+    console.log(checkUser());
+  };
+  const checkUser = async () => {
+    const users = await fetchUsers();
+    const usercheck = users.find(
+      (user) => user.username === username && user.password === password
+    );
+    if (usercheck) {
+      loginUser();
+      navigate("/home");
+    } else {
+      alert("Wrong password or username");
+    }
+    console.log(usercheck);
+  };
+  // const handleLogin = (e) => {
+  //   e.preventDefault();
+
+  //   navigate("/home");
+  // };
 
   return (
     <div className="relative bg-[url(/img/bg.jpg)] h-screen bg-cover bg-center  ">
@@ -18,12 +46,14 @@ function Login() {
       <div className="absolute inset-0 bg-black opacity-70"></div>
       <div className="relative flex items-center justify-center h-120">
         <div className="bg-white p-8 rounded-xl shadow-lg text-center w-full max-w-md">
-          <form onSubmit={handleLogin}>
+          <form onSubmit={handleSubmit}>
             <div>
               <input
                 type="email"
                 placeholder="Username"
-                name="uname"
+                name="username"
+                value={username}
+                onChange={changeHandler}
                 className="px-20 my-2 py-1 text-center border border-gray-300 rounded-lg"
                 required
               />
@@ -32,7 +62,9 @@ function Login() {
               <input
                 type="password"
                 placeholder="Password"
-                name="uname"
+                name="password"
+                value={password}
+                onChange={changeHandler}
                 className="px-20 my-2 py-1 text-center border border-gray-300 rounded-lg"
                 required
               />

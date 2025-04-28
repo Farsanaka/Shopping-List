@@ -3,16 +3,37 @@ import Home from "./pages/Home";
 import AddList from "./pages/AddList";
 import AddCategory from "./pages/AddCategory";
 import Login from "./pages/Login";
-
+import ProtectedRoute from "./components/ProtectedRoute";
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Navigate to="/home" />} />
+        <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/home/addlist" element={<AddList />} />
-        <Route path="/home/addcategory" element={<AddCategory />} />
+        <Route
+          path="/home"
+          element={
+            <ProtectedRoute>
+              <Home />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/home/addlist"
+          element={
+            <ProtectedRoute>
+              <AddList />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/home/addcategory"
+          element={
+            <ProtectedRoute>
+              <AddCategory />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );
