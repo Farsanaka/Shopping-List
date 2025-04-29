@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import { logoutUser } from "../services/auth";
-import { fetchUsers } from "../services/api";
+// import { fetchUsers } from "../services/api";
 import { useState } from "react";
 import { useEffect } from "react";
 
