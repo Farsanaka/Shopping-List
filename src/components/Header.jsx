@@ -1,28 +1,16 @@
-import Logo from "./Logo";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
-import { useNavigate } from "react-router-dom";
-import { logoutUser } from "../services/auth";
-function NavBar() {
-  const navigate = useNavigate();
-  const handleLogout = () => {
-    logoutUser();
-    navigate("/login");
-  };
-  return (
-    <div>
-      <nav className="flex p-3 place-content-between bg-black">
-        <Logo />
-        <div className="flex gap-4">
-          <FontAwesomeIcon icon={faUser} className="mt-4 text-white " />
+export const loginUser = (user) => {
+  localStorage.setItem("user", JSON.stringify(user));
+  localStorage.setItem("isLoggedIn", "true");
+};
 
-          <button onClick={handleLogout} className="text-white ">
-            Logout
-          </button>
-        </div>
-      </nav>
-    </div>
-  );
-}
+// Logout function
+export const logoutUser = () => {
+  localStorage.removeItem("user");
+  localStorage.removeItem("isLoggedIn");
+  console.log("logout");
+};
 
-export default NavBar;
+// Check login status
+export const isUserLoggedIn = () => {
+  return localStorage.getItem("isLoggedIn") === "true";
+};
