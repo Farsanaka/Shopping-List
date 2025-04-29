@@ -2,20 +2,27 @@ import { NavLink, Outlet } from "react-router-dom";
 import BackgroundLayout from "../components/BackgroudLayout";
 import Header from "../components/Header";
 import { useNavigate } from "react-router-dom";
-
 import { useEffect, useState } from "react";
 import { fetchShoppingLists } from "../services/api";
-
+import { isUserLoggedIn, getLoggedInUser } from "../services/auth";
 function Home() {
   const [lists, setLists] = useState([]);
   const navigate = useNavigate();
+  const userLoggedIn = isUserLoggedIn();
+  const user = userLoggedIn ? getLoggedInUser() : null;
   useEffect(() => {
     async function getLists() {
       const data = await fetchShoppingLists();
-      setLists(data || []);
+      if (!userLoggedIn) return;
+      {
+        const userList = data.filter((list) => list.userid == user.id);
+        setLists(userList || []);
+      }
+      getLists();
     }
+
     getLists();
-  }, []);
+  }, [userLoggedIn, user]);
   return (
     <BackgroundLayout bgImage="/img/homebg.jpg">
       <Header />
@@ -33,7 +40,7 @@ function Home() {
             {lists.length > 0 ? (
               lists.map((list) => <li key={list.id}>{list.name}</li>)
             ) : (
-              <p>No lists found.</p>
+              <p>Please Login to view the Shopping List.</p>
             )}
           </ul>
         </div>
