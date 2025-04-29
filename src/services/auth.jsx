@@ -10,7 +10,6 @@ export const logoutUser = () => {
   console.log("logout");
 };
 
-// Check login status
 export const isUserLoggedIn = () => {
   return localStorage.getItem("isLoggedIn") === "true";
 };

@@ -12,5 +12,20 @@
       "name": "Farsana",
       "password": "farsana123"
     }
+  ],
+
+  "category": [
+    {
+      "code": "101",
+      "category": "Grocery"
+    },
+    {
+      "code": "102",
+      "category": "Clothes"
+    },
+    {
+      "code": "103",
+      "category": "Misc"
+    }
   ]
 }
