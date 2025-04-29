@@ -3,7 +3,6 @@ export const loginUser = (user) => {
   localStorage.setItem("isLoggedIn", "true");
 };
 
-// Logout function
 export const logoutUser = () => {
   localStorage.removeItem("user");
   localStorage.removeItem("isLoggedIn");
@@ -12,4 +11,8 @@ export const logoutUser = () => {
 
 export const isUserLoggedIn = () => {
   return localStorage.getItem("isLoggedIn") === "true";
+};
+export const getLoggedInUser = () => {
+  const user = localStorage.getItem("user");
+  return user ? JSON.parse(user) : null;
 };
