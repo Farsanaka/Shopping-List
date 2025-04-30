@@ -8,9 +8,9 @@ export const fetchShoppingLists = async () => {
 };
 
 export const fetchCategories = async () => {
-  const response = await axios.get(`${API_URL}/list.json`);
+  const response = await axios.get(`${API_URL}/category.json`);
   console.log("cat-data", response);
-  return response.data.category;
+  return response.data;
 };
 
 export const fetchUsers = async () => {
