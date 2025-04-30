@@ -4,6 +4,8 @@ import axios from "axios";
 const initialState = {
   categories: [],
   error: "",
+  code: "",
+  category: "",
 };
 
 const categorySlice = createSlice({
@@ -19,10 +21,33 @@ const categorySlice = createSlice({
       console.log("within failure", action.payload);
       state.error = `Error occurred - ${action.payload}`;
     },
+    addCategorySuccess(state, action) {
+      console.log("Category added ", action.payload);
+      state.categories.push(action.payload);
+    },
+    addCategoryFailure(state, action) {
+      console.log("Category added- failed", action.payload);
+      state.error = `Error occurred - ${action.payload}`;
+      state.category = "";
+      state.code = "";
+    },
+    setCode(state, action) {
+      state.code = action.payload;
+    },
+    setCategory(state, action) {
+      state.category = action.payload;
+    },
   },
 });
 
-export const { fetchAllSuccess, fetchAllFailure } = categorySlice.actions;
+export const {
+  fetchAllSuccess,
+  fetchAllFailure,
+  addCategorySuccess,
+  addCategoryFailure,
+  setCode,
+  setCategory,
+} = categorySlice.actions;
 
 export function fetchAll() {
   console.log("Entered function fetch all");
@@ -40,3 +65,16 @@ export function fetchAll() {
 }
 
 export default categorySlice.reducer;
+export function addCategory(newCategory) {
+  return async function (dispatch) {
+    try {
+      const response = await axios.post(
+        "http://localhost:9001/category",
+        newCategory
+      );
+      dispatch(addCategorySuccess(response.data));
+    } catch (err) {
+      dispatch(addCategoryFailure(err.message));
+    }
+  };
+}

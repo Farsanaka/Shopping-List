@@ -4,7 +4,7 @@ import { fetchShoppingLists } from "../../services/api";
 
 const initialState = {
   lists: [], //to store filltered shopping list-current user
-  error: "",  //to store error msg- during fetch
+  error: "", //to store error msg- during fetch
 };
 
 const shoppingListSlice = createSlice({
@@ -14,7 +14,7 @@ const shoppingListSlice = createSlice({
     fetchAll(state, action) {},
     //state->current state
     //action->what to do
-    //type->name of action 
+    //type->name of action
     //payload->data u r sending
     // dispatch->fn u call to send an actn to redux
     fetchAllSuccess(state, action) {

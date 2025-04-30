@@ -2,15 +2,23 @@
   "category": [
     {
       "code": "101",
-      "category": "Grocery"
+      "category": "Grocery",
+      "id": "32d6"
     },
     {
       "code": "102",
-      "category": "Clothes"
+      "category": "Clothes",
+      "id": "45d5"
     },
     {
       "code": "103",
-      "category": "Misc"
+      "category": "Misc",
+      "id": "6b48"
+    },
+    {
+      "id": "be54",
+      "code": "104",
+      "category": "Wedding"
     }
   ]
 }
