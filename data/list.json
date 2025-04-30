@@ -2,7 +2,7 @@
   "list": [
     {
       "id": 1,
-      "name": "Onam Shopping",
+      "name": "weekly Shopping",
       "category": "Grocery",
       "status": "Pending",
       "items": [],
@@ -26,25 +26,11 @@
     },
     {
       "id": 4,
-      "name": "New name",
+      "name": "festival",
       "category": "Clothes",
       "status": "Pending",
       "items": [],
       "userid": 2
-    }
-  ],
-  "category": [
-    {
-      "code": "101",
-      "category": "Grocery"
-    },
-    {
-      "code": "102",
-      "category": "Clothes"
-    },
-    {
-      "code": "103",
-      "category": "Misc"
     }
   ]
 }

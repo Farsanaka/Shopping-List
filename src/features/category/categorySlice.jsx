@@ -10,33 +10,31 @@ const categorySlice = createSlice({
   name: "category",
   initialState,
   reducers: {
-    fetchAll(state) {
-      // You can add loading state if needed, but in this case we're not using it
-    },
+    fetchAll(state) {},
     fetchAllSuccess(state, action) {
       console.log("within success", action.payload);
-      state.categories = action.payload; // Update categories with fetched data
+      state.categories = action.payload;
     },
     fetchAllFailure(state, action) {
       console.log("within failure", action.payload);
-      state.error = `Error occurred - ${action.payload}`; // Update error message
+      state.error = `Error occurred - ${action.payload}`;
     },
   },
 });
 
 export const { fetchAllSuccess, fetchAllFailure } = categorySlice.actions;
 
-// Thunk function for fetching categories
-export function fetchAllCategories() {
+export function fetchAll() {
+  console.log("Entered function fetch all");
   return async function (dispatch) {
     try {
-      const response = await axios.get("http://localhost:9001/categories"); // Update with actual API endpoint
-      console.log("Response is", response.data);
-      const data = response.data.categories; // Assuming API returns categories in 'categories' field
-      dispatch(fetchAllSuccess(data)); // Dispatch success action with the fetched data
+      const response = await axios.get("http://localhost:9001/category");
+      console.log("Response is within category", response.data);
+      const data = response.data;
+      dispatch(fetchAllSuccess(data));
     } catch (err) {
       console.log("Dispatching error", err.message);
-      dispatch(fetchAllFailure(err.message)); // Dispatch failure action with error message
+      dispatch(fetchAllFailure(err.message));
     }
   };
 }

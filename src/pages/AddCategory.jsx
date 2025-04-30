@@ -2,20 +2,20 @@ import { useEffect } from "react";
 import BackgroundLayout from "../components/BackgroudLayout";
 import Header from "../components/Header";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAllCategories } from "../features/category/categorySlice"; // Correct path
+import { fetchAll } from "../features/category/categorySlice"; // Correct path
 
 function AddCategory() {
   const dispatch = useDispatch();
   const { categories, error, status } = useSelector((state) => state.category);
 
   useEffect(() => {
-    if (status === "idle") {
-      dispatch(fetchAllCategories()); // Dispatch fetchCategories if status is idle
-    }
-  }, [dispatch, status]);
+    
+      dispatch(fetchAll());
+    
+  }, []);
+
   console.log("cate", categories);
 
-  // Handle different loading states
   if (status === "loading") {
     return <p>Loading...</p>;
   }
@@ -30,6 +30,7 @@ function AddCategory() {
       <div className="flex justify-center">
         <div className="bg-stone-300 rounded-lg m-4 w-fit">
           <p className="p-2 text-center font-bold text-lg">CATEGORY LIST</p>
+          
           <ul className="m-4">
             {categories.length > 0 ? (
               categories.map((cat, index) => (
@@ -43,7 +44,7 @@ function AddCategory() {
                   <input
                     type="text"
                     readOnly
-                    value={cat.name}
+                    value={cat.category}
                     className="bg-white rounded-lg px-2 py-1 text-center"
                   />
                 </li>
