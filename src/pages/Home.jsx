@@ -22,7 +22,7 @@ function Home() {
       <Header />
       <div className="flex justify-end">
         <button
-          onClick={() => navigate("/home/addlist")}
+          onClick={() => navigate("/home/list")}
           className="px-4 py-1 bg-gradient-to-r from-green-400  to-gray-400 rounded-lg font-semibold"
         >
           Add New List

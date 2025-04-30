@@ -1,9 +1,9 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Home from "./pages/Home";
-import AddList from "./pages/AddList";
-import AddCategory from "./pages/AddCategory";
 import Login from "./pages/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
+import Category from "./pages/category";
+import List from "./pages/List";
 function App() {
   return (
     <BrowserRouter>
@@ -12,25 +12,25 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route
           path="/home"
-          element={ 
+          element={
             <ProtectedRoute>
               <Home />
             </ProtectedRoute>
           }
         />
         <Route
-          path="/home/addlist"
+          path="/home/list"
           element={
             <ProtectedRoute>
-              <AddList />
+              <List />
             </ProtectedRoute>
           }
         />
         <Route
-          path="/home/addcategory"
+          path="/home/category"
           element={
             <ProtectedRoute>
-              <AddCategory />
+              <Category />
             </ProtectedRoute>
           }
         />

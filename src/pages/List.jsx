@@ -3,7 +3,7 @@ import Logo from "../components/Logo";
 import Header from "../components/Header";
 import { useNavigate } from "react-router-dom";
 
-function AddList() {
+function List() {
   const navigate = useNavigate();
 
   return (
@@ -27,7 +27,7 @@ function AddList() {
               Add List
             </button>
             <button
-              onClick={() => navigate("/home/addcategory")}
+              onClick={() => navigate("/home/Category")}
               className="px-4 py-1 bg-gradient-to-r from-fuchsia-300  to-gray-400 rounded-lg font-semibold"
             >
               Add Category
@@ -54,4 +54,4 @@ function AddList() {
   );
 }
 
-export default AddList;
+export default List;
