@@ -2,7 +2,7 @@
   "list": [
     {
       "id": 1,
-      "name": "Onam Shopping",
+      "name": "weekly Shopping",
       "category": "Grocery",
       "status": "Pending",
       "items": [],
@@ -26,7 +26,7 @@
     },
     {
       "id": 4,
-      "name": "New name",
+      "name": "festival",
       "category": "Clothes",
       "status": "Pending",
       "items": [],

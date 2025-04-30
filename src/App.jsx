@@ -12,7 +12,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route
           path="/home"
-          element={
+          element={ 
             <ProtectedRoute>
               <Home />
             </ProtectedRoute>
