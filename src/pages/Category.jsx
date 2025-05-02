@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import BackgroundLayout from "../components/BackgroudLayout";
 import Header from "../components/Header";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,17 +7,22 @@ import {
   addCategory,
   setCode,
   setCategory,
+  updateCategory,
+  deleteCategory,
 } from "../features/category/categorySlice";
+
 function Category() {
   const dispatch = useDispatch();
   const { categories, error, status, code, category } = useSelector(
     (state) => state.category
   );
+
+  const [editIndex, setEditIndex] = useState(null);
+  const [editData, setEditData] = useState({ code: "", category: "" });
+
   useEffect(() => {
     dispatch(fetchAll());
   }, []);
-
-  console.log("cate", categories);
 
   if (status === "loading") {
     return <p>Loading...</p>;
@@ -34,6 +39,11 @@ function Category() {
       dispatch(setCode(""));
     }
   };
+
+  const handleDelete = (id) => {
+    dispatch(deleteCategory(id));
+  };
+
   return (
     <BackgroundLayout bgImage="/img/homebg.jpg">
       <Header />
@@ -71,50 +81,86 @@ function Category() {
             </button>
           </div>
           <ul className="m-4 mt-10">
-            {categories.length > 0 ? (
-              categories.map((cat, index) => (
-                <li key={index} className="flex gap-4 mb-2">
-                  <input
-                    type="text"
-                    readOnly
-                    value={cat.code}
-                    className="shadow-lg shadow-gray-400/50 bg-white rounded-lg px-2 py-1 text-center"
-                  />
-                  <input
-                    type="text"
-                    readOnly
-                    value={cat.category}
-                    className="shadow-lg shadow-gray-400/50 bg-white rounded-lg px-2 py-1 text-center"
-                  />
-                  <button
-                    className="shadow-lg shadow-gray-400/50 
-                    px-4
-                    py-1
-                    bg-gradient-to-r
-                    from-amber-300
-                    to-gray-400
-                    rounded-lg
-                    font-semibold"
-                  >
-                    Edit
-                  </button>
-                  <button
-                    className="shadow-lg shadow-gray-400/50
-                    px-4
-                    py-1
-                    bg-gradient-to-r
-                    from-red-400
-                    to-gray-400
-                    rounded-lg
-                    font-semibold"
-                  >
-                    Delete
-                  </button>
-                </li>
-              ))
-            ) : (
-              <p>No categories available.</p> // If no categories, show a fallback message
-            )}
+            {categories.map((cat, index) => (
+              <li key={index} className="flex gap-4 mb-2">
+                {editIndex === index ? (
+                  <>
+                    <input
+                      type="text"
+                      value={editData.code}
+                      onChange={(e) =>
+                        setEditData({ ...editData, code: e.target.value })
+                      }
+                      className="shadow-lg shadow-gray-400/50 bg-white rounded-lg px-2 py-1 text-center"
+                    />
+                    <input
+                      type="text"
+                      value={editData.category}
+                      onChange={(e) =>
+                        setEditData({ ...editData, category: e.target.value })
+                      }
+                      className="shadow-lg shadow-gray-400/50 bg-white rounded-lg px-2 py-1 text-center"
+                    />
+                    <button
+                      onClick={() => {
+                        console.log("Sending to updateCategory:", {
+                          ...editData,
+                          // prevcode: cat.code,
+                          id: cat.id,
+                        });
+                        dispatch(
+                          // updateCategory({ ...editData, prevcode: cat.code })
+                          updateCategory({ ...editData, id: cat.id })
+                        );
+                        setEditIndex(null);
+                      }}
+                      className="shadow-lg shadow-gray-400/50 px-4 py-1 bg-gradient-to-r from-green-300 to-gray-400 rounded-lg font-semibold"
+                    >
+                      Save
+                    </button>
+                    <button
+                      onClick={() => {
+                        setEditIndex(index);
+                        setEditData({ ...cat, prevCode: cat.code }); // store original code
+                      }}
+                      className="shadow-lg shadow-gray-400/50 px-4 py-1 bg-gradient-to-r from-gray-400 to-gray-200 rounded-lg font-semibold"
+                    >
+                      Cancel
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <input
+                      type="text"
+                      readOnly
+                      value={cat.code}
+                      className="shadow-lg shadow-gray-400/50 bg-white rounded-lg px-2 py-1 text-center"
+                    />
+                    <input
+                      type="text"
+                      readOnly
+                      value={cat.category}
+                      className="shadow-lg shadow-gray-400/50 bg-white rounded-lg px-2 py-1 text-center"
+                    />
+                    <button
+                      onClick={() => {
+                        setEditIndex(index);
+                        setEditData(cat);
+                      }}
+                      className="shadow-lg shadow-gray-400/50 px-4 py-1 bg-gradient-to-r from-amber-300 to-gray-400 rounded-lg font-semibold"
+                    >
+                      Edit
+                    </button>
+                    <button
+                      onClick={() => handleDelete(cat.id)}
+                      className="shadow-lg shadow-gray-400/50 px-4 py-1 bg-gradient-to-r from-red-400 to-gray-400 rounded-lg font-semibold"
+                    >
+                      Delete
+                    </button>
+                  </>
+                )}
+              </li>
+            ))}
           </ul>
         </div>
       </div>
