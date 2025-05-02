@@ -37,6 +37,15 @@ const categorySlice = createSlice({
     setCategory(state, action) {
       state.category = action.payload;
     },
+    deleteCategorySuccess(state, action) {
+      console.log("Category Deletion- success", action.payload);
+      const deletedId = action.payload;
+      state.categories = state.categories.filter((cat) => cat.id !== deletedId);
+    },
+    deleteCategoryFailure(state, action) {
+      console.log("Category deletion- failed", action.payload);
+      state.error = `Error occurred - ${action.payload}`;
+    },
   },
 });
 
@@ -47,6 +56,8 @@ export const {
   addCategoryFailure,
   setCode,
   setCategory,
+  deleteCategorySuccess,
+  deleteCategoryFailure,
 } = categorySlice.actions;
 
 export function fetchAll() {
@@ -75,6 +86,16 @@ export function addCategory(newCategory) {
       dispatch(addCategorySuccess(response.data));
     } catch (err) {
       dispatch(addCategoryFailure(err.message));
+    }
+  };
+}
+export function deleteCategory(id) {
+  return async function (dispatch) {
+    try {
+      await axios.delete(`http://localhost:9001/category/${id}`);
+      dispatch(deleteCategorySuccess(id));
+    } catch (err) {
+      dispatch(deleteCategoryFailure(err.message));
     }
   };
 }

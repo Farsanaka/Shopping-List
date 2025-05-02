@@ -7,6 +7,7 @@ import {
   addCategory,
   setCode,
   setCategory,
+  deleteCategory,
 } from "../features/category/categorySlice";
 function Category() {
   const dispatch = useDispatch();
@@ -33,6 +34,9 @@ function Category() {
       dispatch(setCategory("")); // Reset input after dispatch
       dispatch(setCode(""));
     }
+  };
+  const handleDelete = (id) => {
+    dispatch(deleteCategory(id));
   };
   return (
     <BackgroundLayout bgImage="/img/homebg.jpg">
@@ -99,6 +103,7 @@ function Category() {
                     Edit
                   </button>
                   <button
+                    onClick={() => handleDelete(cat.id)}
                     className="shadow-lg shadow-gray-400/50
                     px-4
                     py-1
