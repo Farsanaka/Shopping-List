@@ -16,7 +16,7 @@ const shoppingListSlice = createSlice({
     //action->what to do
     //type->name of action
     //payload->data u r sending
-    // dispatch->fn u call to send an actn to redux
+    //dispatch->fn u call to send an actn to redux
     fetchAllSuccess(state, action) {
       console.log("Fetch success:", action.payload);
       state.lists = action.payload;

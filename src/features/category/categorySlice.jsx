@@ -13,35 +13,63 @@ const categorySlice = createSlice({
   initialState,
   reducers: {
     fetchAll(state) {},
+
     fetchAllSuccess(state, action) {
       console.log("within success", action.payload);
       state.categories = action.payload;
     },
+
     fetchAllFailure(state, action) {
       console.log("within failure", action.payload);
       state.error = `Error occurred - ${action.payload}`;
     },
+
     addCategorySuccess(state, action) {
       console.log("Category added ", action.payload);
       state.categories.push(action.payload);
     },
+
     addCategoryFailure(state, action) {
       console.log("Category added- failed", action.payload);
       state.error = `Error occurred - ${action.payload}`;
       state.category = "";
       state.code = "";
     },
+
     setCode(state, action) {
       state.code = action.payload;
     },
+
     setCategory(state, action) {
       state.category = action.payload;
     },
+<<<<<<< HEAD
+=======
+
+    updateCategorySuccess(state, action) {
+      const updated = action.payload;
+      const index = state.categories.findIndex(
+        (cat) => cat.code === updated.prevCode || cat.code === updated.code
+      );
+      if (index !== -1) {
+        state.categories[index] = updated;
+      }
+    },
+
+    updateCategoryFailure(state, action) {
+      state.error = `Update failed - ${action.payload}`;
+    },
+
+>>>>>>> 98821663292bb5aad26bb1dd1658567900706e73
     deleteCategorySuccess(state, action) {
       console.log("Category Deletion- success", action.payload);
       const deletedId = action.payload;
       state.categories = state.categories.filter((cat) => cat.id !== deletedId);
     },
+<<<<<<< HEAD
+=======
+
+>>>>>>> 98821663292bb5aad26bb1dd1658567900706e73
     deleteCategoryFailure(state, action) {
       console.log("Category deletion- failed", action.payload);
       state.error = `Error occurred - ${action.payload}`;
@@ -56,6 +84,11 @@ export const {
   addCategoryFailure,
   setCode,
   setCategory,
+<<<<<<< HEAD
+=======
+  updateCategorySuccess,
+  updateCategoryFailure,
+>>>>>>> 98821663292bb5aad26bb1dd1658567900706e73
   deleteCategorySuccess,
   deleteCategoryFailure,
 } = categorySlice.actions;
@@ -76,6 +109,7 @@ export function fetchAll() {
 }
 
 export default categorySlice.reducer;
+
 export function addCategory(newCategory) {
   return async function (dispatch) {
     try {
@@ -89,6 +123,26 @@ export function addCategory(newCategory) {
     }
   };
 }
+<<<<<<< HEAD
+=======
+
+export function updateCategory(updatedCategory) {
+  return async function (dispatch) {
+    try {
+      const response = await axios.put(
+        // `http://localhost:9001/category/${updatedCategory.prevcode}`,
+        `http://localhost:9001/category/${updatedCategory.id}`,
+        updatedCategory
+      );
+      dispatch(updateCategorySuccess(response.data));
+      console.log("update");
+    } catch (err) {
+      dispatch(updateCategoryFailure(err.message));
+    }
+  };
+}
+
+>>>>>>> 98821663292bb5aad26bb1dd1658567900706e73
 export function deleteCategory(id) {
   return async function (dispatch) {
     try {
@@ -98,4 +152,8 @@ export function deleteCategory(id) {
       dispatch(deleteCategoryFailure(err.message));
     }
   };
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 98821663292bb5aad26bb1dd1658567900706e73
