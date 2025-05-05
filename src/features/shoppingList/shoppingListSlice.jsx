@@ -4,13 +4,54 @@ import { fetchShoppingLists } from "../../services/api";
 
 const initialState = {
   lists: [], //to store filltered shopping list-current user
+  name: "",
+  category: "",
+  showItemInputs: false,
   error: "", //to store error msg- during fetch
 };
+
+// const listSlice = createSlice({
+//   name: "list",
+//   initialState,
+//   reducers: {
+//     setName(state, action) {
+//       state.name = action.payload;
+//     },
+//     setCategory(state, action) {
+//       state.category = action.payload;
+//     },
+//     showItemInputFields(state) {
+//       state.showItemInputs = true;
+//     },
+//     hideItemInputFields(state) {
+//       state.showItemInputs = false;
+//     },
+//   },
+// });
+
+// export const {
+//   setName,
+//   setCategory,
+//   showItemInputFields,
+//   hideItemInputFields,
+// } = listSlice.actions;
 
 const shoppingListSlice = createSlice({
   name: "shoppingLists",
   initialState,
   reducers: {
+    setName(state, action) {
+      state.name = action.payload;
+    },
+    setCategory(state, action) {
+      state.category = action.payload;
+    },
+    showItemInputFields(state) {
+      state.showItemInputs = true;
+    },
+    hideItemInputFields(state) {
+      state.showItemInputs = false;
+    },
     fetchAll(state, action) {},
     //state->current state
     //action->what to do
@@ -27,8 +68,15 @@ const shoppingListSlice = createSlice({
     },
   },
 });
+export const {
+  setName,
+  setCategory,
+  showItemInputFields,
+  hideItemInputFields,
+  fetchAllSuccess,
+  fetchAllFailure,
+} = shoppingListSlice.actions;
 
-export const { fetchAllSuccess, fetchAllFailure } = shoppingListSlice.actions;
 // Redux-compatible function that handles side effects like API calls.
 export function fetchAll(userId) {
   return async function (dispatch) {
