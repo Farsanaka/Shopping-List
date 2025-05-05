@@ -15,7 +15,6 @@ const categorySlice = createSlice({
     fetchAll(state) {},
 
     fetchAllSuccess(state, action) {
-      console.log("within success", action.payload);
       state.categories = action.payload;
     },
 
@@ -84,15 +83,12 @@ export const {
 } = categorySlice.actions;
 
 export function fetchAll() {
-  console.log("Entered function fetch all");
   return async function (dispatch) {
     try {
       const response = await axios.get("http://localhost:9001/category");
-      console.log("Response is within category", response.data);
       const data = response.data;
       dispatch(fetchAllSuccess(data));
     } catch (err) {
-      console.log("Dispatching error", err.message);
       dispatch(fetchAllFailure(err.message));
     }
   };
@@ -118,12 +114,10 @@ export function updateCategory(updatedCategory) {
   return async function (dispatch) {
     try {
       const response = await axios.put(
-        // `http://localhost:9001/category/${updatedCategory.prevcode}`,
         `http://localhost:9001/category/${updatedCategory.id}`,
         updatedCategory
       );
       dispatch(updateCategorySuccess(response.data));
-      console.log("update");
     } catch (err) {
       dispatch(updateCategoryFailure(err.message));
     }
