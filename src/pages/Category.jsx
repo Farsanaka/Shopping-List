@@ -7,10 +7,7 @@ import {
   addCategory,
   setCode,
   setCategory,
-<<<<<<< HEAD
-=======
   updateCategory,
->>>>>>> 98821663292bb5aad26bb1dd1658567900706e73
   deleteCategory,
 } from "../features/category/categorySlice";
 
@@ -42,17 +39,11 @@ function Category() {
       dispatch(setCode(""));
     }
   };
-<<<<<<< HEAD
-  const handleDelete = (id) => {
-    dispatch(deleteCategory(id));
-  };
-=======
 
   const handleDelete = (id) => {
     dispatch(deleteCategory(id));
   };
 
->>>>>>> 98821663292bb5aad26bb1dd1658567900706e73
   return (
     <BackgroundLayout bgImage="/img/homebg.jpg">
       <Header />
@@ -90,53 +81,14 @@ function Category() {
             </button>
           </div>
           <ul className="m-4 mt-10">
-<<<<<<< HEAD
-            {categories.length > 0 ? (
-              categories.map((cat, index) => (
-                <li key={index} className="flex gap-4 mb-2">
-                  <input
-                    type="text"
-                    readOnly
-                    value={cat.code}
-                    className="shadow-lg shadow-gray-400/50 bg-white rounded-lg px-2 py-1 text-center"
-                  />
-                  <input
-                    type="text"
-                    readOnly
-                    value={cat.category}
-                    className="shadow-lg shadow-gray-400/50 bg-white rounded-lg px-2 py-1 text-center"
-                  />
-                  <button
-                    className="shadow-lg shadow-gray-400/50 
-                    px-4
-                    py-1
-                    bg-gradient-to-r
-                    from-amber-300
-                    to-gray-400
-                    rounded-lg
-                    font-semibold"
-                  >
-                    Edit
-                  </button>
-                  <button
-                    onClick={() => handleDelete(cat.id)}
-                    className="shadow-lg shadow-gray-400/50
-                    px-4
-                    py-1
-                    bg-gradient-to-r
-                    from-red-400
-                    to-gray-400
-                    rounded-lg
-                    font-semibold"
-                  >
-                    Delete
-                  </button>
-                </li>
-              ))
-            ) : (
-              <p>No categories available.</p> // If no categories, show a fallback message
-            )}
-=======
+            <li className="flex gap-4 mb-2">
+              <div className="bg-gray-300 rounded-lg px-2 py-1 text-center w-[200px]">
+                CODE
+              </div>
+              <div className="bg-gray-300 rounded-lg px-2 py-1 text-center w-[200px]">
+                CATEGORY NAME
+              </div>
+            </li>
             {categories.map((cat, index) => (
               <li key={index} className="flex gap-4 mb-2">
                 {editIndex === index ? (
@@ -217,7 +169,6 @@ function Category() {
                 )}
               </li>
             ))}
->>>>>>> 98821663292bb5aad26bb1dd1658567900706e73
           </ul>
         </div>
       </div>

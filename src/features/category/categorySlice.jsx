@@ -43,8 +43,6 @@ const categorySlice = createSlice({
     setCategory(state, action) {
       state.category = action.payload;
     },
-<<<<<<< HEAD
-=======
 
     updateCategorySuccess(state, action) {
       const updated = action.payload;
@@ -60,16 +58,11 @@ const categorySlice = createSlice({
       state.error = `Update failed - ${action.payload}`;
     },
 
->>>>>>> 98821663292bb5aad26bb1dd1658567900706e73
     deleteCategorySuccess(state, action) {
       console.log("Category Deletion- success", action.payload);
       const deletedId = action.payload;
       state.categories = state.categories.filter((cat) => cat.id !== deletedId);
     },
-<<<<<<< HEAD
-=======
-
->>>>>>> 98821663292bb5aad26bb1dd1658567900706e73
     deleteCategoryFailure(state, action) {
       console.log("Category deletion- failed", action.payload);
       state.error = `Error occurred - ${action.payload}`;
@@ -84,11 +77,8 @@ export const {
   addCategoryFailure,
   setCode,
   setCategory,
-<<<<<<< HEAD
-=======
   updateCategorySuccess,
   updateCategoryFailure,
->>>>>>> 98821663292bb5aad26bb1dd1658567900706e73
   deleteCategorySuccess,
   deleteCategoryFailure,
 } = categorySlice.actions;
@@ -123,8 +113,6 @@ export function addCategory(newCategory) {
     }
   };
 }
-<<<<<<< HEAD
-=======
 
 export function updateCategory(updatedCategory) {
   return async function (dispatch) {
@@ -142,7 +130,6 @@ export function updateCategory(updatedCategory) {
   };
 }
 
->>>>>>> 98821663292bb5aad26bb1dd1658567900706e73
 export function deleteCategory(id) {
   return async function (dispatch) {
     try {
@@ -152,8 +139,4 @@ export function deleteCategory(id) {
       dispatch(deleteCategoryFailure(err.message));
     }
   };
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 98821663292bb5aad26bb1dd1658567900706e73
