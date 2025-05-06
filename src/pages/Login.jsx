@@ -2,7 +2,8 @@ import Logo from "../components/Logo";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { fetchUsers } from "../services/api";
-import { loginUser } from "../services/auth";
+import Auth from "../services/auth";
+
 function Login() {
   const navigate = useNavigate(); // React Router hook for navigation
   const [data, setData] = useState({
@@ -25,18 +26,13 @@ function Login() {
       (user) => user.username === username && user.password === password
     );
     if (usercheck) {
-      loginUser(usercheck);
+      Auth.loginUser(usercheck);
       navigate("/home");
     } else {
       alert("Wrong password or username");
     }
     console.log(usercheck);
   };
-  // const handleLogin = (e) => {
-  //   e.preventDefault();
-
-  //   navigate("/home");
-  // };
 
   return (
     <div className="relative bg-[url(/img/bg.jpg)] h-screen bg-cover bg-center  ">
