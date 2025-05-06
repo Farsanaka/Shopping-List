@@ -2,11 +2,10 @@ import Logo from "./Logo";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
-import { logoutUser } from "../services/auth";
-//import { fetchUsers } from "../services/api";
 import { useState } from "react";
 import { useEffect } from "react";
-import { isUserLoggedIn } from "../services/auth";
+import Auth from "../services/auth";
+
 function NavBar() {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
@@ -18,7 +17,7 @@ function NavBar() {
   }, []);
 
   const handleLogout = () => {
-    logoutUser();
+    Auth.logout();
     navigate("/login");
   };
 
@@ -35,7 +34,7 @@ function NavBar() {
             <div className="flex justify-end">
               <FontAwesomeIcon icon={faUser} className="mt-4 text-white " />
 
-              {isUserLoggedIn() ? (
+              {Auth.isUserLoggedIn() ? (
                 <button
                   onClick={handleLogout}
                   className="text-white pl-2 mt-3 "

@@ -8,6 +8,10 @@ import {
   openDetails,
   closeDetails,
 } from "../features/shoppingList/detailsSlice";
+<<<<<<< HEAD
+=======
+
+>>>>>>> 22db0f6ad79eca1f269efb2a7661645df6c8d207
 function Home() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -128,7 +132,11 @@ function Home() {
                     readOnly
                     value="Details"
                     onClick={() => dispatch(openDetails(list))}
+<<<<<<< HEAD
                     className="shadow-lg shadow-gray-400/50 bg-white rounded-lg px-2 py-1 text-center w-auto"
+=======
+                    className="shadow-lg shadow-gray-400/50 bg-white rounded-lg px-2 py-1 text-center w-auto text-blue-500"
+>>>>>>> 22db0f6ad79eca1f269efb2a7661645df6c8d207
                     style={{ width: `${list.status.length + 1}ch` }}
                   />
                   <button
@@ -157,3 +165,55 @@ function Home() {
 }
 
 export default Home;
+
+
+
+//////////
+// {!user ? (
+//   <p>Please login to view the Shopping List.</p>
+// ) : lists.length === 0 ? (
+//   <p>You do not have any lists yet.</p>
+// ) : (
+//   lists.map((list) => (
+//     <li key={list.id} className="flex gap-2 m-2">
+//       <input
+//         type="text"
+//         readOnly
+//         value={list.date}
+//         className="shadow-lg shadow-gray-400/50 bg-white rounded-lg px-2 py-1 text-center w-auto"
+//       />
+//       <input
+//         type="text"
+//         readOnly
+//         value={list.category}
+//         className="shadow-lg shadow-gray-400/50 bg-white rounded-lg px-1 py-1 text-center w-auto"
+//       />
+//       <input
+//         type="text"
+//         readOnly
+//         value={list.name}
+//         className="shadow-lg shadow-gray-400/50 bg-white rounded-lg px-2 py-1 text-center w-auto"
+//       />
+//       <input
+//         type="text"
+//         readOnly
+//         value={list.status}
+//         className="shadow-lg shadow-gray-400/50 bg-white rounded-lg px-2 py-1 text-center w-auto"
+//         style={{ width: `${list.status.length + 3}ch` }}
+//       />
+//       <input
+//         type="text"
+//         readOnly
+//         value={list.details}
+//         className="shadow-lg shadow-gray-400/50 bg-white rounded-lg px-2 py-1 text-center w-auto"
+//         style={{ width: `${list.status.length + 1}ch` }}
+//       />
+//       <button
+//         onClick={() => handleDelete(list.id)}
+//         className="shadow-lg shadow-gray-400/50 px-4 py-1 bg-gradient-to-r from-red-400 to-gray-400 rounded-lg font-semibold"
+//       >
+//         Delete
+//       </button>
+//     </li>
+//   ))
+// )}
