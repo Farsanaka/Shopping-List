@@ -31,6 +31,7 @@ function Category() {
   if (status === "failed") {
     return <p className="text-red-500">Error: {error}</p>;
   }
+  
   const handleAdd = () => {
     if (category.trim()) {
       const newCategory = { code, category }; // adjust to your API schema

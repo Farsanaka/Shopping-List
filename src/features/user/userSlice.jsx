@@ -1,8 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getLoggedInUser, isUserLoggedIn } from "../../services/auth";
+import Auth from "../../services/auth";
+
+const user = Auth.getLoggedInUser();
+
 
 const initialState = {
-  user: isUserLoggedIn() ? getLoggedInUser() : null,
+  user: Auth.isUserLoggedIn() ? Auth.getLoggedInUser() : null,
 };
 
 const userSlice = createSlice({
