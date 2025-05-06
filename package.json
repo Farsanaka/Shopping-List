@@ -8,8 +8,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "server1": "json-server --watch data/list.json --port 9000 ",
-    "server2": "json-server --watch data/category.json --port 9001 "
+    "server": "json-server --watch data/data.json --port 9000 -delay 500  "
   },
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
