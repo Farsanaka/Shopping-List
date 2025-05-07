@@ -21,7 +21,7 @@ function List() {
   const [itemName, setItemName] = useState("");
   const [quantity, setQuantity] = useState("");
   const [items, setItems] = useState([]);
-
+  const { user } = useSelector((state) => state.user);
   useEffect(() => {
     dispatch(fetchAll());
   }, [dispatch]);
@@ -61,7 +61,8 @@ function List() {
       status: "Pending",
       date: date,
       items: items,
-      userid: 1,
+      //userid:1,
+      userid: user.id,
     };
 
     console.log("new list is", newList);
