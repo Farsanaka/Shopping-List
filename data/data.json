@@ -77,6 +77,20 @@
       ],
       "userid": 1,
       "id": 5
+    },
+    {
+      "name": "Shoping",
+      "category": "Grocery",
+      "status": "Pending",
+      "date": "07/05/2025",
+      "items": [
+        {
+          "itemName": "Banana",
+          "quantity": "2"
+        }
+      ],
+      "userid": 1,
+      "id": 6
     }
   ]
 }
