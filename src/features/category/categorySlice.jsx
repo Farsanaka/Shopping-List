@@ -62,7 +62,6 @@ const categorySlice = createSlice({
       const deletedId = action.payload;
       state.categories = state.categories.filter((cat) => cat.id !== deletedId);
     },
-
     deleteCategoryFailure(state, action) {
       console.log("Category deletion- failed", action.payload);
       state.error = `Error occurred - ${action.payload}`;
@@ -86,7 +85,7 @@ export const {
 export function fetchAll() {
   return async function (dispatch) {
     try {
-      const response = await axios.get("http://localhost:9001/category");
+      const response = await axios.get("http://localhost:9000/categories");
       const data = response.data;
       dispatch(fetchAllSuccess(data));
     } catch (err) {
@@ -101,7 +100,7 @@ export function addCategory(newCategory) {
   return async function (dispatch) {
     try {
       const response = await axios.post(
-        "http://localhost:9001/category",
+        "http://localhost:9000/categories",
         newCategory
       );
       dispatch(addCategorySuccess(response.data));
@@ -115,7 +114,7 @@ export function updateCategory(updatedCategory) {
   return async function (dispatch) {
     try {
       const response = await axios.put(
-        `http://localhost:9001/category/${updatedCategory.id}`,
+        `http://localhost:9000/categories/${updatedCategory.id}`,
         updatedCategory
       );
       dispatch(updateCategorySuccess(response.data));
@@ -128,7 +127,7 @@ export function updateCategory(updatedCategory) {
 export function deleteCategory(id) {
   return async function (dispatch) {
     try {
-      await axios.delete(`http://localhost:9001/category/${id}`);
+      await axios.delete(`http://localhost:9000/categories/${id}`);
       dispatch(deleteCategorySuccess(id));
     } catch (err) {
       dispatch(deleteCategoryFailure(err.message));

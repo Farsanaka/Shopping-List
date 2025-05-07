@@ -1,242 +1,180 @@
-// import BackgroundLayout from "../components/BackgroudLayout";
-// import Header from "../components/Header";
-// import { useNavigate } from "react-router-dom";
-// import { useSelector, useDispatch } from "react-redux";
-// import {
-//   setName,
-//   setCategory,
-//   showItemInputFields,
-// } from "../features/shoppingList/shoppingListSlice";
-// import { fetchAll } from "../features/category/categorySlice";
-// import { useEffect } from "react";
-
-// function List() {
-//   const navigate = useNavigate();
-//   const dispatch = useDispatch();
-//   const { categories } = useSelector((state) => state.category);
-//   const { name, category, showItemInputs, status } = useSelector(
-//     (state) => state.shoppingList
-//   );
-
-//   if (status === "loading") {
-//     return <p>Loading...</p>;
-//   }
-
-//   if (status === "failed") {
-//     return <p className="text-red-500">Error: {error}</p>;
-//   }
-
-//   useEffect(() => {
-//     dispatch(fetchAll());
-//   }, []);
-
-//   const handleAddList = () => {
-//     if (category.trim()) {
-//       dispatch(showItemInputFields());
-//     } else {
-//       alert("Please enter list name and select category.");
-//     }
-//   };
-
-//   return (
-//     <BackgroundLayout bgImage="/img/homebg.jpg">
-//       <Header />
-//       <div className="flex justify-center">
-//         <div className="flex flex-col justify-center bg-stone-300 rounded-lg m-4 w-fit center">
-//           <p className="p-2 text-center font-bold text-lg">ADD NEW LIST</p>
-
-//           <div className="flex justify-center gap-15 mx-6 my-4">
-//             <input
-//               type="text"
-//               placeholder="Name"
-//               value={name}
-//               onChange={(e) => dispatch(setName(e.target.value))}
-//               className="bg-white rounded-lg text-center"
-//             />
-
-//             <select
-//               value={category}
-//               onChange={(e) => dispatch(setCategory(e.target.value))}
-//             >
-//               <option value="">Choose Category</option>
-//               {categories.map((cat) => (
-//                 <option key={cat.id} value={cat.category}>
-//                   {cat.category}
-//                 </option>
-//               ))}
-//             </select>
-
-//             <button
-//               onClick={handleAddList}
-//               className="px-4 py-1 bg-gradient-to-r from-green-400  to-gray-400 rounded-lg font-semibold"
-//             >
-//               Add List
-//             </button>
-//             <button
-//               onClick={() => navigate("/home/Category")}
-//               className="px-4 py-1 bg-gradient-to-r from-fuchsia-300  to-gray-400 rounded-lg font-semibold"
-//             >
-//               Add Category
-//             </button>
-//           </div>
-//           <div className="flex  gap-15 mx-6 my-4">
-//             {showItemInputs && (
-//               <div className="flex gap-15 mx-6 my-4">
-//                 <input
-//                   type="text"
-//                   placeholder="Quantity"
-//                   className="bg-white rounded-lg text-center"
-//                 />
-//                 <input
-//                   type="text"
-//                   placeholder="Item Name / Description"
-//                   className="bg-white rounded-lg text-center px-3"
-//                 />
-//                 <button className="px-4 py-1 bg-gradient-to-r from-green-400 to-gray-400 rounded-lg font-semibold">
-//                   Add Item
-//                 </button>
-//               </div>
-//             )}
-//           </div>
-//         </div>
-//       </div>
-//     </BackgroundLayout>
-//   );
-// }
-
-// export default List;
-
-
+import { useState, useEffect } from "react";
 import BackgroundLayout from "../components/BackgroudLayout";
 import Header from "../components/Header";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import {
-  setName,
-  setCategory,
-  showItemInputFields,
-  createNewList,
+  // setName,
+  // setCategory,
+  // showItemInputFields,
+  addShoppingList,
 } from "../features/shoppingList/shoppingListSlice";
 import { fetchAll } from "../features/category/categorySlice";
-import { useEffect } from "react";
- 
+
 function List() {
   const navigate = useNavigate();
- 
   const dispatch = useDispatch();
-  const { name, category, item, qty, showItemInputs, lists } = useSelector(
-    (state) => state.shoppingList
-  );
+
   const { categories } = useSelector((state) => state.category);
- 
+  const [formName, setFormName] = useState("");
+  const [formCategory, setFormCategory] = useState("");
+  const [itemName, setItemName] = useState("");
+  const [quantity, setQuantity] = useState("");
+  const [items, setItems] = useState([]);
+
   useEffect(() => {
     dispatch(fetchAll());
-  }, []);
- 
-  const handleAddList = () => {
-    const user = JSON.parse(localStorage.getItem("user"));
-    const userId = user?.id;
- 
-    if (!userId) {
-      console.error("User not found. Please log in.");
+  }, [dispatch]);
+
+  const canShowItemInput = formName.trim() && formCategory.trim();
+
+  const handleAddItem = () => {
+    if (!itemName.trim() || !quantity.trim()) {
+      alert("Please fill both item name and quantity.");
       return;
     }
- 
-    if (category.trim() && name.trim()) {
-      // dispatch(createNewList({ name, category, userid: userId }));
-      dispatch(showItemInputFields());
-    } else {
-      alert("Please enter list name and select category.");
-    }
+
+    setItems([...items, { itemName, quantity }]);
+    setItemName("");
+    setQuantity("");
   };
- 
+
+  const handleSaveList = async () => {
+    if (!formName.trim() || !formCategory.trim()) {
+      alert("Please fill in both name and category.");
+      return;
+    }
+
+    if (items.length === 0) {
+      alert("Please add at least one item.");
+      return;
+    }
+
+    const today = new Date();
+    const date = `${String(today.getDate()).padStart(2, "0")}/${String(
+      today.getMonth() + 1
+    ).padStart(2, "0")}/${today.getFullYear()}`;
+
+    const newList = {
+      name: formName,
+      category: formCategory,
+      status: "Pending",
+      date: date,
+      items: items,
+      userid: 1,
+    };
+
+    console.log("new list is", newList);
+    dispatch(addShoppingList(newList));
+    alert("List saved successfully!");
+    navigate("/home");
+  };
+  const handleRemove = (index) => {
+    const updatedItems = [...items];
+    updatedItems.splice(index, 1);
+    setItems(updatedItems);
+  };
+
   return (
     <BackgroundLayout bgImage="/img/homebg.jpg">
       <Header />
       <div className="flex justify-center">
         <div className="flex flex-col justify-center bg-stone-300 rounded-lg m-4 w-fit center">
           <p className="p-2 text-center font-bold text-lg">ADD NEW LIST</p>
- 
-          <div className="flex justify-center gap-15 mx-6 my-4">
-            {/* <input
-              type="text"
-              placeholder="Name"
-              className="bg-white rounded-lg text-center"
-            /> */}
-            {/* <select>
-              <option value="someOption">Choose Category</option>
-              <option value="otherOption">Other option</option>
-            </select> */}
- 
+
+          <div className="flex justify-center gap-15 mx-6 my-4 ">
             <input
               type="text"
               placeholder="Name"
-              value={name}
-              onChange={(e) => dispatch(setName(e.target.value))}
-              className="bg-white rounded-lg text-center"
+              value={formName}
+              onChange={(e) => setFormName(e.target.value)}
+              className="bg-white rounded-lg text-center mx-4  shadow-lg shadow-gray-400/50 focus:outline-none focus:ring-2 focus:ring-gray-400 "
             />
- 
+
             <select
-              value={category}
-              onChange={(e) => dispatch(setCategory(e.target.value))}
+              value={formCategory}
+              onChange={(e) => setFormCategory(e.target.value)}
+              className="bg-white rounded-lg text-center"
             >
               <option value="">Choose Category</option>
               {categories.map((cat) => (
-                <option key={cat.id} value={cat.category}>
+                <option key={cat.code} value={cat.category}>
                   {cat.category}
                 </option>
               ))}
             </select>
- 
-            <button
-              onClick={handleAddList}
-              className="px-4 py-1 bg-gradient-to-r from-green-400  to-gray-400 rounded-lg font-semibold"
-            >
-              Add List
-            </button>
+
             <button
               onClick={() => navigate("/home/Category")}
-              className="px-4 py-1 bg-gradient-to-r from-fuchsia-300  to-gray-400 rounded-lg font-semibold"
+              className="px-4 py-1 bg-gradient-to-r from-fuchsia-300 to-gray-400 rounded-lg font-semibold"
             >
               Add Category
             </button>
           </div>
-          <div className="flex  gap-15 mx-6 my-4">
-            {showItemInputs && (
-              <div className="flex gap-15 mx-6 my-4">
+
+          {canShowItemInput && (
+            <div className="flex flex-col mx-6 my-4 gap-4">
+              <div className="flex gap-4">
                 <input
-                  type="text"
+                  type="number"
                   placeholder="Quantity"
-                  className="bg-white rounded-lg text-center"
+                  value={quantity}
+                  onChange={(e) => setQuantity(e.target.value)}
+                  className="bg-white rounded-lg text-center mx-4  shadow-lg shadow-gray-400/50 focus:outline-none focus:ring-2 focus:ring-gray-400 "
                 />
                 <input
                   type="text"
                   placeholder="Item Name / Description"
-                  className="bg-white rounded-lg text-center px-3"
+                  value={itemName}
+                  onChange={(e) => setItemName(e.target.value)}
+                  className="bg-white rounded-lg text-center mx-4  shadow-lg shadow-gray-400/50 focus:outline-none focus:ring-2 focus:ring-gray-400 "
                 />
-                <button className="px-4 py-1 bg-gradient-to-r from-green-400 to-gray-400 rounded-lg font-semibold">
+                <button
+                  onClick={handleAddItem}
+                  className="px-4 py-1 bg-gradient-to-r from-green-400 to-gray-400 rounded-lg font-semibold"
+                >
                   Add Item
                 </button>
               </div>
-            )}
-            {/* <input
-              type="text"
-              placeholder="Quantity"
-              className="bg-white rounded-lg text-center"
-            />
-            <input
-              type="text"
-              placeholder="Item Name / Description"
-              className="bg-white rounded-lg text-center px-3"
-            /> */}
-            {/* <button className="px-4 py-1 bg-gradient-to-r from-green-400  to-gray-400 rounded-lg font-semibold">
-              Add Item
-            </button> */}
-          </div>
+
+              <div className="flex flex-col items-center justify-center p-6">
+                {items.map((item, index) => (
+                  <div
+                    key={index}
+                    className="flex items-center justify-center space-x-2 mb-2"
+                  >
+                    <div className="bg-gray-200 px-4 py-2 rounded-md h-8 flex items-center justify-center">
+                      {item.quantity}
+                    </div>
+                    <div className="text-lg font-semibold">×</div>
+                    <div className="bg-gray-200 px-4 py-2 rounded-md h-8 flex items-center justify-center">
+                      {item.itemName}
+                    </div>
+
+                    <button
+                      className="bg-red-500 text-white rounded-md h-8 w-8 flex items-center justify-center hover:bg-red-600"
+                      onClick={() => handleRemove(index)}
+                    >
+                      ×
+                    </button>
+                  </div>
+                ))}
+              </div>
+
+              <div className="flex justify-center my-4">
+                <button
+                  onClick={handleSaveList}
+                  className="px-6 py-2 bg-gradient-to-r from-blue-400 to-gray-400 rounded-lg font-bold"
+                >
+                  Save
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </BackgroundLayout>
   );
 }
- 
+
 export default List;

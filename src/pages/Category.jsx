@@ -82,6 +82,14 @@ function Category() {
             </button>
           </div>
           <ul className="m-4 mt-10">
+            <li className="flex gap-4 mb-2">
+              <div className="bg-gray-300 rounded-lg px-2 py-1 text-center w-[200px]">
+                CODE
+              </div>
+              <div className="bg-gray-300 rounded-lg px-2 py-1 text-center w-[200px]">
+                CATEGORY NAME
+              </div>
+            </li>
             {categories.map((cat, index) => (
               <li key={index} className="flex gap-4 mb-2">
                 {editIndex === index ? (

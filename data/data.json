@@ -1,0 +1,96 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "karun@gmail.com",
+      "name": "Karun",
+      "password": "karun123"
+    },
+    {
+      "id": 2,
+      "username": "farsana@gmail.com",
+      "name": "Farsana",
+      "password": "farsana123"
+    }
+  ],
+  "categories": [
+    {
+      "code": "101",
+      "category": "Grocery"
+    },
+    {
+      "code": "102",
+      "category": "Clothes"
+    },
+    {
+      "code": "103",
+      "category": "Misc"
+    }
+  ],
+  "list": [
+    {
+      "id": 1,
+      "date": "04-01-2024",
+      "name": "weekly Shopping",
+      "category": "Grocery",
+      "status": "Pending",
+      "items": [],
+      "userid": 1
+    },
+    {
+      "id": 2,
+      "date": "09-08-2024",
+      "name": "Sam's Clothes Shopping",
+      "category": "Clothes",
+      "status": "Pending",
+      "items": [],
+      "userid": 1
+    },
+    {
+      "id": 3,
+      "date": "19-05-2025",
+      "name": "Weekend Shopping",
+      "category": "Misc",
+      "status": "Pending",
+      "items": [],
+      "userid": 2
+    },
+    {
+      "id": 4,
+      "date": "27-12-2024",
+      "name": "festival",
+      "category": "Clothes",
+      "status": "Pending",
+      "items": [],
+      "userid": 2
+    },
+    {
+      "name": "e",
+      "category": "Grocery",
+      "status": "Pending",
+      "date": "06/05/2025",
+      "items": [
+        {
+          "itemName": "r",
+          "quantity": "3"
+        }
+      ],
+      "userid": 1,
+      "id": 5
+    },
+    {
+      "name": "Shoping",
+      "category": "Grocery",
+      "status": "Pending",
+      "date": "07/05/2025",
+      "items": [
+        {
+          "itemName": "Banana",
+          "quantity": "2"
+        }
+      ],
+      "userid": 1,
+      "id": 6
+    }
+  ]
+}

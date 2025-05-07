@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
- 
+
 const initialState = {
   showDetailsModal: false,
   selectedItem: null,
 };
- 
+
 const detailsSlice = createSlice({
   name: "details",
   initialState,
@@ -19,6 +19,6 @@ const detailsSlice = createSlice({
     },
   },
 });
- 
+
 export const { openDetails, closeDetails } = detailsSlice.actions;
 export default detailsSlice.reducer;
