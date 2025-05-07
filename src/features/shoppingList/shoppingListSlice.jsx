@@ -122,10 +122,11 @@ export function addShoppingList(newList) {
 export function deleteList(id) {
   return async function (dispatch) {
     try {
-      await axios.delete(`http://localhost:9000/lists/${id}`);
-      dispatch(deleteListSuccess(id)); // Dispatch success with the id
+      await axios.delete(`http://localhost:9000/list/${id}`);
+      dispatch(deleteListSuccess(id));
     } catch (err) {
-      dispatch(deleteListFailure(err.message)); // Dispatch failure with error message
+      console.log("Delete Error:", err.message);
+      dispatch(deleteListFailure(err.message));
     }
   };
 }

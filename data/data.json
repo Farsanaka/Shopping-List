@@ -123,6 +123,118 @@
       ],
       "userid": 2,
       "id": 8
+    },
+    {
+      "name": "sample",
+      "category": "Grocery",
+      "status": "Pending",
+      "date": "07/05/2025",
+      "items": [
+        {
+          "itemName": "ff",
+          "quantity": "4"
+        }
+      ],
+      "userid": 2,
+      "id": 9
+    },
+    {
+      "name": "sm",
+      "category": "Grocery",
+      "status": "Pending",
+      "date": "07/05/2025",
+      "items": [
+        {
+          "itemName": "gh",
+          "quantity": "6"
+        }
+      ],
+      "userid": 2,
+      "id": 10
+    },
+    {
+      "name": "s",
+      "category": "Grocery",
+      "status": "Pending",
+      "date": "07/05/2025",
+      "items": [
+        {
+          "itemName": "d",
+          "quantity": "3"
+        }
+      ],
+      "userid": 1,
+      "id": 12
+    },
+    {
+      "name": "r",
+      "category": "Grocery",
+      "status": "Pending",
+      "date": "07/05/2025",
+      "items": [
+        {
+          "itemName": "d",
+          "quantity": "4"
+        }
+      ],
+      "userid": 1,
+      "id": 13
+    },
+    {
+      "name": "k",
+      "category": "Grocery",
+      "status": "Pending",
+      "date": "07/05/2025",
+      "items": [
+        {
+          "itemName": "m",
+          "quantity": "8"
+        }
+      ],
+      "userid": 1,
+      "id": 14
+    },
+    {
+      "name": "h",
+      "category": "Clothes",
+      "status": "Pending",
+      "date": "07/05/2025",
+      "items": [
+        {
+          "itemName": "k",
+          "quantity": "4"
+        }
+      ],
+      "userid": 1,
+      "id": 15
+    },
+    {
+      "name": "mk",
+      "category": "Misc",
+      "status": "Pending",
+      "date": "07/05/2025",
+      "items": [
+        {
+          "itemName": "km",
+          "quantity": "6"
+        }
+      ],
+      "userid": 1,
+      "id": 16
+    },
+    {
+      "name": "m",
+      "category": "Grocery",
+      "status": "Pending",
+      "date": "07/05/2025",
+      "items": [
+        {
+          "itemName": "lp",
+          "quantity": "8"
+        }
+      ],
+      "userid": 1,
+      "id": 17
     }
   ]
 }

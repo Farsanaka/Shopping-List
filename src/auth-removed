@@ -9,7 +9,7 @@ const Auth = {
   async login(email, password) {
     try {
       const response = await axios.get(
-        `http://localhost:8000/users?email=${email}`
+        `http://localhost:9000/users?email=${email}`
       );
       const user = response.data.find(
         (u) => u.email === email && u.password === password

@@ -56,7 +56,7 @@ const categorySlice = createSlice({
     updateCategoryFailure(state, action) {
       state.error = `Update failed - ${action.payload}`;
     },
-
+    deleteCategory(state, action) {},
     deleteCategorySuccess(state, action) {
       console.log("Category Deletion- success", action.payload);
       const deletedId = action.payload;

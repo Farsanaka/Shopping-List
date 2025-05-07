@@ -21,7 +21,9 @@ function List() {
   const [itemName, setItemName] = useState("");
   const [quantity, setQuantity] = useState("");
   const [items, setItems] = useState([]);
-  const { user } = useSelector((state) => state.user);
+  const auth = useSelector((state) => state.auth);
+  const user = auth?.user; // safe access
+
   useEffect(() => {
     dispatch(fetchAll());
   }, [dispatch]);
@@ -68,6 +70,7 @@ function List() {
     console.log("new list is", newList);
     dispatch(addShoppingList(newList));
     alert("List saved successfully!");
+
     navigate("/home");
   };
   const handleRemove = (index) => {
