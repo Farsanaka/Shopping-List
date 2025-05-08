@@ -11,7 +11,7 @@ import {
 } from "../features/shoppingList/shoppingListSlice";
 import { fetchAll } from "../features/category/categorySlice";
 
-function List() {
+function AddList() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -21,7 +21,10 @@ function List() {
   const [itemName, setItemName] = useState("");
   const [quantity, setQuantity] = useState("");
   const [items, setItems] = useState([]);
-  const { user } = useSelector((state) => state.user);
+  const { status, error } = useSelector((state) => state.shoppingList);
+  const auth = useSelector((state) => state.auth);
+  const user = auth?.user; // safe access
+
   useEffect(() => {
     dispatch(fetchAll());
   }, [dispatch]);
@@ -51,9 +54,8 @@ function List() {
     }
 
     const today = new Date();
-    const date = `${String(today.getDate()).padStart(2, "0")}/${String(
-      today.getMonth() + 1
-    ).padStart(2, "0")}/${today.getFullYear()}`;
+    const options = { day: "numeric", month: "long", year: "numeric" };
+    const date = today.toLocaleDateString("en-GB", options);
 
     const newList = {
       name: formName,
@@ -68,6 +70,7 @@ function List() {
     console.log("new list is", newList);
     dispatch(addShoppingList(newList));
     alert("List saved successfully!");
+
     navigate("/home");
   };
   const handleRemove = (index) => {
@@ -75,7 +78,17 @@ function List() {
     updatedItems.splice(index, 1);
     setItems(updatedItems);
   };
+  // const handleStatusUpdate = (newStatus, listId) => {
+  //   dispatch(updateListStatus(listId, newStatus));
+  // };
 
+  if (status === "loading") {
+    return <p>Loading...</p>;
+  }
+
+  if (status === "failed") {
+    return <p className="text-red-500">Error: {error}</p>;
+  }
   return (
     <BackgroundLayout bgImage="/img/homebg.jpg">
       <Header />
@@ -178,4 +191,4 @@ function List() {
   );
 }
 
-export default List;
+export default AddList;

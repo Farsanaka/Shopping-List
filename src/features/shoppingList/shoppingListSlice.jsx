@@ -1,5 +1,5 @@
 // src/redux/shoppingListSlice.js
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { fetchShoppingLists, addShoppingListasync } from "../../services/api";
 import axios from "axios";
 const initialState = {
@@ -7,6 +7,7 @@ const initialState = {
   name: "",
   category: "",
   showItemInputs: false,
+
   error: "",
 };
 
@@ -65,6 +66,22 @@ const shoppingListSlice = createSlice({
     deleteListFailure(state, action) {
       state.error = `Delete failed - ${action.payload}`;
     },
+    updateListStatus(state, action) {},
+    updateListStatusSuccess(state, action) {
+      const { listId, status } = action.payload;
+      const list = state.shoppingLists.find((list) => list.id === listId);
+      if (list) {
+        list.status = status; // Update the list status
+      }
+      localStorage.setItem(
+        "shoppingLists",
+        JSON.stringify(state.shoppingLists)
+      );
+    },
+
+    updateListStatusFailure(state, action) {
+      state.error = `Status update failed: ${action.payload}`;
+    },
   },
 });
 export const {
@@ -78,6 +95,8 @@ export const {
   addShoppingListSuccess,
   deleteListSuccess,
   deleteListFailure,
+  updateListStatusSuccess,
+  updateListStatusFailure,
 } = shoppingListSlice.actions;
 
 // Redux-compatible function
@@ -122,11 +141,31 @@ export function addShoppingList(newList) {
 export function deleteList(id) {
   return async function (dispatch) {
     try {
-      await axios.delete(`http://localhost:9000/lists/${id}`);
-      dispatch(deleteListSuccess(id)); // Dispatch success with the id
+      await axios.delete(`http://localhost:9000/list/${id}`);
+      dispatch(deleteListSuccess(id));
     } catch (err) {
-      dispatch(deleteListFailure(err.message)); // Dispatch failure with error message
+      console.log("Delete Error:", err.message);
+      dispatch(deleteListFailure(err.message));
     }
   };
 }
+export const updateListStatus = createAsyncThunk(
+  "shoppingList/updateStatus",
+  async ({ listId, status }, { rejectWithValue }) => {
+    try {
+      console.log(listId);
+      const response = await axios.put(
+        `http://localhost:9000/list/${listId}/status`,
+        {
+          status: status,
+        }
+      );
+      return response.data;
+    } catch (error) {
+      console.error("Update Status Error:", error);
+      return rejectWithValue(error.response?.data || "Error updating status");
+    }
+  }
+);
+
 export default shoppingListSlice.reducer;
