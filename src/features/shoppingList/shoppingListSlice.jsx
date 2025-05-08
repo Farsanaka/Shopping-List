@@ -1,15 +1,32 @@
-// src/redux/shoppingListSlice.js
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { fetchShoppingLists, addShoppingListasync } from "../../services/api";
 import axios from "axios";
+
 const initialState = {
-  shoppingLists: [],
+  shoppingLists: JSON.parse(localStorage.getItem("shoppingLists")) || [],
   name: "",
   category: "",
   showItemInputs: false,
-
   error: "",
 };
+
+// ✅ Async Thunk for status update
+export const updateListStatus = createAsyncThunk(
+  "shoppingLists/updateStatus",
+  async ({ listId, status }, { rejectWithValue }) => {
+    try {
+      const response = await axios.patch(
+        `http://localhost:9000/list/${listId}`,
+        { status }
+      );
+      return { listId, status }; // Return values for reducer
+    } catch (error) {
+      return rejectWithValue(
+        error.response?.data || "Error updating list status"
+      );
+    }
+  }
+);
 
 const shoppingListSlice = createSlice({
   name: "shoppingLists",
@@ -27,27 +44,11 @@ const shoppingListSlice = createSlice({
     hideItemInputFields(state) {
       state.showItemInputs = false;
     },
-    fetchAll(state, action) {},
-    //state->current state
-    //action->what to do
-    //type->name of action
-    //payload->data u r sending
-    //dispatch->fn u call to send an actn to redux
     fetchAllSuccess(state, action) {
-      console.log("Fetch success:", action.payload);
       state.shoppingLists = action.payload;
     },
     fetchAllFailure(state, action) {
-      console.log("Fetch failure:", action.payload);
       state.error = `Error occurred - ${action.payload}`;
-    },
-
-    addShoppingList(state, action) {
-      // state.shoppingLists.push(action.payload);
-      // localStorage.setItem(
-      //   "shoppingLists",
-      //   JSON.stringify(state.shoppingLists)
-      // );
     },
     addShoppingListSuccess(state, action) {
       state.shoppingLists.push(action.payload);
@@ -55,6 +56,17 @@ const shoppingListSlice = createSlice({
     addShoppingListFailure(state, action) {
       state.error = action.payload;
     },
+    // deleteListSuccess(state, action) {
+    //   const deletedId = action.payload;
+    //   state.shoppingLists = state.shoppingLists.filter(
+    //     (list) => list.id !== deletedId
+    //   );
+    // },
+    // deleteListFailure(state, action) {
+    //   state.error = `Delete failed - ${action.payload}`;
+    // },
+
+    //
     deleteList(state, action) {},
     deleteListSuccess(state, action) {
       const deletedId = action.payload;
@@ -66,24 +78,30 @@ const shoppingListSlice = createSlice({
     deleteListFailure(state, action) {
       state.error = `Delete failed - ${action.payload}`;
     },
-    updateListStatus(state, action) {},
-    updateListStatusSuccess(state, action) {
-      const { listId, status } = action.payload;
-      const list = state.shoppingLists.find((list) => list.id === listId);
-      if (list) {
-        list.status = status; // Update the list status
-      }
-      localStorage.setItem(
-        "shoppingLists",
-        JSON.stringify(state.shoppingLists)
-      );
-    },
+    //
+  },
 
-    updateListStatusFailure(state, action) {
-      state.error = `Status update failed: ${action.payload}`;
-    },
+  // ✅ Handling the thunk for updateListStatus
+  extraReducers: (builder) => {
+    builder
+      .addCase(updateListStatus.fulfilled, (state, action) => {
+        const { listId, status } = action.payload;
+        const list = state.shoppingLists.find((list) => list.id === listId);
+        if (list) {
+          list.status = status;
+          // Persist to localStorage
+          localStorage.setItem(
+            "shoppingLists",
+            JSON.stringify(state.shoppingLists)
+          );
+        }
+      })
+      .addCase(updateListStatus.rejected, (state, action) => {
+        state.error = `Status update failed: ${action.payload}`;
+      });
   },
 });
+
 export const {
   setName,
   setCategory,
@@ -91,15 +109,13 @@ export const {
   hideItemInputFields,
   fetchAllSuccess,
   fetchAllFailure,
-  addShoppingListFailure,
   addShoppingListSuccess,
+  addShoppingListFailure,
   deleteListSuccess,
   deleteListFailure,
-  updateListStatusSuccess,
-  updateListStatusFailure,
 } = shoppingListSlice.actions;
 
-// Redux-compatible function
+// ✅ Thunk to fetch lists from localStorage
 export function fetchAll(userId) {
   return async function (dispatch) {
     try {
@@ -115,28 +131,52 @@ export function fetchAll(userId) {
     }
   };
 }
+
 export function addShoppingList(newList) {
   return async function (dispatch) {
-    console.log("entered addshopping list in slice");
     try {
       const response = await addShoppingListasync(newList);
-      console.log("response is", response);
-      if (response.status == 200) {
+      if (response.status === 200) {
         dispatch(addShoppingListSuccess(newList));
       } else {
-        dispatch(addShoppingListFailure("list could not be added"));
+        dispatch(addShoppingListFailure("List could not be added"));
       }
-      // const filteredLists = allLists.filter((list) => list.userid === userId);
-      // dispatch({
-      //   type: "shoppingLists/fetchAllSuccess",
-      //   payload: filteredLists,
-      // });
     } catch (err) {
-      console.log("Dispatching error:", err.message);
-      dispatch({ type: "shoppingLists/fetchAllFailure", payload: err.message });
+      dispatch(fetchAllFailure(err.message));
     }
   };
 }
+
+//
+export const saveCheckedItems = createAsyncThunk(
+  "shoppingList/saveCheckedItems",
+  async ({ listId, checkedState }, { getState, rejectWithValue }) => {
+    try {
+      // Get the selected list from state
+      const list = getState().shoppingList.shoppingLists.find(
+        (list) => list.id === listId
+      );
+
+      // Add checked flag to each item
+      const updatedItems = list.items.map((item, index) => ({
+        ...item,
+        checked: checkedState[index] || false,
+      }));
+
+      // Send PATCH request to update list
+      const response = await axios.patch(
+        `http://localhost:9000/list/${listId}`,
+        {
+          items: updatedItems,
+        }
+      );
+
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
 
 export function deleteList(id) {
   return async function (dispatch) {
@@ -149,23 +189,7 @@ export function deleteList(id) {
     }
   };
 }
-export const updateListStatus = createAsyncThunk(
-  "shoppingList/updateStatus",
-  async ({ listId, status }, { rejectWithValue }) => {
-    try {
-      console.log(listId);
-      const response = await axios.put(
-        `http://localhost:9000/list/${listId}/status`,
-        {
-          status: status,
-        }
-      );
-      return response.data;
-    } catch (error) {
-      console.error("Update Status Error:", error);
-      return rejectWithValue(error.response?.data || "Error updating status");
-    }
-  }
-);
+
+//
 
 export default shoppingListSlice.reducer;

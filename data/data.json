@@ -21,7 +21,9 @@
     },
     {
       "code": "102",
-      "category": "Clothes"
+      "category": "Clothes",
+      "id": 2,
+      "prevCode": "102"
     },
     {
       "code": "103",
@@ -31,27 +33,14 @@
       "code": "ty",
       "category": "toyss",
       "id": 2
+    },
+    {
+      "code": "CS",
+      "category": "Cosmetic",
+      "id": 3
     }
   ],
   "list": [
-    {
-      "id": 1,
-      "date": "04-01-2024",
-      "name": "weekly Shopping",
-      "category": "Grocery",
-      "status": "Pending",
-      "items": [],
-      "userid": 1
-    },
-    {
-      "id": 2,
-      "date": "09-08-2024",
-      "name": "Sam's Clothes Shopping",
-      "category": "Clothes",
-      "status": "Pending",
-      "items": [],
-      "userid": 1
-    },
     {
       "id": 3,
       "date": "19-05-2025",
@@ -99,41 +88,13 @@
       "id": 6
     },
     {
-      "name": "festive",
-      "category": "Clothes",
-      "status": "Pending",
-      "date": "07/05/2025",
-      "items": [
-        {
-          "itemName": "decorate items",
-          "quantity": "2"
-        }
-      ],
-      "userid": 1,
-      "id": 7
-    },
-    {
       "status": "Completed",
       "id": 10
     },
     {
-      "name": "s",
-      "category": "Grocery",
-      "status": "Pending",
-      "date": "07/05/2025",
-      "items": [
-        {
-          "itemName": "d",
-          "quantity": "3"
-        }
-      ],
-      "userid": 1,
-      "id": 12
-    },
-    {
       "name": "r",
       "category": "Grocery",
-      "status": "Pending",
+      "status": "Completed",
       "date": "07/05/2025",
       "items": [
         {
@@ -147,7 +108,7 @@
     {
       "name": "k",
       "category": "Grocery",
-      "status": "Pending",
+      "status": "Completed",
       "date": "07/05/2025",
       "items": [
         {
@@ -161,7 +122,7 @@
     {
       "name": "h",
       "category": "Clothes",
-      "status": "Pending",
+      "status": "Completed",
       "date": "07/05/2025",
       "items": [
         {
@@ -171,34 +132,6 @@
       ],
       "userid": 1,
       "id": 15
-    },
-    {
-      "name": "mk",
-      "category": "Misc",
-      "status": "Pending",
-      "date": "07/05/2025",
-      "items": [
-        {
-          "itemName": "km",
-          "quantity": "6"
-        }
-      ],
-      "userid": 1,
-      "id": 16
-    },
-    {
-      "name": "m",
-      "category": "Grocery",
-      "status": "Pending",
-      "date": "07/05/2025",
-      "items": [
-        {
-          "itemName": "lp",
-          "quantity": "8"
-        }
-      ],
-      "userid": 1,
-      "id": 17
     },
     {
       "name": "festive",

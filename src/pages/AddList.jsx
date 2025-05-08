@@ -15,7 +15,6 @@ function AddList() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { categories } = useSelector((state) => state.category);
   const [formName, setFormName] = useState("");
   const [formCategory, setFormCategory] = useState("");
   const [itemName, setItemName] = useState("");
@@ -24,10 +23,19 @@ function AddList() {
   const { status, error } = useSelector((state) => state.shoppingList);
   const auth = useSelector((state) => state.auth);
   const user = auth?.user; // safe access
+  const categories = useSelector((state) => state.category.categories);
 
   useEffect(() => {
     dispatch(fetchAll());
   }, [dispatch]);
+
+  if (status === "loading") {
+    return <p>Loading...</p>;
+  }
+
+  if (status === "failed") {
+    return <p className="text-red-500">Error: {error}</p>;
+  }
 
   const canShowItemInput = formName.trim() && formCategory.trim();
 

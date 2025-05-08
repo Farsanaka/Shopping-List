@@ -41,12 +41,6 @@ function Home() {
     }
   }, [dispatch, user, navigate]);
 
-  // Handle delete
-  // const handleDelete = (id) => {
-  //   console.log("Trying to delete ID:", id);
-  //   dispatch(deleteList(id));
-  // };
-
   const handleDelete = (idToDelete) => {
     console.log("Trying to delete ID:", idToDelete);
     dispatch(deleteList(idToDelete));
@@ -75,7 +69,9 @@ function Home() {
                 >
                   ×
                 </button>
-                <h2 className="text-lg font-semibold mb-4">List Details</h2>
+                <h2 className="text-lg font-semibold mb-4">
+                  {selectedItem.name} Details
+                </h2>
 
                 {selectedItem.items && selectedItem.items.length > 0 ? (
                   <div className="space-y-2">
@@ -116,13 +112,14 @@ function Home() {
                   <p>No items available for this list.</p>
                 )}
 
+                {/*  */}
                 <button
+                  //
                   onClick={() => {
                     const allChecked =
                       Object.values(localChecked).every(Boolean);
                     const newStatus = allChecked ? "Completed" : "Pending";
 
-                    // Save checkbox state to Redux and localStorage
                     dispatch(
                       saveCheckedItems({
                         listId: selectedItem.id,
@@ -130,7 +127,6 @@ function Home() {
                       })
                     );
 
-                    // Update the list status in Redux (and backend, if connected)
                     dispatch(
                       updateListStatus({
                         listId: selectedItem.id,
@@ -138,13 +134,16 @@ function Home() {
                       })
                     );
 
-                    // Close the modal
                     dispatch(closeDetails());
                   }}
+                  //
+
                   className="mt-4 px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600"
                 >
                   Save
                 </button>
+
+                {/*  */}
               </div>
             </div>
           )}
@@ -161,7 +160,7 @@ function Home() {
               <div className="bg-gray-300 rounded-lg px-2 py-1 text-center w-[198px]">
                 NAME
               </div>
-              <div className="bg-gray-300 rounded-lg px-2 py-1 text-center w-[85px]">
+              <div className="bg-gray-300 rounded-lg px-2 py-1 text-center w-[100px]">
                 STATUS
               </div>
               <div className="bg-gray-300 rounded-lg px-2 py-1 text-center w-[70px]">
@@ -202,13 +201,16 @@ function Home() {
                     value={list.name}
                     className="shadow-lg shadow-gray-400/50 bg-white rounded-lg px-2 py-1 text-center w-auto"
                   />
+                  {/*  */}
                   <input
                     type="text"
                     readOnly
                     value={list.status}
-                    className="shadow-lg shadow-gray-400/50 bg-white rounded-lg px-2 py-1 text-center w-auto"
-                    style={{ width: `${list.status.length + 3}ch` }}
+                    className="shadow-lg shadow-gray-400/50 bg-white rounded-lg px-2 py-1 text-center w-[100px]"
                   />
+
+                  {/*  */}
+
                   <input
                     type="button"
                     readOnly
