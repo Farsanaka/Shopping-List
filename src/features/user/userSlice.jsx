@@ -3,7 +3,6 @@ import Auth from "../../services/auth";
 
 const user = Auth.getLoggedInUser();
 
-
 const initialState = {
   user: Auth.isUserLoggedIn() ? Auth.getLoggedInUser() : null,
 };

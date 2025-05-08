@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const Logo = () => {
   return (
-    <Link to='/' className="flex items-center ml-8  ">
+    <Link to="/" className="flex items-center ml-8  ">
       <FontAwesomeIcon
         icon={faCartPlus}
         className="text-white text-4xl mr-3 my-2" // Increased size for the icon

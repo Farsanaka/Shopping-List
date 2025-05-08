@@ -27,6 +27,7 @@
     },
     {
       "code": "103",
+<<<<<<< HEAD
       "category": "Misc",
       "id": 3
     },
@@ -34,6 +35,14 @@
       "code": "TY",
       "category": "Toy",
       "id": 4
+=======
+      "category": "Misc"
+    },
+    {
+      "code": "ty",
+      "category": "toyss",
+      "id": 2
+>>>>>>> bf55b88843a2a39a1c0517cb3969f694a57a2ad8
     }
   ],
   "list": [
@@ -116,21 +125,106 @@
       "id": 7
     },
     {
-      "name": "sample",
+      "status": "Completed",
+      "id": 10
+    },
+    {
+      "name": "s",
+      "category": "Grocery",
+      "status": "Pending",
+      "date": "07/05/2025",
+      "items": [
+        {
+          "itemName": "d",
+          "quantity": "3"
+        }
+      ],
+      "userid": 1,
+      "id": 12
+    },
+    {
+      "name": "r",
+      "category": "Grocery",
+      "status": "Pending",
+      "date": "07/05/2025",
+      "items": [
+        {
+          "itemName": "d",
+          "quantity": "4"
+        }
+      ],
+      "userid": 1,
+      "id": 13
+    },
+    {
+      "name": "k",
+      "category": "Grocery",
+      "status": "Pending",
+      "date": "07/05/2025",
+      "items": [
+        {
+          "itemName": "m",
+          "quantity": "8"
+        }
+      ],
+      "userid": 1,
+      "id": 14
+    },
+    {
+      "name": "h",
       "category": "Clothes",
       "status": "Pending",
       "date": "07/05/2025",
       "items": [
         {
-          "itemName": "sample items",
+          "itemName": "k",
           "quantity": "4"
-        },
+        }
+      ],
+      "userid": 1,
+      "id": 15
+    },
+    {
+      "name": "mk",
+      "category": "Misc",
+      "status": "Pending",
+      "date": "07/05/2025",
+      "items": [
         {
-          "itemName": "items2",
+          "itemName": "km",
+          "quantity": "6"
+        }
+      ],
+      "userid": 1,
+      "id": 16
+    },
+    {
+      "name": "m",
+      "category": "Grocery",
+      "status": "Pending",
+      "date": "07/05/2025",
+      "items": [
+        {
+          "itemName": "lp",
+          "quantity": "8"
+        }
+      ],
+      "userid": 1,
+      "id": 17
+    },
+    {
+      "name": "festive",
+      "category": "Clothes",
+      "status": "Pending",
+      "date": "8 May 2025",
+      "items": [
+        {
+          "itemName": "shirt",
           "quantity": "3"
         }
       ],
       "userid": 2,
+<<<<<<< HEAD
       "id": 8
     },
     {
@@ -238,6 +332,9 @@
       ],
       "userid": 1,
       "id": 15
+=======
+      "id": 18
+>>>>>>> bf55b88843a2a39a1c0517cb3969f694a57a2ad8
     }
   ]
 }

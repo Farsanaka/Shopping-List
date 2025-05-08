@@ -1,11 +1,17 @@
 import Logo from "../components/Logo";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux"; // Import useDispatch from Redux
+import {
+  loginSuccess,
+  loginFailure,
+  loginPending,
+} from "../services/authSlice"; // Import actions from authSlice
 import { fetchUsers } from "../services/api";
-import Auth from "../services/auth";
 
 function Login() {
   const navigate = useNavigate(); // React Router hook for navigation
+  const dispatch = useDispatch(); // Initialize dispatch function
   const [data, setData] = useState({
     username: "",
     password: "",
@@ -15,28 +21,39 @@ function Login() {
   const changeHandler = async (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await checkUser();
-    console.log(checkUser());
+    dispatch(loginPending()); // Set loading state before checking user
+    await checkUser(); // Call checkUser function to validate login
   };
+<<<<<<< HEAD
   
+=======
+
+>>>>>>> bf55b88843a2a39a1c0517cb3969f694a57a2ad8
   const checkUser = async () => {
-    const users = await fetchUsers();
-    const usercheck = users.find(
-      (user) => user.username === username && user.password === password
-    );
-    if (usercheck) {
-      Auth.loginUser(usercheck);
-      navigate("/home");
-    } else {
-      alert("Wrong password or username");
+    try {
+      const users = await fetchUsers();
+      const usercheck = users.find(
+        (user) => user.username === username && user.password === password
+      );
+
+      if (usercheck) {
+        dispatch(loginSuccess(usercheck)); // Dispatch loginSuccess with user data
+        navigate("/home"); // Redirect to home page on successful login
+      } else {
+        dispatch(loginFailure("Wrong password or username")); // Dispatch loginFailure on error
+        alert("Wrong password or username"); // Show an alert on failure
+      }
+    } catch (error) {
+      dispatch(loginFailure(error.message)); // Dispatch loginFailure if an error occurs
+      console.log(error);
     }
-    console.log(usercheck);
   };
 
   return (
-    <div className="relative bg-[url(/img/bg.jpg)] h-screen bg-cover bg-center  ">
+    <div className="relative bg-[url(/img/bg.jpg)] h-screen bg-cover bg-center">
       <div className="relative z-10">
         <Logo />
       </div>

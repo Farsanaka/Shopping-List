@@ -3,6 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {
   fetchAll,
+<<<<<<< HEAD
+=======
+  deleteList,
+>>>>>>> bf55b88843a2a39a1c0517cb3969f694a57a2ad8
   updateListStatus,
 } from "../features/shoppingList/shoppingListSlice";
 import BackgroundLayout from "../components/BackgroudLayout";
@@ -17,6 +21,7 @@ function Home() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [localChecked, setLocalChecked] = useState({});
+<<<<<<< HEAD
   const { user } = useSelector((state) => state.user);
   const { shoppingLists, status } = useSelector((state) => state.shoppingList);
   const { showDetailsModal, selectedItem, checkedItems } = useSelector(
@@ -58,14 +63,41 @@ function Home() {
     return <p className="text-red-500">Error: {error}</p>;
   }
 
+=======
+  const { user } = useSelector((state) => state.auth);
+  console.log(user);
+  const { shoppingLists, status, error } = useSelector(
+    (state) => state.shoppingList
+  );
+  const { showDetailsModal, selectedItem, checkedItems } = useSelector(
+    (state) => state.details
+  );
+>>>>>>> bf55b88843a2a39a1c0517cb3969f694a57a2ad8
   useEffect(() => {
-    if (user) {
+    if (selectedItem && checkedItems[selectedItem.id]) {
+      setLocalChecked(checkedItems[selectedItem.id]);
+    }
+  }, [selectedItem, checkedItems]);
+
+  // Redirect if user not logged in
+  useEffect(() => {
+    if (!user) {
+      navigate("/login");
+    } else {
       dispatch(fetchAll(user.id));
     }
-  }, [dispatch, user]);
+  }, [dispatch, user, navigate]);
 
-  console.log("user data", user);
-  console.log("list data", shoppingLists);
+  // Handle delete
+  // const handleDelete = (id) => {
+  //   console.log("Trying to delete ID:", id);
+  //   dispatch(deleteList(id));
+  // };
+
+  const handleDelete = (idToDelete) => {
+    console.log("Trying to delete ID:", idToDelete);
+    dispatch(deleteList(idToDelete));
+  };
 
   return (
     <BackgroundLayout bgImage="/img/homebg.jpg">
@@ -81,7 +113,7 @@ function Home() {
       <div className="flex justify-center">
         <div className="flex flex-col items-center bg-stone-200 rounded-lg m-4 w-fit">
           {/* Details Modal */}
-          {showDetailsModal && selectedItem ? (
+          {showDetailsModal && selectedItem && (
             <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
               <div className="bg-white p-6 rounded-lg w-96 relative">
                 <button
@@ -92,8 +124,11 @@ function Home() {
                 </button>
                 <h2 className="text-lg font-semibold mb-4">List Details</h2>
 
+<<<<<<< HEAD
                 {/* Check if there are items */}
 
+=======
+>>>>>>> bf55b88843a2a39a1c0517cb3969f694a57a2ad8
                 {selectedItem.items && selectedItem.items.length > 0 ? (
                   <div className="space-y-2">
                     {selectedItem.items.map((item, index) => {
@@ -167,9 +202,9 @@ function Home() {
                 {/*  */}
               </div>
             </div>
-          ) : null}
+          )}
 
-          {/* Shopping List */}
+          {/* List Header */}
           <ul>
             <li className="flex gap-2 m-2">
               <div className="bg-gray-300 rounded-lg px-2 py-1 text-center w-[198px]">
@@ -192,10 +227,22 @@ function Home() {
               </div>
             </li>
 
+<<<<<<< HEAD
             {!user ? (
               <p>Please login to view the Shopping List.</p>
             ) : shoppingLists.length === 0 ? (
               <p>You do not have any lists yet.</p>
+=======
+            {/* List Items */}
+            {status === "loading" || status === "idle" ? (
+              <p>Loading...</p>
+            ) : status === "failed" ? (
+              <p className="text-red-500">Error: {error}</p>
+            ) : !user ? (
+              <p>Please login to view your shopping lists.</p>
+            ) : Array.isArray(shoppingLists) && shoppingLists.length === 0 ? (
+              <p>You do not have any lists yet!</p>
+>>>>>>> bf55b88843a2a39a1c0517cb3969f694a57a2ad8
             ) : (
               shoppingLists.map((list) => (
                 <li key={list.id} className="flex gap-2 m-2">
@@ -232,8 +279,12 @@ function Home() {
                     readOnly
                     value="Details"
                     onClick={() => dispatch(openDetails(list))}
+<<<<<<< HEAD
                     className="shadow-lg shadow-gray-400/50 bg-white rounded-lg px-2 py-1 text-center text-blue-500 w-[72px]"
                     // style={{ width: `${list.status.length + 1}ch` }}
+=======
+                    className="w-fit shadow-lg shadow-gray-400/50 bg-white rounded-lg px-2 py-1 text-center text-blue-500"
+>>>>>>> bf55b88843a2a39a1c0517cb3969f694a57a2ad8
                   />
                   <button
                     onClick={() => handleDelete(list.id)}
