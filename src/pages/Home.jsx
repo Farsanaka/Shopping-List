@@ -1,27 +1,36 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {
   fetchAll,
   deleteList,
+  updateListStatus,
 } from "../features/shoppingList/shoppingListSlice";
 import BackgroundLayout from "../components/BackgroudLayout";
 import Header from "../components/Header";
 import {
   openDetails,
   closeDetails,
+  saveCheckedItems,
 } from "../features/shoppingList/detailsSlice";
 
 function Home() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const [localChecked, setLocalChecked] = useState({});
   const { user } = useSelector((state) => state.auth);
   console.log(user);
-  const { shoppingLists } = useSelector((state) => state.shoppingList);
-  const { showDetailsModal, selectedItem } = useSelector(
+  const { shoppingLists, status, error } = useSelector(
+    (state) => state.shoppingList
+  );
+  const { showDetailsModal, selectedItem, checkedItems } = useSelector(
     (state) => state.details
   );
+  useEffect(() => {
+    if (selectedItem && checkedItems[selectedItem.id]) {
+      setLocalChecked(checkedItems[selectedItem.id]);
+    }
+  }, [selectedItem, checkedItems]);
 
   // Redirect if user not logged in
   useEffect(() => {
@@ -70,31 +79,69 @@ function Home() {
 
                 {selectedItem.items && selectedItem.items.length > 0 ? (
                   <div className="space-y-2">
-                    {selectedItem.items.map((item, index) => (
-                      <div key={index} className="flex items-center gap-4">
-                        <input
-                          type="checkbox"
-                          id={`item-${index}`}
-                          className="h-5 w-5"
-                        />
-                        <div className="flex gap-4">
-                          <p className="text-sm">
-                            <strong>Item:</strong> {item.itemName}
-                          </p>
-                          <p className="text-sm">
-                            <strong>Quantity:</strong> {item.quantity}
-                          </p>
+                    {selectedItem.items.map((item, index) => {
+                      const isChecked =
+                        checkedItems[selectedItem.id]?.[index] || false;
+
+                      return (
+                        <div key={index} className="flex items-center gap-4">
+                          <input
+                            type="checkbox"
+                            id={`item-${index}`}
+                            className="h-5 w-5"
+                            checked={localChecked?.[index] || false}
+                            onChange={() =>
+                              dispatch(
+                                setLocalChecked((prev) => ({
+                                  ...prev,
+                                  [index]: !prev[index],
+                                }))
+                              )
+                            }
+                          />
+
+                          <div className="flex gap-4">
+                            <p className="text-sm">
+                              <strong>Item:</strong> {item.itemName}
+                            </p>
+                            <p className="text-sm">
+                              <strong>Quantity:</strong> {item.quantity}
+                            </p>
+                          </div>
                         </div>
-                      </div>
-                    ))}
+                      );
+                    })}
                   </div>
                 ) : (
                   <p>No items available for this list.</p>
                 )}
 
                 <button
+                  onClick={() => {
+                    const allChecked =
+                      Object.values(localChecked).every(Boolean);
+                    const newStatus = allChecked ? "Completed" : "Pending";
+
+                    // Save checkbox state to Redux and localStorage
+                    dispatch(
+                      saveCheckedItems({
+                        listId: selectedItem.id,
+                        checkedState: localChecked,
+                      })
+                    );
+
+                    // Update the list status in Redux (and backend, if connected)
+                    dispatch(
+                      updateListStatus({
+                        listId: selectedItem.id,
+                        status: newStatus,
+                      })
+                    );
+
+                    // Close the modal
+                    dispatch(closeDetails());
+                  }}
                   className="mt-4 px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600"
-                  onClick={() => alert("Add Category logic here")}
                 >
                   Save
                 </button>
@@ -126,10 +173,14 @@ function Home() {
             </li>
 
             {/* List Items */}
-            {!user ? (
+            {status === "loading" || status === "idle" ? (
+              <p>Loading...</p>
+            ) : status === "failed" ? (
+              <p className="text-red-500">Error: {error}</p>
+            ) : !user ? (
               <p>Please login to view your shopping lists.</p>
             ) : Array.isArray(shoppingLists) && shoppingLists.length === 0 ? (
-              <p>No shopping lists found. Add a new one!</p>
+              <p>You do not have any lists yet!</p>
             ) : (
               shoppingLists.map((list) => (
                 <li key={list.id} className="flex gap-2 m-2">

@@ -3,12 +3,12 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Category from "./pages/category";
-import List from "./pages/List";
+import AddList from "./pages/AddList";
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Navigate to="/home" />} />
         <Route path="/login" element={<Login />} />
         <Route
           path="/home"
@@ -22,7 +22,7 @@ function App() {
           path="/home/list"
           element={
             <ProtectedRoute>
-              <List />
+              <AddList />
             </ProtectedRoute>
           }
         />
