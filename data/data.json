@@ -16,15 +16,24 @@
   "categories": [
     {
       "code": "101",
-      "category": "Grocery"
+      "category": "Grocery",
+      "id": 1
     },
     {
       "code": "102",
-      "category": "Clothes"
+      "category": "Clothes",
+      "id": 2,
+      "prevCode": "102"
     },
     {
       "code": "103",
-      "category": "Misc"
+      "category": "Misc",
+      "id": 3
+    },
+    {
+      "code": "TY",
+      "category": "Toy",
+      "id": 4
     }
   ],
   "list": [
@@ -123,6 +132,112 @@
       ],
       "userid": 2,
       "id": 8
+    },
+    {
+      "name": "Work",
+      "category": "Clothes",
+      "status": "Pending",
+      "date": "07/05/2025",
+      "items": [
+        {
+          "itemName": "Shirt",
+          "quantity": "2"
+        }
+      ],
+      "userid": 2,
+      "id": 9
+    },
+    {
+      "name": "Wedding",
+      "category": "Clothes",
+      "status": "Pending",
+      "date": "07/05/2025",
+      "items": [
+        {
+          "itemName": "Pant",
+          "quantity": "2"
+        }
+      ],
+      "userid": 2,
+      "id": 10
+    },
+    {
+      "name": "Work",
+      "category": "Clothes",
+      "status": "Pending",
+      "date": "07/05/2025",
+      "items": [
+        {
+          "itemName": "pant",
+          "quantity": "1"
+        },
+        {
+          "itemName": "Shirt",
+          "quantity": "2"
+        }
+      ],
+      "userid": 2,
+      "id": 11
+    },
+    {
+      "name": "W",
+      "category": "Grocery",
+      "status": "Pending",
+      "date": "07/05/2025",
+      "items": [
+        {
+          "itemName": "s",
+          "quantity": "1"
+        }
+      ],
+      "userid": 1,
+      "id": 12
+    },
+    {
+      "name": "Farsana",
+      "category": "Clothes",
+      "status": "Pending",
+      "date": "08/05/2025",
+      "items": [
+        {
+          "itemName": "sKirt",
+          "quantity": "2"
+        }
+      ],
+      "userid": 1,
+      "id": 13
+    },
+    {
+      "name": "Sd",
+      "category": "Grocery",
+      "status": "Pending",
+      "date": "08/05/2025",
+      "items": [
+        {
+          "itemName": "XZC",
+          "quantity": "2"
+        },
+        {
+          "itemName": "as",
+          "quantity": "12"
+        }
+      ],
+      "userid": 1,
+      "id": 14
+    },
+    {
+      "name": "karun",
+      "category": "Grocery",
+      "status": "Pending",
+      "date": "08/05/2025",
+      "items": [
+        {
+          "itemName": "tomota",
+          "quantity": "1"
+        }
+      ],
+      "userid": 1,
+      "id": 15
     }
   ]
 }

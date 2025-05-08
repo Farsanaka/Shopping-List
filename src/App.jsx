@@ -3,7 +3,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Category from "./pages/category";
-import List from "./pages/List";
+import AddList from "./pages/AddList";
 function App() {
   return (
     <BrowserRouter>
@@ -22,7 +22,7 @@ function App() {
           path="/home/list"
           element={
             <ProtectedRoute>
-              <List />
+              <AddList />
             </ProtectedRoute>
           }
         />

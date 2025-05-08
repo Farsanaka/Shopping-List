@@ -15,16 +15,25 @@ function List() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { categories } = useSelector((state) => state.category);
   const [formName, setFormName] = useState("");
   const [formCategory, setFormCategory] = useState("");
   const [itemName, setItemName] = useState("");
   const [quantity, setQuantity] = useState("");
   const [items, setItems] = useState([]);
-  const { user } = useSelector((state) => state.user);
+  const { categories } = useSelector((state) => state.category);
+  const { user, status } = useSelector((state) => state.user);
+
   useEffect(() => {
     dispatch(fetchAll());
   }, [dispatch]);
+
+  if (status === "loading") {
+    return <p>Loading...</p>;
+  }
+
+  if (status === "failed") {
+    return <p className="text-red-500">Error: {error}</p>;
+  }
 
   const canShowItemInput = formName.trim() && formCategory.trim();
 

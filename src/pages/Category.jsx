@@ -31,7 +31,7 @@ function Category() {
   if (status === "failed") {
     return <p className="text-red-500">Error: {error}</p>;
   }
-  
+
   const handleAdd = () => {
     if (category.trim()) {
       const newCategory = { code, category }; // adjust to your API schema
@@ -110,32 +110,25 @@ function Category() {
                       }
                       className="shadow-lg shadow-gray-400/50 bg-white rounded-lg px-2 py-1 text-center"
                     />
-                    <button
-                      onClick={() => {
-                        console.log("Sending to updateCategory:", {
-                          ...editData,
-                          // prevcode: cat.code,
-                          id: cat.id,
-                        });
-                        dispatch(
-                          // updateCategory({ ...editData, prevcode: cat.code })
-                          updateCategory({ ...editData, id: cat.id })
-                        );
-                        setEditIndex(null);
-                      }}
-                      className="shadow-lg shadow-gray-400/50 px-4 py-1 bg-gradient-to-r from-green-300 to-gray-400 rounded-lg font-semibold"
-                    >
-                      Save
-                    </button>
-                    <button
-                      onClick={() => {
-                        setEditIndex(index);
-                        setEditData({ ...cat, prevCode: cat.code }); // store original code
-                      }}
-                      className="shadow-lg shadow-gray-400/50 px-4 py-1 bg-gradient-to-r from-gray-400 to-gray-200 rounded-lg font-semibold"
-                    >
-                      Cancel
-                    </button>
+                    <div className="w-35 flex align-middle justify-center">
+                      <button
+                        onClick={() => {
+                          console.log("Sending to updateCategory:", {
+                            ...editData,
+                            // prevcode: cat.code,
+                            id: cat.id,
+                          });
+                          dispatch(
+                            // updateCategory({ ...editData, prevcode: cat.code })
+                            updateCategory({ ...editData, id: cat.id })
+                          );
+                          setEditIndex(null);
+                        }}
+                        className="shadow-lg shadow-gray-400/50 px-4 py-1 bg-gradient-to-r from-green-300 to-gray-400 rounded-lg font-semibold"
+                      >
+                        Save
+                      </button>
+                    </div>
                   </>
                 ) : (
                   <>

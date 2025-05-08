@@ -2,8 +2,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { fetchShoppingLists, addShoppingListasync } from "../../services/api";
 import axios from "axios";
+
 const initialState = {
-  shoppingLists: [],
+  //
+  shoppingLists: JSON.parse(localStorage.getItem("shoppingLists")) || [],
+  //
+  // shoppingLists: [],
   name: "",
   category: "",
   showItemInputs: false,
@@ -41,19 +45,27 @@ const shoppingListSlice = createSlice({
       state.error = `Error occurred - ${action.payload}`;
     },
 
-    addShoppingList(state, action) {
-      // state.shoppingLists.push(action.payload);
-      // localStorage.setItem(
-      //   "shoppingLists",
-      //   JSON.stringify(state.shoppingLists)
-      // );
-    },
+    addShoppingList(state, action) {},
     addShoppingListSuccess(state, action) {
       state.shoppingLists.push(action.payload);
     },
     addShoppingListFailure(state, action) {
       state.error = action.payload;
     },
+    //
+    updateListStatus: (state, action) => {
+      const { listId, status } = action.payload;
+      const list = state.shoppingLists.find((list) => list.id === listId);
+      if (list) {
+        list.status = status;
+      }
+      localStorage.setItem(
+        "shoppingLists",
+        JSON.stringify(state.shoppingLists)
+      );
+    },
+    //
+
     deleteList(state, action) {},
     deleteListSuccess(state, action) {
       const deletedId = action.payload;
@@ -76,16 +88,27 @@ export const {
   fetchAllFailure,
   addShoppingListFailure,
   addShoppingListSuccess,
+  //
+  updateListStatus,
+  //
   deleteListSuccess,
   deleteListFailure,
 } = shoppingListSlice.actions;
 
 // Redux-compatible function
+
 export function fetchAll(userId) {
   return async function (dispatch) {
     try {
-      const allLists = await fetchShoppingLists();
-      const filteredLists = allLists.filter((list) => list.userid === userId);
+      // Load all lists from localStorage
+      const storedLists =
+        JSON.parse(localStorage.getItem("shoppingLists")) || [];
+
+      // Filter by userId
+      const filteredLists = storedLists.filter(
+        (list) => list.userid === userId
+      );
+
       dispatch({
         type: "shoppingLists/fetchAllSuccess",
         payload: filteredLists,
@@ -96,6 +119,7 @@ export function fetchAll(userId) {
     }
   };
 }
+
 export function addShoppingList(newList) {
   return async function (dispatch) {
     console.log("entered addshopping list in slice");
@@ -107,11 +131,6 @@ export function addShoppingList(newList) {
       } else {
         dispatch(addShoppingListFailure("list could not be added"));
       }
-      // const filteredLists = allLists.filter((list) => list.userid === userId);
-      // dispatch({
-      //   type: "shoppingLists/fetchAllSuccess",
-      //   payload: filteredLists,
-      // });
     } catch (err) {
       console.log("Dispatching error:", err.message);
       dispatch({ type: "shoppingLists/fetchAllFailure", payload: err.message });
