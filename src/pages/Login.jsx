@@ -27,14 +27,12 @@ function Login() {
     dispatch(loginPending()); // Set loading state before checking user
     await checkUser(); // Call checkUser function to validate login
   };
-<<<<<<< HEAD
-  
-=======
-
->>>>>>> bf55b88843a2a39a1c0517cb3969f694a57a2ad8
   const checkUser = async () => {
     try {
-      const users = await fetchUsers();
+      const response = await fetchUsers();
+      const users = Array.isArray(response) ? response : response.users;
+
+      console.log("Fetched users:", users);
       const usercheck = users.find(
         (user) => user.username === username && user.password === password
       );

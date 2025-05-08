@@ -20,14 +20,10 @@ function AddList() {
   const [itemName, setItemName] = useState("");
   const [quantity, setQuantity] = useState("");
   const [items, setItems] = useState([]);
-<<<<<<< HEAD
-  const { categories } = useSelector((state) => state.category);
-  const { user, status } = useSelector((state) => state.user);
-=======
   const { status, error } = useSelector((state) => state.shoppingList);
   const auth = useSelector((state) => state.auth);
   const user = auth?.user; // safe access
->>>>>>> bf55b88843a2a39a1c0517cb3969f694a57a2ad8
+  const categories = useSelector((state) => state.category.categories);
 
   useEffect(() => {
     dispatch(fetchAll());
