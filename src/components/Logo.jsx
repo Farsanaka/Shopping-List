@@ -8,7 +8,7 @@ const Logo = () => {
     <Link to="/" className="flex items-center ml-8  ">
       <FontAwesomeIcon
         icon={faCartPlus}
-        className="text-white text-4xl mr-3 my-2" // Increased size for the icon
+        className="text-white text-4xl mr-3 my-2" 
       />
       <span className="text-white text-3xl my-2 font-semibold">Shoppie</span>{" "}
     </Link>

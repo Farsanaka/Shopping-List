@@ -10,7 +10,6 @@ const initialState = {
   error: "",
 };
 
-// ✅ Async Thunk for status update
 export const updateListStatus = createAsyncThunk(
   "shoppingLists/updateStatus",
   async ({ listId, status }, { rejectWithValue }) => {
@@ -19,7 +18,7 @@ export const updateListStatus = createAsyncThunk(
         `http://localhost:9000/list/${listId}`,
         { status }
       );
-      return { listId, status }; // Return values for reducer
+      return { listId, status }; 
     } catch (error) {
       return rejectWithValue(
         error.response?.data || "Error updating list status"
@@ -56,15 +55,6 @@ const shoppingListSlice = createSlice({
     addShoppingListFailure(state, action) {
       state.error = action.payload;
     },
-    // deleteListSuccess(state, action) {
-    //   const deletedId = action.payload;
-    //   state.shoppingLists = state.shoppingLists.filter(
-    //     (list) => list.id !== deletedId
-    //   );
-    // },
-    // deleteListFailure(state, action) {
-    //   state.error = `Delete failed - ${action.payload}`;
-    // },
 
     //
     deleteList(state, action) {},
@@ -81,7 +71,7 @@ const shoppingListSlice = createSlice({
     //
   },
 
-  // ✅ Handling the thunk for updateListStatus
+  // 
   extraReducers: (builder) => {
     builder
       .addCase(updateListStatus.fulfilled, (state, action) => {
@@ -89,7 +79,7 @@ const shoppingListSlice = createSlice({
         const list = state.shoppingLists.find((list) => list.id === listId);
         if (list) {
           list.status = status;
-          // Persist to localStorage
+          // 
           localStorage.setItem(
             "shoppingLists",
             JSON.stringify(state.shoppingLists)
@@ -115,7 +105,6 @@ export const {
   deleteListFailure,
 } = shoppingListSlice.actions;
 
-// ✅ Thunk to fetch lists from localStorage
 export function fetchAll(userId) {
   return async function (dispatch) {
     try {
@@ -152,18 +141,15 @@ export const saveCheckedItems = createAsyncThunk(
   "shoppingList/saveCheckedItems",
   async ({ listId, checkedState }, { getState, rejectWithValue }) => {
     try {
-      // Get the selected list from state
       const list = getState().shoppingList.shoppingLists.find(
         (list) => list.id === listId
       );
 
-      // Add checked flag to each item
       const updatedItems = list.items.map((item, index) => ({
         ...item,
         checked: checkedState[index] || false,
       }));
 
-      // Send PATCH request to update list
       const response = await axios.patch(
         `http://localhost:9000/list/${listId}`,
         {

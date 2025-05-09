@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
-import Category from "./pages/category";
+import Category from "./pages/Category";
 import AddList from "./pages/AddList";
 function App() {
   return (

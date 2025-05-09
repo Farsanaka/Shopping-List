@@ -2,18 +2,18 @@ import Logo from "./Logo";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux"; // Import Redux hooks
-import { performLogout } from "../services/authSlice"; // Import logout action
+import { useDispatch, useSelector } from "react-redux"; 
+import { performLogout } from "../services/authSlice"; 
 
 function NavBar() {
   const navigate = useNavigate();
-  const dispatch = useDispatch(); // Initialize dispatch function
-  const user = useSelector((state) => state.auth.user); // Access user from Redux store
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated); // Check if user is authenticated
+  const dispatch = useDispatch(); 
+  const user = useSelector((state) => state.auth.user); 
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated); 
 
   const handleLogout = () => {
-    dispatch(performLogout()); // Dispatch logout action
-    navigate("/login"); // Redirect to login page
+    dispatch(performLogout()); 
+    navigate("/login"); 
   };
 
   return (
@@ -30,14 +30,14 @@ function NavBar() {
             <div className="flex justify-end">
               <FontAwesomeIcon icon={faUser} className="mt-4 text-white" />
 
-              {isAuthenticated ? ( // If user is authenticated, show logout button
+              {isAuthenticated ? ( 
                 <button onClick={handleLogout} className="text-white pl-2 mt-3">
                   Logout
                 </button>
               ) : (
-                // Otherwise, show login button
+               
                 <button
-                  onClick={() => navigate("/login")} // Navigate to login page
+                  onClick={() => navigate("/login")} 
                   className="text-white pl-2 mt-3"
                 >
                   Login

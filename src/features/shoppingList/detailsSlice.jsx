@@ -28,18 +28,15 @@ const detailsSlice = createSlice({
       }
     },
 
-    // Only update Redux state when Save is clicked
     saveCheckedItems: (state, action) => {
       const { listId, checkedState } = action.payload;
       state.checkedItems[listId] = checkedState;
 
-      // Also update the status of the selected item
       const allChecked = Object.values(checkedState).every(Boolean);
       if (state.selectedItem?.id === listId) {
         state.selectedItem.status = allChecked ? "Completed" : "Pending";
       }
 
-      // Save to localStorage
       const saved = JSON.parse(localStorage.getItem("checkedItems")) || {};
       saved[listId] = checkedState;
       localStorage.setItem("checkedItems", JSON.stringify(saved));

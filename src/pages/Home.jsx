@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import {
   fetchAll,
   deleteList,
@@ -32,7 +33,6 @@ function Home() {
     }
   }, [selectedItem, checkedItems]);
 
-  // Redirect if user not logged in
   useEffect(() => {
     if (!user) {
       navigate("/login");
@@ -44,12 +44,16 @@ function Home() {
   const handleDelete = (idToDelete) => {
     console.log("Trying to delete ID:", idToDelete);
     dispatch(deleteList(idToDelete));
+    Swal.fire({
+      icon: "success",
+      title: "Deleted!",
+      text: "Deleted successfully!",
+    });
   };
 
   return (
-    <BackgroundLayout bgImage="/img/homebg.jpg">
-      <Header />
-      <div className="flex justify-end">
+    <div>
+      <div className="flex justify-center ml-190 mt-10">
         <button
           onClick={() => navigate("/home/list")}
           className="px-4 py-1 bg-gradient-to-r from-green-400 to-gray-400 rounded-lg font-semibold"
@@ -59,7 +63,8 @@ function Home() {
       </div>
       <div className="flex justify-center">
         <div className="flex flex-col items-center bg-stone-200 rounded-lg m-4 w-fit">
-          {/* Details Modal */}
+    
+         {/* Details Modal */}
           {showDetailsModal && selectedItem && (
             <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
               <div className="bg-white p-6 rounded-lg w-96 relative">
@@ -230,7 +235,7 @@ function Home() {
           </ul>
         </div>
       </div>
-    </BackgroundLayout>
+    </div>
   );
 }
 

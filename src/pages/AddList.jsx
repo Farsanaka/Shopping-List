@@ -1,14 +1,12 @@
 import { useState, useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import BackgroundLayout from "../components/BackgroudLayout";
 import Header from "../components/Header";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  // setName,
-  // setCategory,
-  // showItemInputFields,
-  addShoppingList,
-} from "../features/shoppingList/shoppingListSlice";
+import Swal from "sweetalert2";
+import { addShoppingList } from "../features/shoppingList/shoppingListSlice";
 import { fetchAll } from "../features/category/categorySlice";
 
 function AddList() {
@@ -41,7 +39,12 @@ function AddList() {
 
   const handleAddItem = () => {
     if (!itemName.trim() || !quantity.trim()) {
-      alert("Please fill both item name and quantity.");
+      Swal.fire({
+        icon: "warning",
+        title: "Missing Fields",
+        text: "Please fill both item name and quantity.",
+        showConfirmButton: false,
+      });
       return;
     }
 
@@ -52,12 +55,22 @@ function AddList() {
 
   const handleSaveList = async () => {
     if (!formName.trim() || !formCategory.trim()) {
-      alert("Please fill in both name and category.");
+      Swal.fire({
+        icon: "warning",
+        title: "Missing Information",
+        text: "Please fill in both name and category.",
+        showConfirmButton: false,
+      });
       return;
     }
 
     if (items.length === 0) {
-      alert("Please add at least one item.");
+      Swal.fire({
+        icon: "warning",
+        title: "No Items Added",
+        text: "Please add at least one item.",
+        showConfirmButton: false,
+      });
       return;
     }
 
@@ -71,13 +84,17 @@ function AddList() {
       status: "Pending",
       date: date,
       items: items,
-      //userid:1,
       userid: user.id,
     };
 
     console.log("new list is", newList);
     dispatch(addShoppingList(newList));
-    alert("List saved successfully!");
+    Swal.fire({
+      icon: "success",
+      title: "Success!",
+      text: "List Added successfully!",
+      showConfirmButton: false,
+    });
 
     navigate("/home");
   };
@@ -86,9 +103,6 @@ function AddList() {
     updatedItems.splice(index, 1);
     setItems(updatedItems);
   };
-  // const handleStatusUpdate = (newStatus, listId) => {
-  //   dispatch(updateListStatus(listId, newStatus));
-  // };
 
   if (status === "loading") {
     return <p>Loading...</p>;
@@ -98,8 +112,26 @@ function AddList() {
     return <p className="text-red-500">Error: {error}</p>;
   }
   return (
-    <BackgroundLayout bgImage="/img/homebg.jpg">
-      <Header />
+    <div>
+      <div className="flex justify-center mt-10 gap-2.5">
+        <div className="flex justify-center font-bold mr-56">
+          <button
+            onClick={() => navigate(-1)}
+            className="flex items-center gap-2 px-4 py-2 text-white bg-gray-700 rounded hover:bg-gray-800"
+          >
+            <FontAwesomeIcon icon={faArrowLeft} />
+            Back
+          </button>
+        </div>
+        <div className="flex justify-center ">
+          <button
+            onClick={() => navigate("/home/category")}
+            className="px-4 py-1 bg-gradient-to-r from-green-400 to-gray-400 rounded-lg font-semibold  "
+          >
+            Add Category
+          </button>
+        </div>
+      </div>
       <div className="flex justify-center">
         <div className="flex flex-col justify-center bg-stone-300 rounded-lg m-4 w-fit center">
           <p className="p-2 text-center font-bold text-lg">ADD NEW LIST</p>
@@ -125,13 +157,6 @@ function AddList() {
                 </option>
               ))}
             </select>
-
-            <button
-              onClick={() => navigate("/home/Category")}
-              className="px-4 py-1 bg-gradient-to-r from-fuchsia-300 to-gray-400 rounded-lg font-semibold"
-            >
-              Add Category
-            </button>
           </div>
 
           {canShowItemInput && (
@@ -195,7 +220,7 @@ function AddList() {
           )}
         </div>
       </div>
-    </BackgroundLayout>
+    </div>
   );
 }
 

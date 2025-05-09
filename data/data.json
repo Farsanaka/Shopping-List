@@ -15,29 +15,19 @@
   ],
   "categories": [
     {
-      "code": "101",
-      "category": "Grocery",
-      "id": 1
-    },
-    {
-      "code": "102",
-      "category": "Clothes",
-      "id": 2,
-      "prevCode": "102"
-    },
-    {
-      "code": "103",
-      "category": "Misc"
-    },
-    {
       "code": "ty",
-      "category": "toyss",
+      "category": "toy",
       "id": 2
     },
     {
       "code": "CS",
-      "category": "Cosmetic",
+      "category": "Cosmeti",
       "id": 3
+    },
+    {
+      "code": "fds",
+      "category": "Coded",
+      "id": 4
     }
   ],
   "list": [
@@ -60,23 +50,9 @@
       "userid": 2
     },
     {
-      "name": "e",
-      "category": "Grocery",
-      "status": "Pending",
-      "date": "06/05/2025",
-      "items": [
-        {
-          "itemName": "r",
-          "quantity": "3"
-        }
-      ],
-      "userid": 1,
-      "id": 5
-    },
-    {
       "name": "Shoping",
       "category": "Grocery",
-      "status": "Pending",
+      "status": "Completed",
       "date": "07/05/2025",
       "items": [
         {
@@ -90,48 +66,6 @@
     {
       "status": "Completed",
       "id": 10
-    },
-    {
-      "name": "r",
-      "category": "Grocery",
-      "status": "Completed",
-      "date": "07/05/2025",
-      "items": [
-        {
-          "itemName": "d",
-          "quantity": "4"
-        }
-      ],
-      "userid": 1,
-      "id": 13
-    },
-    {
-      "name": "k",
-      "category": "Grocery",
-      "status": "Completed",
-      "date": "07/05/2025",
-      "items": [
-        {
-          "itemName": "m",
-          "quantity": "8"
-        }
-      ],
-      "userid": 1,
-      "id": 14
-    },
-    {
-      "name": "h",
-      "category": "Clothes",
-      "status": "Completed",
-      "date": "07/05/2025",
-      "items": [
-        {
-          "itemName": "k",
-          "quantity": "4"
-        }
-      ],
-      "userid": 1,
-      "id": 15
     },
     {
       "name": "festive",
