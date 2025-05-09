@@ -62,15 +62,6 @@
       "userid": 2
     },
     {
-      "id": 4,
-      "date": "27-12-2024",
-      "name": "festival",
-      "category": "Clothes",
-      "status": "Pending",
-      "items": [],
-      "userid": 2
-    },
-    {
       "name": "e",
       "category": "Grocery",
       "status": "Pending",
@@ -117,102 +108,18 @@
       "id": 10
     },
     {
-      "name": "s",
-      "category": "Grocery",
-      "status": "Pending",
-      "date": "07/05/2025",
-      "items": [
-        {
-          "itemName": "d",
-          "quantity": "3"
-        }
-      ],
-      "userid": 1,
-      "id": 12
-    },
-    {
-      "name": "r",
-      "category": "Grocery",
-      "status": "Pending",
-      "date": "07/05/2025",
-      "items": [
-        {
-          "itemName": "d",
-          "quantity": "4"
-        }
-      ],
-      "userid": 1,
-      "id": 13
-    },
-    {
-      "name": "k",
-      "category": "Grocery",
-      "status": "Pending",
-      "date": "07/05/2025",
-      "items": [
-        {
-          "itemName": "m",
-          "quantity": "8"
-        }
-      ],
-      "userid": 1,
-      "id": 14
-    },
-    {
-      "name": "h",
-      "category": "Clothes",
-      "status": "Pending",
-      "date": "07/05/2025",
-      "items": [
-        {
-          "itemName": "k",
-          "quantity": "4"
-        }
-      ],
-      "userid": 1,
-      "id": 15
-    },
-    {
-      "name": "mk",
-      "category": "Misc",
-      "status": "Pending",
-      "date": "07/05/2025",
-      "items": [
-        {
-          "itemName": "km",
-          "quantity": "6"
-        }
-      ],
-      "userid": 1,
-      "id": 16
-    },
-    {
-      "name": "m",
-      "category": "Grocery",
-      "status": "Pending",
-      "date": "07/05/2025",
-      "items": [
-        {
-          "itemName": "lp",
-          "quantity": "8"
-        }
-      ],
-      "userid": 1,
-      "id": 17
-    },
-    {
-      "name": "festive",
+      "name": "d",
       "category": "Clothes",
       "status": "Pending",
       "date": "8 May 2025",
       "items": [
         {
-          "itemName": "shirt",
-          "quantity": "3"
+          "itemName": "dd",
+          "quantity": "2"
         }
       ],
-      "userid": 2,
-      "id": 18
+      "userid": 1,
+      "id": 11
     }
   ]
 }
