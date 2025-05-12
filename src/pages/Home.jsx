@@ -122,7 +122,6 @@ function Home() {
                       Object.values(localChecked).every(Boolean);
                     const newStatus = allChecked ? "Completed" : "Pending";
 
-                    // Save checkbox state to Redux and localStorage
                     dispatch(
                       saveCheckedItems({
                         listId: selectedItem.id,
