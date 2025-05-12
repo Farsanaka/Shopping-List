@@ -7,6 +7,7 @@ import {
   deleteList,
   updateListStatus,
 } from "../features/shoppingList/shoppingListSlice";
+// import { openDetails } from "../features/shoppingList/detailsSlice";
 
 function Home() {
   const dispatch = useDispatch();
@@ -17,16 +18,30 @@ function Home() {
   const { shoppingLists, status, error } = useSelector(
     (state) => state.shoppingList
   );
-  const { showDetailsModal, selectedItem, checkedItems } = useSelector(
-    (state) => state.details
+
+  // const { showDetailsModal, selectedItem, checkedItems } = useSelector(
+  //   (state) => state.shoppingList
+  // );
+
+  //
+  const { showDetailsModal, currentList, checkedItems } = useSelector(
+    (state) => state.shoppingList
   );
+  //
 
+  // useEffect(() => {
+  //   if (selectedItem && checkedItems[selectedItem.id]) {
+  //     setLocalChecked(checkedItems[selectedItem.id]);
+  //   }
+  // }, [selectedItem, checkedItems]);
 
+  //
   useEffect(() => {
-    if (selectedItem && checkedItems[selectedItem.id]) {
-      setLocalChecked(checkedItems[selectedItem.id]);
+    if (currentList && checkedItems[currentList.id]) {
+      setLocalChecked(checkedItems[currentList.id]);
     }
-  }, [selectedItem, checkedItems]);
+  }, [currentList, checkedItems]);
+  //
 
   useEffect(() => {
     if (!user) {
@@ -58,8 +73,6 @@ function Home() {
       </div>
       <div className="flex justify-center">
         <div className="flex flex-col items-center bg-stone-200 rounded-lg m-4 w-fit">
-    
-        
           {/* List Header */}
           <ul>
             <li className="flex gap-2 m-2">
