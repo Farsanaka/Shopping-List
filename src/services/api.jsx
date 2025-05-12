@@ -1,12 +1,9 @@
 import axios from "axios";
-// import "/data/list.json";
 const SL_API_BASE_URL = import.meta.env.VITE_API_URL;
 const SL_USERS_URL = import.meta.env.VITE_USER_API_URL;
 const SL_LIST_URL = import.meta.env.VITE_LIST_API_URL;
 const SL_CATEGORIES_URL = import.meta.env.VITE_CATEGORIES_API_URL;
 
-
-// const API_URL = "https://localhost:5173/data";
 export const fetchShoppingLists = async () => {
   const response = await axios.get(SL_LIST_URL);
   console.log("within fetchusers", response);

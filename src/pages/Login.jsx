@@ -1,17 +1,17 @@
 import Logo from "../components/Logo";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux"; // Import useDispatch from Redux
+import { useDispatch } from "react-redux"; 
 import {
   loginSuccess,
   loginFailure,
   loginPending,
-} from "../services/authSlice"; // Import actions from authSlice
+} from "../services/authSlice"; 
 import { fetchUsers } from "../services/api";
 
 function Login() {
-  const navigate = useNavigate(); // React Router hook for navigation
-  const dispatch = useDispatch(); // Initialize dispatch function
+  const navigate = useNavigate(); 
+  const dispatch = useDispatch(); 
   const [data, setData] = useState({
     username: "",
     password: "",
@@ -24,8 +24,8 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(loginPending()); // Set loading state before checking user
-    await checkUser(); // Call checkUser function to validate login
+    dispatch(loginPending()); 
+    await checkUser(); 
   };
   const checkUser = async () => {
     try {
@@ -38,14 +38,14 @@ function Login() {
       );
 
       if (usercheck) {
-        dispatch(loginSuccess(usercheck)); // Dispatch loginSuccess with user data
-        navigate("/home"); // Redirect to home page on successful login
+        dispatch(loginSuccess(usercheck));
+        navigate("/home"); 
       } else {
-        dispatch(loginFailure("Wrong password or username")); // Dispatch loginFailure on error
-        alert("Wrong password or username"); // Show an alert on failure
+        dispatch(loginFailure("Wrong password or username")); 
+        alert("Wrong password or username"); 
       }
     } catch (error) {
-      dispatch(loginFailure(error.message)); // Dispatch loginFailure if an error occurs
+      dispatch(loginFailure(error.message)); 
       console.log(error);
     }
   };
