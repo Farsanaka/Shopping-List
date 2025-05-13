@@ -50,6 +50,7 @@
 //         });
 //         state.checkedItems[listId] = newChecked;
 //       }
+
 //     },
 
 //     // Only update Redux state when Save is clicked
@@ -68,6 +69,23 @@
 //       saved[listId] = checkedState;
 //       localStorage.setItem("checkedItems", JSON.stringify(saved));
 //     },
+
+//     },
+
+//     saveCheckedItems: (state, action) => {
+//       const { listId, checkedState } = action.payload;
+//       state.checkedItems[listId] = checkedState;
+
+//       const allChecked = Object.values(checkedState).every(Boolean);
+//       if (state.selectedItem?.id === listId) {
+//         state.selectedItem.status = allChecked ? "Completed" : "Pending";
+//       }
+
+//       const saved = JSON.parse(localStorage.getItem("checkedItems")) || {};
+//       saved[listId] = checkedState;
+//       localStorage.setItem("checkedItems", JSON.stringify(saved));
+//     },
+
 
 //     closeDetails: (state) => {
 //       state.showDetailsModal = false;

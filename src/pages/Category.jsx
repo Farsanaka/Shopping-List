@@ -61,7 +61,7 @@ function Category() {
         confirmButtonText: "OK",
       });
     }
-  };
+  }; 
 
   const handleDelete = (id) => {
     dispatch(deleteCategory(id));

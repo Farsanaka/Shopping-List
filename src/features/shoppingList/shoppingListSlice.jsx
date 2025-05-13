@@ -1,16 +1,50 @@
-// src/redux/shoppingListSlice.js
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { fetchShoppingLists, addShoppingListasync } from "../../services/api";
 import axios from "axios";
+
 const initialState = {
-  shoppingLists: [],
+  shoppingLists: JSON.parse(localStorage.getItem("shoppingLists")) || [],
   name: "",
   currentList: null,
   category: "",
   showItemInputs: false,
-
+  currentList: {},
+  status: "",
   error: "",
+  showDetailsModal: false,
+  selectedItem: null,
+  checkedItems: {}, 
 };
+
+export const updateListStatus = createAsyncThunk(
+  "shoppingLists/updateStatus",
+  async ({ listId, status }, { rejectWithValue }) => {
+    try {
+      const response = await axios.patch(`http://localhost:9000/list/${listId}`, { status });
+      return { listId, status };
+    } catch (error) {
+      return rejectWithValue(error.response?.data || "Error updating list status");
+    }
+  }
+);
+
+export const saveCheckedItems = createAsyncThunk(
+  "shoppingLists/saveCheckedItems",
+  async ({ listId, checkedState }, { getState, rejectWithValue }) => {
+    try {
+      const list = getState().shoppingLists.shoppingLists.find(list => list.id === listId);
+      const updatedItems = list.items.map((item, index) => ({
+        ...item,
+        checked: checkedState[index] || false,
+      }));
+
+      const response = await axios.patch(`http://localhost:9000/list/${listId}`, { items: updatedItems });
+      return { listId, updatedItems, checkedState };
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
 
 const shoppingListSlice = createSlice({
   name: "shoppingLists",
@@ -28,27 +62,11 @@ const shoppingListSlice = createSlice({
     hideItemInputFields(state) {
       state.showItemInputs = false;
     },
-    fetchAll(state, action) {},
-    //state->current state
-    //action->what to do
-    //type->name of action
-    //payload->data u r sending
-    //dispatch->fn u call to send an actn to redux
     fetchAllSuccess(state, action) {
-      console.log("Fetch success:", action.payload);
       state.shoppingLists = action.payload;
     },
     fetchAllFailure(state, action) {
-      console.log("Fetch failure:", action.payload);
       state.error = `Error occurred - ${action.payload}`;
-    },
-
-    addShoppingList(state, action) {
-      // state.shoppingLists.push(action.payload);
-      // localStorage.setItem(
-      //   "shoppingLists",
-      //   JSON.stringify(state.shoppingLists)
-      // );
     },
     addShoppingListSuccess(state, action) {
       state.shoppingLists.push(action.payload);
@@ -56,32 +74,41 @@ const shoppingListSlice = createSlice({
     addShoppingListFailure(state, action) {
       state.error = action.payload;
     },
-    deleteList(state, action) {},
     deleteListSuccess(state, action) {
       const deletedId = action.payload;
-      state.shoppingLists = state.shoppingLists.filter(
-        (list) => list.id !== deletedId
-      );
+      state.shoppingLists = state.shoppingLists.filter(list => list.id !== deletedId);
     },
-
     deleteListFailure(state, action) {
       state.error = `Delete failed - ${action.payload}`;
     },
-    updateListStatus(state, action) {},
-    updateListStatusSuccess(state, action) {
-      const { listId, status } = action.payload;
-      const list = state.shoppingLists.find((list) => list.id === listId);
-      if (list) {
-        list.status = status; // Update the list status
+
+    openDetails(state, action) {
+      const list = action.payload;
+      state.showDetailsModal = true;
+      // state.selectedItem = list;
+      // 
+      state.currentList = list;
+      // 
+
+      const listId = list.id;
+      const stored = JSON.parse(localStorage.getItem("checkedItems")) || {};
+
+      if (stored[listId]) {
+        state.checkedItems[listId] = stored[listId];
+      } else {
+        const newChecked = {};
+        list.items?.forEach((_, idx) => {
+          newChecked[idx] = false;
+        });
+        state.checkedItems[listId] = newChecked;
       }
-      // localStorage.setItem(
-      //   "shoppingLists",
-      //   JSON.stringify(state.shoppingLists)
-      // );
+
     },
 
-    updateListStatusFailure(state, action) {
-      state.error = `Status update failed: ${action.payload}`;
+    closeDetails(state) {
+      state.showDetailsModal = false;
+      // state.selectedItem = null;
+      state.currentList = {};
     },
     fetchListById(state, action) {},
     fetchListByIdSuccess(state, action) {
@@ -91,7 +118,48 @@ const shoppingListSlice = createSlice({
       state.error = action.payload;
     },
   },
+
+  extraReducers: (builder) => {
+    builder
+      .addCase(updateListStatus.fulfilled, (state, action) => {
+        const { listId, status } = action.payload;
+        const list = state.shoppingLists.find((list) => list.id === listId);
+        if (list) {
+          list.status = status;
+          localStorage.setItem("shoppingLists", JSON.stringify(state.shoppingLists));
+        }
+      })
+      .addCase(updateListStatus.rejected, (state, action) => {
+        state.error = `Status update failed: ${action.payload}`;
+      })
+      .addCase(saveCheckedItems.fulfilled, (state, action) => {
+        const { listId, updatedItems, checkedState } = action.payload;
+        const list = state.shoppingLists.find((list) => list.id === listId);
+        if (list) list.items = updatedItems;
+
+        state.checkedItems[listId] = checkedState;
+
+        const allChecked = Object.values(checkedState).every(Boolean);
+        // if (state.selectedItem?.id === listId) {
+        //   state.selectedItem.status = allChecked ? "Completed" : "Pending";
+        // }
+
+        //
+        if (state.currentList?.id === listId) {
+          state.currentList.status = allChecked ? "Completed" : "Pending";
+        }        
+        //  
+
+        const saved = JSON.parse(localStorage.getItem("checkedItems")) || {};
+        saved[listId] = checkedState;
+        localStorage.setItem("checkedItems", JSON.stringify(saved));
+      })
+      .addCase(saveCheckedItems.rejected, (state, action) => {
+        state.error = `Failed to save checked items: ${action.payload}`;
+      });
+  },
 });
+
 export const {
   setName,
   setCategory,
@@ -99,51 +167,42 @@ export const {
   hideItemInputFields,
   fetchAllSuccess,
   fetchAllFailure,
-  addShoppingListFailure,
   addShoppingListSuccess,
+  addShoppingListFailure,
   deleteListSuccess,
   deleteListFailure,
+
   updateListStatusSuccess,
   updateListStatusFailure,
   fetchListByIdSuccess,
   fetchListByIdFailure,
+
 } = shoppingListSlice.actions;
 
-// Redux-compatible function
+// === Thunks ===
 export function fetchAll(userId) {
   return async function (dispatch) {
     try {
       const allLists = await fetchShoppingLists();
       const filteredLists = allLists.filter((list) => list.userid === userId);
-      dispatch({
-        type: "shoppingLists/fetchAllSuccess",
-        payload: filteredLists,
-      });
+      dispatch(fetchAllSuccess(filteredLists));
     } catch (err) {
-      console.log("Dispatching error:", err.message);
-      dispatch({ type: "shoppingLists/fetchAllFailure", payload: err.message });
+      dispatch(fetchAllFailure(err.message));
     }
   };
 }
+
 export function addShoppingList(newList) {
   return async function (dispatch) {
-    console.log("entered addshopping list in slice");
     try {
       const response = await addShoppingListasync(newList);
-      console.log("response is", response);
-      if (response.status == 200) {
+      if (response.status === 200) {
         dispatch(addShoppingListSuccess(newList));
       } else {
-        dispatch(addShoppingListFailure("list could not be added"));
+        dispatch(addShoppingListFailure("List could not be added"));
       }
-      // const filteredLists = allLists.filter((list) => list.userid === userId);
-      // dispatch({
-      //   type: "shoppingLists/fetchAllSuccess",
-      //   payload: filteredLists,
-      // });
     } catch (err) {
-      console.log("Dispatching error:", err.message);
-      dispatch({ type: "shoppingLists/fetchAllFailure", payload: err.message });
+      dispatch(fetchAllFailure(err.message));
     }
   };
 }
@@ -154,11 +213,11 @@ export function deleteList(id) {
       await axios.delete(`http://localhost:9000/list/${id}`);
       dispatch(deleteListSuccess(id));
     } catch (err) {
-      console.log("Delete Error:", err.message);
       dispatch(deleteListFailure(err.message));
     }
   };
 }
+
 export const updateListStatus = createAsyncThunk(
   "shoppingList/updateStatus",
   async ({ listId, status }, { rejectWithValue }) => {
@@ -174,6 +233,7 @@ export const updateListStatus = createAsyncThunk(
     }
   }
 );
+
 
 // export const updateListStatus = createAsyncThunk(
 //   "shoppingList/updateStatus",

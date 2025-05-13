@@ -16,7 +16,7 @@ const Auth = {
       );
 
       if (user) {
-        this.loginUser(user); // Use internal method
+        this.loginUser(user); 
         alert("Login successful");
         return user;
       } else {
