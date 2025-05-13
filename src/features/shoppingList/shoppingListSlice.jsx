@@ -5,6 +5,7 @@ import axios from "axios";
 const initialState = {
   shoppingLists: [],
   name: "",
+  currentList: null,
   category: "",
   showItemInputs: false,
 
@@ -73,14 +74,21 @@ const shoppingListSlice = createSlice({
       if (list) {
         list.status = status; // Update the list status
       }
-      localStorage.setItem(
-        "shoppingLists",
-        JSON.stringify(state.shoppingLists)
-      );
+      // localStorage.setItem(
+      //   "shoppingLists",
+      //   JSON.stringify(state.shoppingLists)
+      // );
     },
 
     updateListStatusFailure(state, action) {
       state.error = `Status update failed: ${action.payload}`;
+    },
+    fetchListById(state, action) {},
+    fetchListByIdSuccess(state, action) {
+      state.currentList = action.payload;
+    },
+    fetchListByIdFailure(state, action) {
+      state.error = action.payload;
     },
   },
 });
@@ -97,6 +105,8 @@ export const {
   deleteListFailure,
   updateListStatusSuccess,
   updateListStatusFailure,
+  fetchListByIdSuccess,
+  fetchListByIdFailure,
 } = shoppingListSlice.actions;
 
 // Redux-compatible function
@@ -153,19 +163,49 @@ export const updateListStatus = createAsyncThunk(
   "shoppingList/updateStatus",
   async ({ listId, status }, { rejectWithValue }) => {
     try {
-      console.log(listId);
       const response = await axios.put(
         `http://localhost:9000/list/${listId}/status`,
-        {
-          status: status,
-        }
+        { status }
       );
-      return response.data;
+      return { listId, status: response.data.status }; // Return clean data
     } catch (error) {
       console.error("Update Status Error:", error);
       return rejectWithValue(error.response?.data || "Error updating status");
     }
   }
 );
+
+// export const updateListStatus = createAsyncThunk(
+//   "shoppingList/updateStatus",
+//   async ({ listId, status }, { rejectWithValue }) => {
+//     try {
+//       console.log(listId);
+//       const response = await axios.put(
+//         `http://localhost:9000/list/${listId}/status`,
+//         {
+//           status: status,
+//         }
+//       );
+//       return response.data;
+//     } catch (error) {
+//       console.error("Update Status Error:", error);
+//       return rejectWithValue(error.response?.data || "Error updating status");
+//     }
+//   }
+// );
+export function fetchListById(id) {
+  return async function (dispatch) {
+    try {
+      console.log("Fetching list by ID:", id);
+
+      const response = await axios.get(`http://localhost:9000/list/${id}`);
+      dispatch(fetchListByIdSuccess(response.data));
+      console.log("fetchlistbyid:", response.data);
+    } catch (err) {
+      console.log("Fetch Error:", err.message);
+      dispatch(fetchListByIdFailure(err.message));
+    }
+  };
+}
 
 export default shoppingListSlice.reducer;

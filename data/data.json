@@ -62,20 +62,6 @@
       "userid": 2
     },
     {
-      "name": "e",
-      "category": "Grocery",
-      "status": "Pending",
-      "date": "06/05/2025",
-      "items": [
-        {
-          "itemName": "r",
-          "quantity": "3"
-        }
-      ],
-      "userid": 1,
-      "id": 5
-    },
-    {
       "name": "Shoping",
       "category": "Grocery",
       "status": "Pending",
@@ -92,7 +78,7 @@
     {
       "name": "festive",
       "category": "Clothes",
-      "status": "Pending",
+      "status": "Completed",
       "date": "07/05/2025",
       "items": [
         {
@@ -108,14 +94,18 @@
       "id": 10
     },
     {
-      "name": "d",
-      "category": "Clothes",
+      "name": "sample",
+      "category": "Grocery",
       "status": "Pending",
-      "date": "8 May 2025",
+      "date": "12 May 2025",
       "items": [
         {
-          "itemName": "dd",
-          "quantity": "2"
+          "itemName": "tomato",
+          "quantity": "5"
+        },
+        {
+          "itemName": "egg",
+          "quantity": "6"
         }
       ],
       "userid": 1,

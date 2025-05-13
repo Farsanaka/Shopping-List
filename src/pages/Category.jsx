@@ -1,3 +1,5 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { useState, useEffect } from "react";
 import BackgroundLayout from "../components/BackgroudLayout";
 import Header from "../components/Header";
@@ -10,9 +12,12 @@ import {
   updateCategory,
   deleteCategory,
 } from "../features/category/categorySlice";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 function Category() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { categories, error, status, code, category } = useSelector(
     (state) => state.category
   );
@@ -31,13 +36,30 @@ function Category() {
   if (status === "failed") {
     return <p className="text-red-500">Error: {error}</p>;
   }
-  
+
   const handleAdd = () => {
     if (category.trim()) {
-      const newCategory = { code, category }; // adjust to your API schema
+      const newCategory = { code, category };
       dispatch(addCategory(newCategory));
-      dispatch(setCategory("")); // Reset input after dispatch
+      dispatch(setCategory(""));
       dispatch(setCode(""));
+
+      Swal.fire({
+        icon: "success",
+        title: "Success!",
+        text: "Category added successfully!",
+        showConfirmButton: false,
+        showCloseButton: true,
+        allowOutsideClick: false,
+        allowEscapeKey: true,
+      });
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Validation Error",
+        text: "Category name cannot be empty!",
+        confirmButtonText: "OK",
+      });
     }
   };
 
@@ -46,8 +68,16 @@ function Category() {
   };
 
   return (
-    <BackgroundLayout bgImage="/img/homebg.jpg">
-      <Header />
+    <div>
+      <div className="flex justify-center mr-130 mt-10 font-bold">
+        <button
+          onClick={() => navigate(-1)}
+          className="flex items-center gap-2 px-4 py-2 text-white bg-gray-700 rounded hover:bg-gray-800"
+        >
+          <FontAwesomeIcon icon={faArrowLeft} />
+          Back
+        </button>
+      </div>
       <div className="flex justify-center">
         <div className="bg-stone-300 rounded-lg m-4 w-fit">
           <p className="p-2 text-center font-bold text-lg">CATEGORY LIST</p>
@@ -110,32 +140,25 @@ function Category() {
                       }
                       className="shadow-lg shadow-gray-400/50 bg-white rounded-lg px-2 py-1 text-center"
                     />
-                    <button
-                      onClick={() => {
-                        console.log("Sending to updateCategory:", {
-                          ...editData,
-                          // prevcode: cat.code,
-                          id: cat.id,
-                        });
-                        dispatch(
-                          // updateCategory({ ...editData, prevcode: cat.code })
-                          updateCategory({ ...editData, id: cat.id })
-                        );
-                        setEditIndex(null);
-                      }}
-                      className="shadow-lg shadow-gray-400/50 px-4 py-1 bg-gradient-to-r from-green-300 to-gray-400 rounded-lg font-semibold"
-                    >
-                      Save
-                    </button>
-                    <button
-                      onClick={() => {
-                        setEditIndex(index);
-                        setEditData({ ...cat, prevCode: cat.code }); // store original code
-                      }}
-                      className="shadow-lg shadow-gray-400/50 px-4 py-1 bg-gradient-to-r from-gray-400 to-gray-200 rounded-lg font-semibold"
-                    >
-                      Cancel
-                    </button>
+                    <div className="w-35 flex align-middle justify-center">
+                      <button
+                        onClick={() => {
+                          console.log("Sending to updateCategory:", {
+                            ...editData,
+                            // prevcode: cat.code,
+                            id: cat.id,
+                          });
+                          dispatch(
+                            // updateCategory({ ...editData, prevcode: cat.code })
+                            updateCategory({ ...editData, id: cat.id })
+                          );
+                          setEditIndex(null);
+                        }}
+                        className="shadow-lg shadow-gray-400/50 px-4 py-1 bg-gradient-to-r from-green-300 to-gray-400 rounded-lg font-semibold"
+                      >
+                        Save
+                      </button>
+                    </div>
                   </>
                 ) : (
                   <>
@@ -173,7 +196,7 @@ function Category() {
           </ul>
         </div>
       </div>
-    </BackgroundLayout>
+    </div>
   );
 }
 
