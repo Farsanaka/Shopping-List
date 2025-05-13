@@ -1,103 +1,133 @@
-import {
-  openDetails,
-  closeDetails,
-  saveCheckedItems,
-} from "../features/shoppingList/detailsSlice";
+import { useSelector, useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { fetchListById } from "../features/shoppingList/shoppingListSlice";
+import { updateListStatus } from "../features/shoppingList/shoppingListSlice";
 
-function ListDetails(){
+const ListDetails = () => {
+  const dispatch = useDispatch();
+  const { id } = useParams();
+  const currentList = useSelector((state) => state.shoppingList.currentList);
+
+  // Local state to handle item selection and editing
+  const [itemStates, setItemStates] = useState([]);
+  const [isEditing, setIsEditing] = useState(false);
+
+  useEffect(() => {
+    if (id) {
+      dispatch(fetchListById(id));
+    }
+  }, [dispatch, id]);
+
+  useEffect(() => {
+    if (currentList && currentList.items) {
+      setItemStates(
+        currentList.items.map((item) => ({
+          ...item,
+          completed: false,
+        }))
+      );
+    }
+  }, [currentList]);
+
+  const handleCheckboxChange = (index) => {
+    const newItems = [...itemStates];
+    newItems[index].completed = !newItems[index].completed;
+    setItemStates(newItems);
+  };
+
+  const handleEdit = () => {
+    setIsEditing(true);
+  };
+
+  const handleSave = () => {
+    const updatedStatus = itemStates.every((item) => item.completed)
+      ? "completed"
+      : "in-progress";
+
+    dispatch(
+      updateListStatus({ listId: currentList.id, status: updatedStatus })
+    );
+    setIsEditing(false);
+    alert("Changes saved!");
+  };
+
+  const handleMarkAsComplete = () => {
+    const updatedItems = itemStates.map((item) => ({
+      ...item,
+      completed: true,
+    }));
+    setItemStates(updatedItems);
+  };
+
+  if (!currentList) return <p>Loading...</p>;
+
   return (
-    <div>
-       {/* Details Modal */}
-                {showDetailsModal && selectedItem && (
-                  <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-                    <div className="bg-white p-6 rounded-lg w-96 relative">
-                      <button
-                        onClick={() => dispatch(closeDetails())}
-                        className="absolute top-2 right-2 text-gray-500 hover:text-black text-xl font-bold"
-                      >
-                        ×
-                      </button>
-                      <h2 className="text-lg font-semibold mb-4">
-                        {selectedItem.name} Details
-                      </h2>
-      
-                      {selectedItem.items && selectedItem.items.length > 0 ? (
-                        <div className="space-y-2">
-                          {selectedItem.items.map((item, index) => {
-                            const isChecked =
-                              checkedItems[selectedItem.id]?.[index] || false;
-      
-                            return (
-                              <div key={index} className="flex items-center gap-4">
-                                <input
-                                  type="checkbox"
-                                  id={`item-${index}`}
-                                  className="h-5 w-5"
-                                  checked={localChecked?.[index] || false}
-                                  onChange={() =>
-                                    dispatch(
-                                      setLocalChecked((prev) => ({
-                                        ...prev,
-                                        [index]: !prev[index],
-                                      }))
-                                    )
-                                  }
-                                />
-      
-                                <div className="flex gap-4">
-                                  <p className="text-sm">
-                                    <strong>Item:</strong> {item.itemName}
-                                  </p>
-                                  <p className="text-sm">
-                                    <strong>Quantity:</strong> {item.quantity}
-                                  </p>
-                                </div>
-                              </div>
-                            );
-                          })}
-                        </div>
-                      ) : (
-                        <p>No items available for this list.</p>
-                      )}
-      
-                      {/*  */}
-                      <button
-                        //
-                        onClick={() => {
-                          const allChecked =
-                            Object.values(localChecked).every(Boolean);
-                          const newStatus = allChecked ? "Completed" : "Pending";
-      
-                          dispatch(
-                            saveCheckedItems({
-                              listId: selectedItem.id,
-                              checkedState: localChecked,
-                            })
-                          );
-      
-                          dispatch(
-                            updateListStatus({
-                              listId: selectedItem.id,
-                              status: newStatus,
-                            })
-                          );
-      
-                          dispatch(closeDetails());
-                        }}
-                        //
-      
-                        className="mt-4 px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600"
-                      >
-                        Save
-                      </button>
-      
-                      {/*  */}
-                    </div>
-                  </div>
-                )}
-      
-    </div>
-  )
-}
+    <div className="flex justify-center">
+      <div className="flex flex-col bg-stone-200 rounded-lg m-4 w-fit p-10">
+        <h2 className="text-xl font-bold mb-4 text-center">
+          {currentList.name}
+        </h2>
 
-export default ListDetails
+        <p>
+          Date: <strong>{currentList.date}</strong>
+        </p>
+        <p>
+          Category: <strong>{currentList.category}</strong>
+        </p>
+        <p>
+          Status: <strong>{currentList.status}</strong>
+        </p>
+
+        <p className="mt-4 font-semibold">Items List:</p>
+        {itemStates.length > 0 ? (
+          <ul className="list-none">
+            {itemStates.map((item, index) => (
+              <li key={index} className="flex items-center gap-2 my-1">
+                <input
+                  type="checkbox"
+                  checked={item.completed}
+                  onChange={() => handleCheckboxChange(index)}
+                />
+                <span
+                  className={`${
+                    item.completed ? "line-through text-gray-500" : ""
+                  }`}
+                >
+                  <strong>Item {index + 1}</strong>: {item.itemName} - Quantity:{" "}
+                  <strong>{item.quantity}</strong>
+                </span>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p>No items listed.</p>
+        )}
+
+        {/* Buttons */}
+        <div className="flex gap-4 mt-6 justify-center">
+          <button
+            onClick={handleEdit}
+            className="bg-blue-500 text-white px-4 py-1 rounded-lg shadow-md hover:bg-blue-600"
+          >
+            Edit
+          </button>
+          <button
+            onClick={handleMarkAsComplete}
+            className="bg-green-500 text-white px-4 py-1 rounded-lg shadow-md hover:bg-green-600"
+          >
+            Mark All Complete
+          </button>
+          <button
+            onClick={handleSave}
+            className="bg-gray-600 text-white px-4 py-1 rounded-lg shadow-md hover:bg-gray-700"
+          >
+            Save
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ListDetails;

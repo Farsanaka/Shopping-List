@@ -5,6 +5,7 @@ import axios from "axios";
 const initialState = {
   shoppingLists: JSON.parse(localStorage.getItem("shoppingLists")) || [],
   name: "",
+  currentList: null,
   category: "",
   showItemInputs: false,
   currentList: {},
@@ -101,12 +102,20 @@ const shoppingListSlice = createSlice({
         });
         state.checkedItems[listId] = newChecked;
       }
+
     },
 
     closeDetails(state) {
       state.showDetailsModal = false;
       // state.selectedItem = null;
       state.currentList = {};
+    },
+    fetchListById(state, action) {},
+    fetchListByIdSuccess(state, action) {
+      state.currentList = action.payload;
+    },
+    fetchListByIdFailure(state, action) {
+      state.error = action.payload;
     },
   },
 
@@ -162,8 +171,12 @@ export const {
   addShoppingListFailure,
   deleteListSuccess,
   deleteListFailure,
-  openDetails,
-  closeDetails,
+
+  updateListStatusSuccess,
+  updateListStatusFailure,
+  fetchListByIdSuccess,
+  fetchListByIdFailure,
+
 } = shoppingListSlice.actions;
 
 // === Thunks ===
@@ -201,6 +214,56 @@ export function deleteList(id) {
       dispatch(deleteListSuccess(id));
     } catch (err) {
       dispatch(deleteListFailure(err.message));
+    }
+  };
+}
+
+export const updateListStatus = createAsyncThunk(
+  "shoppingList/updateStatus",
+  async ({ listId, status }, { rejectWithValue }) => {
+    try {
+      const response = await axios.put(
+        `http://localhost:9000/list/${listId}/status`,
+        { status }
+      );
+      return { listId, status: response.data.status }; // Return clean data
+    } catch (error) {
+      console.error("Update Status Error:", error);
+      return rejectWithValue(error.response?.data || "Error updating status");
+    }
+  }
+);
+
+
+// export const updateListStatus = createAsyncThunk(
+//   "shoppingList/updateStatus",
+//   async ({ listId, status }, { rejectWithValue }) => {
+//     try {
+//       console.log(listId);
+//       const response = await axios.put(
+//         `http://localhost:9000/list/${listId}/status`,
+//         {
+//           status: status,
+//         }
+//       );
+//       return response.data;
+//     } catch (error) {
+//       console.error("Update Status Error:", error);
+//       return rejectWithValue(error.response?.data || "Error updating status");
+//     }
+//   }
+// );
+export function fetchListById(id) {
+  return async function (dispatch) {
+    try {
+      console.log("Fetching list by ID:", id);
+
+      const response = await axios.get(`http://localhost:9000/list/${id}`);
+      dispatch(fetchListByIdSuccess(response.data));
+      console.log("fetchlistbyid:", response.data);
+    } catch (err) {
+      console.log("Fetch Error:", err.message);
+      dispatch(fetchListByIdFailure(err.message));
     }
   };
 }

@@ -1,47 +1,22 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 import {
   fetchAll,
   deleteList,
-  updateListStatus,
+  fetchListById, // Make sure this action exists and is imported
 } from "../features/shoppingList/shoppingListSlice";
-// import { openDetails } from "../features/shoppingList/detailsSlice";
 
 function Home() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [localChecked, setLocalChecked] = useState({});
+
   const { user } = useSelector((state) => state.auth);
-  console.log(user);
   const { shoppingLists, status, error } = useSelector(
     (state) => state.shoppingList
   );
-
-  // const { showDetailsModal, selectedItem, checkedItems } = useSelector(
-  //   (state) => state.shoppingList
-  // );
-
-  //
-  const { showDetailsModal, currentList, checkedItems } = useSelector(
-    (state) => state.shoppingList
-  );
-  //
-
-  // useEffect(() => {
-  //   if (selectedItem && checkedItems[selectedItem.id]) {
-  //     setLocalChecked(checkedItems[selectedItem.id]);
-  //   }
-  // }, [selectedItem, checkedItems]);
-
-  //
-  useEffect(() => {
-    if (currentList && checkedItems[currentList.id]) {
-      setLocalChecked(checkedItems[currentList.id]);
-    }
-  }, [currentList, checkedItems]);
-  //
 
   useEffect(() => {
     if (!user) {
@@ -52,13 +27,19 @@ function Home() {
   }, [dispatch, user, navigate]);
 
   const handleDelete = (idToDelete) => {
-    console.log("Trying to delete ID:", idToDelete);
     dispatch(deleteList(idToDelete));
     Swal.fire({
       icon: "success",
       title: "Deleted!",
       text: "Deleted successfully!",
+      showConfirmButton: false,
+      timer: 1500,
     });
+  };
+
+  const handleViewDetails = (id) => {
+    dispatch(fetchListById(id));
+    navigate(`/listdetails/${id}`);
   };
 
   return (
@@ -71,9 +52,9 @@ function Home() {
           Add New List
         </button>
       </div>
+
       <div className="flex justify-center">
         <div className="flex flex-col items-center bg-stone-200 rounded-lg m-4 w-fit">
-          {/* List Header */}
           <ul>
             <li className="flex gap-2 m-2">
               <div className="bg-gray-300 rounded-lg px-2 py-1 text-center w-[198px]">
@@ -96,7 +77,6 @@ function Home() {
               </div>
             </li>
 
-            {/* List Items */}
             {status === "loading" || status === "idle" ? (
               <p>Loading...</p>
             ) : status === "failed" ? (
@@ -126,23 +106,25 @@ function Home() {
                     value={list.name}
                     className="shadow-lg shadow-gray-400/50 bg-white rounded-lg px-2 py-1 text-center w-auto"
                   />
-                  {/*  */}
                   <input
                     type="text"
                     readOnly
                     value={list.status}
                     className="shadow-lg shadow-gray-400/50 bg-white rounded-lg px-2 py-1 text-center w-[100px]"
                   />
-
-                  {/*  */}
-
-                  <input
+                  {/* <input
                     type="button"
                     readOnly
                     value="Details"
-                    onClick={() => dispatch(openDetails(list))}
-                    className="w-fit shadow-lg shadow-gray-400/50 bg-white rounded-lg px-2 py-1 text-center text-blue-500"
-                  />
+                    onClick={() => handleViewDetails(list.id)}
+                    className="w-fit shadow-lg shadow-gray-400/50 bg-white rounded-lg px-2 py-1 text-center text-blue-500 cursor-pointer"
+                  /> */}
+                  <Link
+                    to={`/home/list/${list.id}`}
+                    className="w-fit shadow-lg shadow-gray-400/50 bg-white rounded-lg px-2 py-1 text-center text-blue-500 cursor-pointer inline-block"
+                  >
+                    View Details
+                  </Link>
                   <button
                     onClick={() => handleDelete(list.id)}
                     className="shadow-lg shadow-gray-400/50 px-4 py-1 bg-gradient-to-r from-red-400 to-gray-400 rounded-lg font-semibold"

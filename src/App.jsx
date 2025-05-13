@@ -4,6 +4,7 @@ import Login from "./pages/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Category from "./pages/Category";
 import AddList from "./pages/AddList";
+import ListDetails from "./pages/ListDetails";
 function App() {
   return (
     <BrowserRouter>
@@ -23,6 +24,14 @@ function App() {
           element={
             <ProtectedRoute>
               <AddList />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/home/list/:id"
+          element={
+            <ProtectedRoute>
+              <ListDetails />
             </ProtectedRoute>
           }
         />

@@ -43,7 +43,7 @@ function Category() {
       dispatch(addCategory(newCategory));
       dispatch(setCategory(""));
       dispatch(setCode(""));
-  
+
       Swal.fire({
         icon: "success",
         title: "Success!",

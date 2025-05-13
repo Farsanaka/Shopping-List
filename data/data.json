@@ -41,6 +41,7 @@
       "userid": 2
     },
     {
+
       "id": 4,
       "date": "27-12-2024",
       "name": "festival",
@@ -50,6 +51,7 @@
       "userid": 2
     },
     {
+
       "name": "Shoping",
       "category": "Grocery",
       "status": "Completed",
@@ -64,10 +66,42 @@
       "id": 6
     },
     {
+
+      "name": "festive",
+      "category": "Clothes",
+      "status": "Completed",
+      "date": "07/05/2025",
+      "items": [
+        {
+          "itemName": "decorate items",
+          "quantity": "2"
+        }
+      ],
+      "userid": 1,
+      "id": 7
+    },
+    {
+
       "status": "Completed",
       "id": 10
     },
-    {
+    {      "name": "sample",
+      "category": "Grocery",
+      "status": "Pending",
+      "date": "12 May 2025",
+      "items": [
+        {
+          "itemName": "tomato",
+          "quantity": "5"
+        },
+        {
+          "itemName": "egg",
+          "quantity": "6"
+        }
+      ],
+      "userid": 1,
+      "id": 11
+
       "name": "festive",
       "category": "Clothes",
       "status": "Pending",
@@ -80,6 +114,7 @@
       ],
       "userid": 2,
       "id": 18
+
     }
   ]
 }
