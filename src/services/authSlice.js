@@ -1,4 +1,3 @@
-// src/redux/authSlice.js
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
@@ -40,8 +39,7 @@ const authSlice = createSlice({
 export const { loginPending, loginSuccess, loginFailure, logout } =
   authSlice.actions;
 
-// Thunk for login
-// Thunk for login
+
 export const login =
   ({ username, password }) =>
   async (dispatch) => {
@@ -68,7 +66,6 @@ export const login =
     }
   };
 
-// Thunk for logout
 export const performLogout = () => (dispatch) => {
   dispatch(logout());
 };

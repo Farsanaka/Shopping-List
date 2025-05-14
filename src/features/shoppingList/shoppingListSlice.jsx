@@ -1,4 +1,3 @@
-// src/redux/shoppingListSlice.js
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { fetchShoppingLists, addShoppingListasync } from "../../services/api";
 import axios from "axios";
@@ -43,13 +42,7 @@ const shoppingListSlice = createSlice({
       state.error = `Error occurred - ${action.payload}`;
     },
 
-    addShoppingList(state, action) {
-      // state.shoppingLists.push(action.payload);
-      // localStorage.setItem(
-      //   "shoppingLists",
-      //   JSON.stringify(state.shoppingLists)
-      // );
-    },
+    addShoppingList(state, action) {},
     addShoppingListSuccess(state, action) {
       state.shoppingLists.push(action.payload);
     },
@@ -74,10 +67,6 @@ const shoppingListSlice = createSlice({
       if (list) {
         list.status = status; // Update the list status
       }
-      // localStorage.setItem(
-      //   "shoppingLists",
-      //   JSON.stringify(state.shoppingLists)
-      // );
     },
 
     updateListStatusFailure(state, action) {
@@ -92,6 +81,27 @@ const shoppingListSlice = createSlice({
     },
   },
 });
+
+extraReducers: (builder) => {
+  builder
+    .addCase(updateListStatus.fulfilled, (state, action) => {
+      const { listId, status } = action.payload;
+      const list = state.shoppingLists.find((list) => list.id === listId);
+      if (list) {
+        list.status = status;
+      }
+      if (state.currentList?.id === listId) {
+        state.currentList.status = status;
+      }
+    })
+    .addCase(updateItemsCompletedStatus.fulfilled, (state, action) => {
+      const updatedItems = action.payload.items;
+      if (state.currentList) {
+        state.currentList.items = updatedItems;
+      }
+    });
+};
+
 export const {
   setName,
   setCategory,
@@ -109,7 +119,6 @@ export const {
   fetchListByIdFailure,
 } = shoppingListSlice.actions;
 
-// Redux-compatible function
 export function fetchAll(userId) {
   return async function (dispatch) {
     try {
@@ -136,11 +145,6 @@ export function addShoppingList(newList) {
       } else {
         dispatch(addShoppingListFailure("list could not be added"));
       }
-      // const filteredLists = allLists.filter((list) => list.userid === userId);
-      // dispatch({
-      //   type: "shoppingLists/fetchAllSuccess",
-      //   payload: filteredLists,
-      // });
     } catch (err) {
       console.log("Dispatching error:", err.message);
       dispatch({ type: "shoppingLists/fetchAllFailure", payload: err.message });
@@ -161,13 +165,13 @@ export function deleteList(id) {
 }
 export const updateListStatus = createAsyncThunk(
   "shoppingList/updateStatus",
-  async ({ listId, status }, { rejectWithValue }) => {
+  async ({ listId, status, category }, { rejectWithValue }) => {
     try {
-      const response = await axios.put(
-        `http://localhost:9000/list/${listId}/status`,
-        { status }
+      const response = await axios.patch(
+        `http://localhost:9000/list/${listId}`,
+        { status, category }
       );
-      return { listId, status: response.data.status }; // Return clean data
+      return { listId, status: response.data.status }; 
     } catch (error) {
       console.error("Update Status Error:", error);
       return rejectWithValue(error.response?.data || "Error updating status");
@@ -175,24 +179,6 @@ export const updateListStatus = createAsyncThunk(
   }
 );
 
-// export const updateListStatus = createAsyncThunk(
-//   "shoppingList/updateStatus",
-//   async ({ listId, status }, { rejectWithValue }) => {
-//     try {
-//       console.log(listId);
-//       const response = await axios.put(
-//         `http://localhost:9000/list/${listId}/status`,
-//         {
-//           status: status,
-//         }
-//       );
-//       return response.data;
-//     } catch (error) {
-//       console.error("Update Status Error:", error);
-//       return rejectWithValue(error.response?.data || "Error updating status");
-//     }
-//   }
-// );
 export function fetchListById(id) {
   return async function (dispatch) {
     try {
@@ -207,5 +193,38 @@ export function fetchListById(id) {
     }
   };
 }
+
+export const updateItemsCompletedStatus = createAsyncThunk(
+  "shoppingList/updateItemsCompletedStatus",
+  async ({ listId, items }, { rejectWithValue }) => {
+    try {
+      const response = await axios.patch(
+        `http://localhost:9000/list/${listId}`,
+        { items }
+      );
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response?.data || "Failed to update items");
+    }
+  }
+);
+
+export const toggleItemCompletion = createAsyncThunk(
+  "shoppingList/toggleItemCompletion",
+  async ({ listId, items }, { rejectWithValue }) => {
+    try {
+      const response = await axios.patch(
+        `http://localhost:9000/list/${listId}`,
+        {
+          items,
+        }
+      );
+      return { listId, items: response.data.items };
+    } catch (error) {
+      console.error("Toggle Item Completion Error:", error);
+      return rejectWithValue("Could not update item completion");
+    }
+  }
+);
 
 export default shoppingListSlice.reducer;

@@ -3,11 +3,13 @@ import shoppingListReducer from "./features/shoppingList/shoppingListSlice";
 import authReducer from "./services/authSlice";
 import categoryReducer from "./features/category/categorySlice";
 
+
 const store = configureStore({
   reducer: {
     shoppingList: shoppingListReducer,
     auth: authReducer,
     category: categoryReducer,
+
   },
 });
 

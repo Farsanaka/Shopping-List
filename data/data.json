@@ -15,101 +15,115 @@
   ],
   "categories": [
     {
-      "code": "101",
-      "category": "Grocery",
-      "id": 1
-    },
-    {
-      "code": "102",
-      "category": "Clothes"
-    },
-    {
-      "code": "103",
-      "category": "Misc"
-    },
-    {
       "code": "ty",
-      "category": "toyss",
+      "category": "toy",
       "id": 2
+    },
+    {
+      "code": "CS",
+      "category": "Cosmeti",
+      "id": 3
+    },
+    {
+      "code": "fds",
+      "category": "Coded",
+      "id": 4
     }
   ],
   "list": [
     {
-      "id": 1,
-      "date": "04-01-2024",
-      "name": "weekly Shopping",
-      "category": "Grocery",
-      "status": "Pending",
-      "items": [],
-      "userid": 1
-    },
-    {
-      "id": 2,
-      "date": "09-08-2024",
-      "name": "Sam's Clothes Shopping",
-      "category": "Clothes",
-      "status": "Pending",
-      "items": [],
-      "userid": 1
-    },
-    {
       "id": 3,
       "date": "19-05-2025",
       "name": "Weekend Shopping",
-      "category": "Misc",
+      "category": "Cosmeti",
+      "status": "completed",
+      "items": [],
+      "userid": 2
+    },
+    {
+      "id": 4,
+      "date": "27-12-2024",
+      "name": "festival",
+      "category": "Clothes",
       "status": "Pending",
       "items": [],
       "userid": 2
     },
     {
       "name": "Shoping",
-      "category": "Grocery",
-      "status": "Pending",
+      "category": "toy",
+      "status": "completed",
       "date": "07/05/2025",
       "items": [
         {
           "itemName": "Banana",
-          "quantity": "2"
+          "quantity": "2",
+          "completed": true
         }
       ],
       "userid": 1,
       "id": 6
     },
     {
-      "name": "festive",
-      "category": "Clothes",
-      "status": "Completed",
-      "date": "07/05/2025",
-      "items": [
-        {
-          "itemName": "decorate items",
-          "quantity": "2"
-        }
-      ],
-      "userid": 1,
-      "id": 7
-    },
-    {
       "status": "Completed",
       "id": 10
     },
     {
-      "name": "sample",
-      "category": "Grocery",
+      "name": "festive",
+      "category": "Clothes",
       "status": "Pending",
-      "date": "12 May 2025",
+      "date": "8 May 2025",
       "items": [
         {
-          "itemName": "tomato",
-          "quantity": "5"
-        },
-        {
-          "itemName": "egg",
-          "quantity": "6"
+          "itemName": "shirt",
+          "quantity": "3"
         }
       ],
-      "userid": 1,
-      "id": 11
+      "userid": 2,
+      "id": 18
+    },
+    {
+      "items": [
+        {
+          "itemName": "sd",
+          "quantity": "1",
+          "completed": true
+        },
+        {
+          "itemName": "sd",
+          "quantity": "2",
+          "completed": false
+        }
+      ],
+      "id": 19,
+      "status": "in-progress"
+    },
+    {
+      "items": [
+        {
+          "itemName": "s",
+          "quantity": "1",
+          "completed": false
+        },
+        {
+          "itemName": "sd",
+          "quantity": "2",
+          "completed": false
+        }
+      ],
+      "id": 20,
+      "status": "in-progress"
+    },
+    {
+      "items": [
+        {
+          "itemName": "sd",
+          "quantity": "1",
+          "completed": false
+        }
+      ],
+      "id": 21,
+      "status": "in-progress"
     }
   ]
 }
