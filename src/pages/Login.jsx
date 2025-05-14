@@ -1,17 +1,13 @@
 import Logo from "../components/Logo";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux"; 
-import {
-  loginSuccess,
-  loginFailure,
-  loginPending,
-} from "../services/authSlice"; 
+import { useDispatch } from "react-redux";
+import { loginSuccess, loginFailure, loginPending } from "../redux/authSlice";
 import { fetchUsers } from "../services/api";
 
 function Login() {
-  const navigate = useNavigate(); 
-  const dispatch = useDispatch(); 
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [data, setData] = useState({
     username: "",
     password: "",
@@ -24,8 +20,8 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(loginPending()); 
-    await checkUser(); 
+    dispatch(loginPending());
+    await checkUser();
   };
   const checkUser = async () => {
     try {
@@ -39,13 +35,13 @@ function Login() {
 
       if (usercheck) {
         dispatch(loginSuccess(usercheck));
-        navigate("/home"); 
+        navigate("/home");
       } else {
-        dispatch(loginFailure("Wrong password or username")); 
-        alert("Wrong password or username"); 
+        dispatch(loginFailure("Wrong password or username"));
+        alert("Wrong password or username");
       }
     } catch (error) {
-      dispatch(loginFailure(error.message)); 
+      dispatch(loginFailure(error.message));
       console.log(error);
     }
   };

@@ -1,15 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
-import shoppingListReducer from "./features/shoppingList/shoppingListSlice";
-import authReducer from "./services/authSlice";
-import categoryReducer from "./features/category/categorySlice";
-
+import shoppingListReducer from "./redux/shoppingListSlice";
+import authReducer from "./redux/authSlice";
+import categoryReducer from "./redux/categorySlice";
 
 const store = configureStore({
   reducer: {
     shoppingList: shoppingListReducer,
     auth: authReducer,
     category: categoryReducer,
-
   },
 });
 
