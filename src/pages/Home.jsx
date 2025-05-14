@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import React, { useEffect, useState } from "react";
+=======
+import { useEffect, useState } from "react";
+>>>>>>> f3f139daf45bc9e7138d1c8a0e932d4f32447d4a
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -39,7 +43,10 @@ function Home() {
     });
   };
 
+<<<<<<< HEAD
   // Pagination logic
+=======
+>>>>>>> f3f139daf45bc9e7138d1c8a0e932d4f32447d4a
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems =
@@ -62,6 +69,7 @@ function Home() {
 
   return (
     <div>
+<<<<<<< HEAD
       {/* Add List Button */}
       <div className="flex justify-center ml-190 mt-10">
         <button
@@ -98,6 +106,42 @@ function Home() {
       </div>
 
       {/* Shopping List Table */}
+=======
+      <div className="flex justify-center  mt-10">
+        <div className="relative inline-block text-left mr-180">
+          <button
+            onClick={() => setShowDropdown(!showDropdown)} // Toggle dropdown visibility
+            className="px-4 py-2 bg-gray-300 text-gray-800 rounded-md"
+          >
+            Show
+          </button>
+          {showDropdown && (
+            <div className="absolute right-0 mt-2 w-40 bg-white border rounded-md shadow-lg">
+              {[5, 10, 20].map((num) => (
+                <button
+                  key={num}
+                  onClick={() => handleItemsPerPage(num)}
+                  className="w-full text-left px-4 py-2 hover:bg-gray-200"
+                >
+                  Show {num}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+        <div>
+          <button
+            onClick={() => navigate("/home/list")}
+            className="px-4 py-1 bg-gradient-to-r from-green-400 to-gray-400 rounded-lg font-semibold"
+          >
+            Add New List
+          </button>
+        </div>
+      </div>
+
+      <div className="flex  mt-6 ml-55"></div>
+
+>>>>>>> f3f139daf45bc9e7138d1c8a0e932d4f32447d4a
       <div className="flex justify-center">
         <div className="flex flex-col items-center bg-stone-200 rounded-lg m-4 w-fit">
           <ul>
@@ -174,7 +218,10 @@ function Home() {
             )}
           </ul>
 
+<<<<<<< HEAD
           {/* Pagination Controls */}
+=======
+>>>>>>> f3f139daf45bc9e7138d1c8a0e932d4f32447d4a
           {shoppingLists.length > itemsPerPage && (
             <div className="flex justify-center mt-4 gap-4 mb-4">
               <button

@@ -12,7 +12,7 @@ const categorySlice = createSlice({
   name: "category",
   initialState,
   reducers: {
-    fetchAll(state) {},
+    // fetchAll(state) {},
 
     fetchAllSuccess(state, action) {
       state.categories = action.payload;
@@ -45,9 +45,7 @@ const categorySlice = createSlice({
 
     updateCategorySuccess(state, action) {
       const updated = action.payload;
-      const index = state.categories.findIndex(
-        (cat) => cat.code === updated.prevCode || cat.code === updated.code
-      );
+      const index = state.categories.findIndex((cat) => cat.id === updated.id);
       if (index !== -1) {
         state.categories[index] = updated;
       }
@@ -82,10 +80,13 @@ export const {
   deleteCategoryFailure,
 } = categorySlice.actions;
 
-export function fetchAll() {
+
+export function fetchAll(userId) {
   return async function (dispatch) {
     try {
-      const response = await axios.get("http://localhost:9000/categories");
+      const response = await axios.get(
+        `http://localhost:9000/categories?userId=${userId}`
+      );
       const data = response.data;
       dispatch(fetchAllSuccess(data));
     } catch (err) {
@@ -93,6 +94,8 @@ export function fetchAll() {
     }
   };
 }
+
+//
 
 export default categorySlice.reducer;
 

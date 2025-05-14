@@ -29,9 +29,10 @@ const ListDetails = () => {
   const [isEditing, setIsEditing] = useState(false);
   const navigate = useNavigate();
   const userId = useSelector((state) => state.auth.userId);
+  const auth = useSelector((state) => state.auth);
+  const user = auth?.user;
 
-  const categories = useSelector((state) => state.category.categories);
-
+ 
   useEffect(() => {
     if (id) {
       dispatch(fetchListById(id));
@@ -69,6 +70,14 @@ const ListDetails = () => {
     dispatch(fetchAll());
   }, [dispatch]);
 
+  //
+  useEffect(() => {
+    if (user?.id) {
+      dispatch(fetchAll(user.id));
+    }
+  }, [dispatch]);
+  //
+
   const handleItemChange = (index, field, value) => {
     const updatedItems = [...itemStates];
     updatedItems[index][field] = value;
@@ -93,12 +102,11 @@ const ListDetails = () => {
   const handleSave = () => {
     //
     const updatedStatus = itemStates.every((item) => item.completed)
-      ? "completed"
-      : "in-progress";
+      ? "Completed"
+      : "Pending";
 
     const updatedCategory = formCategory || editableCategory;
 
-    // ✅ Update items (names, quantities, completed) in DB
     dispatch(
       updateItemsCompletedStatus({
         listId: currentList.id,
@@ -106,18 +114,17 @@ const ListDetails = () => {
       })
     );
 
-    // ✅ Update category and status
     dispatch(
       updateListStatus({
         listId: currentList.id,
         status: updatedStatus,
-        category: formCategory || editableCategory,
+        category: updatedCategory,
       })
     );
 
     dispatch(fetchListById(currentList.id));
 
-    setEditableCategory(updatedCategory);
+   
     setFormCategory("");
     setIsEditing(false);
     Swal.fire({
@@ -128,10 +135,9 @@ const ListDetails = () => {
       timer: 1500,
     });
   };
-
-  //
+  
   const handleCancelEdit = () => {
-    // Restore item states and category from currentList
+    
     if (currentList && currentList.items) {
       setItemStates(
         currentList.items.map((item) => ({
@@ -158,9 +164,9 @@ const ListDetails = () => {
         items: updatedItems,
       })
     );
-    dispatch(updateListStatus({ listId: currentList.id, status: "completed" }));
+    dispatch(updateListStatus({ listId: currentList.id, status: "Completed" }));
     dispatch(fetchListById(currentList.id));
-    // alert("List marked as complete!");
+   
     Swal.fire({
       icon: "success",
       title: "Success!",
@@ -194,22 +200,8 @@ const ListDetails = () => {
           </p>
           <p>
             Category:{" "}
-            {isEditing ? (
-              <select
-                value={formCategory || editableCategory}
-                onChange={(e) => setFormCategory(e.target.value)}
-                className="bg-white rounded-lg text-center"
-              >
-                <option value="">Choose Category</option>
-                {categories.map((cat) => (
-                  <option key={cat.code} value={cat.category}>
-                    {cat.category}
-                  </option>
-                ))}
-              </select>
-            ) : (
-              <strong>{currentList.category}</strong>
-            )}
+          
+            <strong>{currentList.category}</strong>
           </p>
           <p>
             Status: <strong>{currentList.status}</strong>
@@ -229,9 +221,7 @@ const ListDetails = () => {
                   />
 
                   <span
-                    className={`${
-                      item.completed ? "line-through text-gray-500" : ""
-                    }`}
+                 
                   >
                     <strong>Item {index + 1}</strong>:{" "}
                     {isEditing ? (
@@ -272,21 +262,21 @@ const ListDetails = () => {
               <>
                 <button
                   onClick={handleEdit}
-                  className="bg-blue-500 text-white px-4 py-1 rounded-lg shadow-md hover:bg-blue-600"
+                  className="shadow-lg shadow-gray-400/50 px-4 py-1 bg-gradient-to-r from-red-400 to-gray-400 rounded-lg font-semibold"
                 >
                   Edit
                 </button>
 
                 <button
                   onClick={handleMarkAsComplete}
-                  className="bg-green-500 text-white px-4 py-1 rounded-lg shadow-md hover:bg-green-600"
+                  className="px-4 py-1 bg-gradient-to-r from-green-400 to-gray-400 rounded-lg font-semibold"
                 >
                   Mark All Complete
                 </button>
 
                 <button
                   onClick={handleSave}
-                  className="bg-gray-600 text-white px-4 py-1 rounded-lg shadow-md hover:bg-gray-700"
+                  className="px-4 py-1 bg-gradient-to-r from-green-400 to-gray-400 rounded-lg font-semibold"
                 >
                   Save
                 </button>
@@ -295,13 +285,13 @@ const ListDetails = () => {
               <>
                 <button
                   onClick={handleSave}
-                  className="bg-purple-600 text-white px-4 py-1 rounded-lg shadow-md hover:bg-purple-700"
+                  className="px-4 py-1 bg-gradient-to-r from-green-400 to-gray-400 rounded-lg font-semibold"
                 >
-                  Save Changes
+                  Save
                 </button>
                 <button
                   onClick={handleCancelEdit}
-                  className="bg-red-500 text-white px-4 py-1 rounded-lg shadow-md hover:bg-red-600"
+                  className="shadow-lg shadow-gray-400/50 px-4 py-1 bg-gradient-to-r from-red-400 to-gray-400 rounded-lg font-semibold"
                 >
                   Cancel
                 </button>

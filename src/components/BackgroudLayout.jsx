@@ -1,3 +1,4 @@
+
 const BackgroundLayout = ({ bgImage, children }) => {
   return (
     <div
@@ -9,5 +10,5 @@ const BackgroundLayout = ({ bgImage, children }) => {
     </div>
   );
 };
-
+ 
 export default BackgroundLayout;

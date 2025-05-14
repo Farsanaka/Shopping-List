@@ -17,19 +17,23 @@
     {
       "code": "ty",
       "category": "toy",
+      "userId": 1,
       "id": 2
     },
     {
       "code": "CS",
       "category": "Cosmeti",
+      "userId": 2,
       "id": 3
     },
     {
       "code": "fds",
       "category": "Coded",
+      "userId": 1,
       "id": 4
     },
     {
+<<<<<<< HEAD
       "code": "EC",
       "category": "Electrnics",
       "id": 5
@@ -43,6 +47,12 @@
       "code": "HM",
       "category": "Home",
       "id": 7
+=======
+      "code": "12",
+      "category": "sdfg",
+      "userId": 2,
+      "id": 5
+>>>>>>> f3f139daf45bc9e7138d1c8a0e932d4f32447d4a
     }
   ],
   "list": [
@@ -82,20 +92,6 @@
     {
       "status": "Completed",
       "id": 10
-    },
-    {
-      "name": "festive",
-      "category": "Clothes",
-      "status": "Pending",
-      "date": "8 May 2025",
-      "items": [
-        {
-          "itemName": "shirt",
-          "quantity": "3"
-        }
-      ],
-      "userid": 2,
-      "id": 18
     },
     {
       "items": [
@@ -141,6 +137,7 @@
       "status": "in-progress"
     },
     {
+<<<<<<< HEAD
       "name": "birthday toy set",
       "category": "toy",
       "status": "Pending",
@@ -227,10 +224,57 @@
         {
           "itemName": "Drinks",
           "quantity": "5"
+=======
+      "name": "hgfd",
+      "category": "fds",
+      "status": "in-progress",
+      "date": "14 May 2025",
+      "items": [
+        {
+          "itemName": "cx",
+          "quantity": "12",
+          "completed": false
+        }
+      ],
+      "userid": 1,
+      "id": 22
+    },
+    {
+      "name": "Weekend",
+      "category": "ty",
+      "status": "in-progress",
+      "date": "14 May 2025",
+      "items": [
+        {
+          "itemName": "Shawls",
+          "quantity": "1",
+          "completed": true
+        },
+        {
+          "itemName": "shirt",
+          "quantity": "1",
+          "completed": false
+        }
+      ],
+      "userid": 1,
+      "id": 23
+    },
+    {
+      "name": "dfg",
+      "category": "12",
+      "status": "Completed",
+      "date": "14 May 2025",
+      "items": [
+        {
+          "itemName": "dfg",
+          "quantity": "45",
+          "completed": true
+>>>>>>> f3f139daf45bc9e7138d1c8a0e932d4f32447d4a
         }
       ],
       "userid": 2,
       "id": 27
+<<<<<<< HEAD
     },
     {
       "name": "cleaning supplies",
@@ -591,6 +635,8 @@
       ],
       "userid": 2,
       "id": 47
+=======
+>>>>>>> f3f139daf45bc9e7138d1c8a0e932d4f32447d4a
     }
   ]
 }
