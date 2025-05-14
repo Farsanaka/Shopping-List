@@ -65,7 +65,7 @@ const shoppingListSlice = createSlice({
       const { listId, status } = action.payload;
       const list = state.shoppingLists.find((list) => list.id === listId);
       if (list) {
-        list.status = status; // Update the list status
+        list.status = status; 
       }
     },
 

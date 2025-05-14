@@ -17,17 +17,26 @@
     {
       "code": "ty",
       "category": "toy",
+      "userId": 1,
       "id": 2
     },
     {
       "code": "CS",
       "category": "Cosmeti",
+      "userId": 2,
       "id": 3
     },
     {
       "code": "fds",
       "category": "Coded",
+      "userId": 1,
       "id": 4
+    },
+    {
+      "code": "12",
+      "category": "sdfg",
+      "userId": 2,
+      "id": 5
     }
   ],
   "list": [
@@ -67,20 +76,6 @@
     {
       "status": "Completed",
       "id": 10
-    },
-    {
-      "name": "festive",
-      "category": "Clothes",
-      "status": "Pending",
-      "date": "8 May 2025",
-      "items": [
-        {
-          "itemName": "shirt",
-          "quantity": "3"
-        }
-      ],
-      "userid": 2,
-      "id": 18
     },
     {
       "items": [
@@ -124,6 +119,56 @@
       ],
       "id": 21,
       "status": "in-progress"
+    },
+    {
+      "name": "hgfd",
+      "category": "fds",
+      "status": "in-progress",
+      "date": "14 May 2025",
+      "items": [
+        {
+          "itemName": "cx",
+          "quantity": "12",
+          "completed": false
+        }
+      ],
+      "userid": 1,
+      "id": 22
+    },
+    {
+      "name": "Weekend",
+      "category": "ty",
+      "status": "in-progress",
+      "date": "14 May 2025",
+      "items": [
+        {
+          "itemName": "Shawls",
+          "quantity": "1",
+          "completed": true
+        },
+        {
+          "itemName": "shirt",
+          "quantity": "1",
+          "completed": false
+        }
+      ],
+      "userid": 1,
+      "id": 23
+    },
+    {
+      "name": "dfg",
+      "category": "12",
+      "status": "Completed",
+      "date": "14 May 2025",
+      "items": [
+        {
+          "itemName": "dfg",
+          "quantity": "45",
+          "completed": true
+        }
+      ],
+      "userid": 2,
+      "id": 27
     }
   ]
 }
