@@ -35,13 +35,12 @@
       "id": 3,
       "date": "19-05-2025",
       "name": "Weekend Shopping",
-      "category": "Misc",
-      "status": "Pending",
+      "category": "Cosmeti",
+      "status": "completed",
       "items": [],
       "userid": 2
     },
     {
-
       "id": 4,
       "date": "27-12-2024",
       "name": "festival",
@@ -51,57 +50,25 @@
       "userid": 2
     },
     {
-
       "name": "Shoping",
-      "category": "Grocery",
-      "status": "Completed",
+      "category": "toy",
+      "status": "completed",
       "date": "07/05/2025",
       "items": [
         {
           "itemName": "Banana",
-          "quantity": "2"
+          "quantity": "2",
+          "completed": true
         }
       ],
       "userid": 1,
       "id": 6
     },
     {
-
-      "name": "festive",
-      "category": "Clothes",
-      "status": "Completed",
-      "date": "07/05/2025",
-      "items": [
-        {
-          "itemName": "decorate items",
-          "quantity": "2"
-        }
-      ],
-      "userid": 1,
-      "id": 7
-    },
-    {
-
       "status": "Completed",
       "id": 10
     },
-    {      "name": "sample",
-      "category": "Grocery",
-      "status": "Pending",
-      "date": "12 May 2025",
-      "items": [
-        {
-          "itemName": "tomato",
-          "quantity": "5"
-        },
-        {
-          "itemName": "egg",
-          "quantity": "6"
-        }
-      ],
-      "userid": 1,
-      "id": 11
-
+    {
       "name": "festive",
       "category": "Clothes",
       "status": "Pending",
@@ -114,7 +81,49 @@
       ],
       "userid": 2,
       "id": 18
-
+    },
+    {
+      "items": [
+        {
+          "itemName": "sd",
+          "quantity": "1",
+          "completed": true
+        },
+        {
+          "itemName": "sd",
+          "quantity": "2",
+          "completed": false
+        }
+      ],
+      "id": 19,
+      "status": "in-progress"
+    },
+    {
+      "items": [
+        {
+          "itemName": "s",
+          "quantity": "1",
+          "completed": false
+        },
+        {
+          "itemName": "sd",
+          "quantity": "2",
+          "completed": false
+        }
+      ],
+      "id": 20,
+      "status": "in-progress"
+    },
+    {
+      "items": [
+        {
+          "itemName": "sd",
+          "quantity": "1",
+          "completed": false
+        }
+      ],
+      "id": 21,
+      "status": "in-progress"
     }
   ]
 }

@@ -20,7 +20,7 @@ function App() {
           }
         />
         <Route
-          path="/home/list/:id"
+          path="/home/list"
           element={
             <ProtectedRoute>
               <AddList />
