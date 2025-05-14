@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 import {
   fetchAll,
   deleteList,
-  fetchListById, // Make sure this action exists and is imported
 } from "../features/shoppingList/shoppingListSlice";
 
 function Home() {
@@ -35,11 +34,6 @@ function Home() {
       showConfirmButton: false,
       timer: 1500,
     });
-  };
-
-  const handleViewDetails = (id) => {
-    dispatch(fetchListById(id));
-    navigate(`/listdetails/${id}`);
   };
 
   return (
@@ -112,13 +106,6 @@ function Home() {
                     value={list.status}
                     className="shadow-lg shadow-gray-400/50 bg-white rounded-lg px-2 py-1 text-center w-[100px]"
                   />
-                  {/* <input
-                    type="button"
-                    readOnly
-                    value="Details"
-                    onClick={() => handleViewDetails(list.id)}
-                    className="w-fit shadow-lg shadow-gray-400/50 bg-white rounded-lg px-2 py-1 text-center text-blue-500 cursor-pointer"
-                  /> */}
                   <Link
                     to={`/home/list/${list.id}`}
                     className="w-fit shadow-lg shadow-gray-400/50 bg-white rounded-lg px-2 py-1 text-center text-blue-500 cursor-pointer inline-block"

@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import BackgroundLayout from "../components/BackgroudLayout";
-import Header from "../components/Header";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import Swal from "sweetalert2";
@@ -12,7 +10,6 @@ import { fetchAll } from "../features/category/categorySlice";
 function AddList() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
   const [formName, setFormName] = useState("");
   const [formCategory, setFormCategory] = useState("");
   const [itemName, setItemName] = useState("");
@@ -20,7 +17,7 @@ function AddList() {
   const [items, setItems] = useState([]);
   const { status, error } = useSelector((state) => state.shoppingList);
   const auth = useSelector((state) => state.auth);
-  const user = auth?.user; // safe access
+  const user = auth?.user; 
   const categories = useSelector((state) => state.category.categories);
 
   useEffect(() => {
