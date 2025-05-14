@@ -17,11 +17,13 @@ function AddList() {
   const [items, setItems] = useState([]);
   const { status, error } = useSelector((state) => state.shoppingList);
   const auth = useSelector((state) => state.auth);
-  const user = auth?.user; 
+  const user = auth?.user;
   const categories = useSelector((state) => state.category.categories);
 
   useEffect(() => {
-    dispatch(fetchAll());
+    if (user?.id) {
+      dispatch(fetchAll(user.id));
+    }
   }, [dispatch]);
 
   if (status === "loading") {
@@ -84,7 +86,6 @@ function AddList() {
       userid: user.id,
     };
 
-    console.log("new list is", newList);
     dispatch(addShoppingList(newList));
     Swal.fire({
       icon: "success",
@@ -148,11 +149,13 @@ function AddList() {
               className="bg-white rounded-lg text-center"
             >
               <option value="">Choose Category</option>
-              {categories.map((cat) => (
-                <option key={cat.code} value={cat.category}>
-                  {cat.category}
-                </option>
-              ))}
+              {categories
+                .filter((cat) => cat.userId === user.id)
+                .map((cat) => (
+                  <option key={cat.code} value={cat.code}>
+                    {cat.code}
+                  </option>
+                ))}
             </select>
           </div>
 
