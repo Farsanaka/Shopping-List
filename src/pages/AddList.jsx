@@ -4,8 +4,8 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import Swal from "sweetalert2";
-import { addShoppingList } from "../features/shoppingList/shoppingListSlice";
-import { fetchAll } from "../features/category/categorySlice";
+import { addShoppingList } from "../redux/shoppingListSlice";
+import { fetchAll } from "../redux/categorySlice";
 
 function AddList() {
   const navigate = useNavigate();
@@ -101,14 +101,6 @@ function AddList() {
     updatedItems.splice(index, 1);
     setItems(updatedItems);
   };
-
-  if (status === "loading") {
-    return <p>Loading...</p>;
-  }
-
-  if (status === "failed") {
-    return <p className="text-red-500">Error: {error}</p>;
-  }
   return (
     <div>
       <div className="flex justify-center mt-10 gap-2.5">

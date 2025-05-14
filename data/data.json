@@ -17,26 +17,50 @@
     {
       "code": "ty",
       "category": "toy",
-      "userId": 1,
       "id": 2
     },
     {
       "code": "CS",
       "category": "Cosmeti",
-      "userId": 2,
       "id": 3
     },
     {
       "code": "fds",
       "category": "Coded",
-      "userId": 1,
       "id": 4
     },
     {
-      "code": "12",
-      "category": "sdfg",
-      "userId": 2,
+      "code": "EC",
+      "category": "Electrnics",
       "id": 5
+    },
+    {
+      "code": "PRTY",
+      "category": "Party",
+      "id": 6
+    },
+    {
+      "code": "HM",
+      "category": "Home",
+      "id": 7
+    },
+    {
+      "code": "sy",
+      "category": "sample",
+      "userId": 1,
+      "id": 8
+    },
+    {
+      "code": "PR",
+      "category": "PARTY",
+      "userId": 1,
+      "id": 9
+    },
+    {
+      "code": "TY",
+      "category": "TOYS",
+      "userId": 1,
+      "id": 10
     }
   ],
   "list": [
@@ -44,7 +68,7 @@
       "id": 3,
       "date": "19-05-2025",
       "name": "Weekend Shopping",
-      "category": "Cosmeti",
+      "category": "toy",
       "status": "completed",
       "items": [],
       "userid": 2
@@ -61,13 +85,13 @@
     {
       "name": "Shoping",
       "category": "toy",
-      "status": "completed",
+      "status": "Pending",
       "date": "07/05/2025",
       "items": [
         {
-          "itemName": "Banana",
+          "itemName": "Ban",
           "quantity": "2",
-          "completed": true
+          "completed": false
         }
       ],
       "userid": 1,
@@ -78,97 +102,132 @@
       "id": 10
     },
     {
+      "name": "festive",
+      "category": "Clothes",
+      "status": "Pending",
+      "date": "8 May 2025",
       "items": [
-        {
-          "itemName": "sd",
-          "quantity": "1",
-          "completed": true
-        },
-        {
-          "itemName": "sd",
-          "quantity": "2",
-          "completed": false
-        }
-      ],
-      "id": 19,
-      "status": "in-progress"
-    },
-    {
-      "items": [
-        {
-          "itemName": "s",
-          "quantity": "1",
-          "completed": false
-        },
-        {
-          "itemName": "sd",
-          "quantity": "2",
-          "completed": false
-        }
-      ],
-      "id": 20,
-      "status": "in-progress"
-    },
-    {
-      "items": [
-        {
-          "itemName": "sd",
-          "quantity": "1",
-          "completed": false
-        }
-      ],
-      "id": 21,
-      "status": "in-progress"
-    },
-    {
-      "name": "hgfd",
-      "category": "fds",
-      "status": "in-progress",
-      "date": "14 May 2025",
-      "items": [
-        {
-          "itemName": "cx",
-          "quantity": "12",
-          "completed": false
-        }
-      ],
-      "userid": 1,
-      "id": 22
-    },
-    {
-      "name": "Weekend",
-      "category": "ty",
-      "status": "in-progress",
-      "date": "14 May 2025",
-      "items": [
-        {
-          "itemName": "Shawls",
-          "quantity": "1",
-          "completed": true
-        },
         {
           "itemName": "shirt",
-          "quantity": "1",
-          "completed": false
+          "quantity": "3"
         }
       ],
-      "userid": 1,
-      "id": 23
+      "userid": 2,
+      "id": 18
     },
     {
-      "name": "dfg",
-      "category": "12",
+      "name": "holiday cosmetics",
+      "category": "Cosmeti",
+      "status": "Pending",
+      "date": "29 May 2025",
+      "items": [
+        {
+          "itemName": "Sunscreen",
+          "quantity": "1"
+        },
+        {
+          "itemName": "Lip Balm",
+          "quantity": "2"
+        }
+      ],
+      "userid": 2,
+      "id": 45
+    },
+    {
+      "name": "coding challenge pack",
+      "category": "Coded",
+      "status": "Completed",
+      "date": "30 May 2025",
+      "items": [
+        {
+          "itemName": "Hackathon Guide",
+          "quantity": "1"
+        },
+        {
+          "itemName": "Online Compiler",
+          "quantity": "1"
+        }
+      ],
+      "userid": 2,
+      "id": 46
+    },
+    {
+      "name": "kitchen storage",
+      "category": "Home",
+      "status": "Pending",
+      "date": "31 May 2025",
+      "items": [
+        {
+          "itemName": "Storage Box",
+          "quantity": "5"
+        },
+        {
+          "itemName": "Label Stickers",
+          "quantity": "10"
+        }
+      ],
+      "userid": 2,
+      "id": 47
+    },
+    {
+      "name": "list",
+      "category": "sy",
       "status": "Completed",
       "date": "14 May 2025",
       "items": [
         {
-          "itemName": "dfg",
-          "quantity": "45",
+          "itemName": "sample24",
+          "quantity": "35",
           "completed": true
         }
       ],
-      "userid": 2,
-      "id": 27
+      "userid": 1,
+      "id": 48
+    },
+    {
+      "name": "s",
+      "category": "sy",
+      "status": "Pending",
+      "date": "14 May 2025",
+      "items": [
+        {
+          "itemName": "sd56",
+          "quantity": "15",
+          "completed": false
+        }
+      ],
+      "userid": 1,
+      "id": 49
+    },
+    {
+      "name": "new",
+      "category": "PR",
+      "status": "Completed",
+      "date": "14 May 2025",
+      "items": [
+        {
+          "itemName": "item1",
+          "quantity": "2",
+          "completed": true
+        }
+      ],
+      "userid": 1,
+      "id": 50
+    },
+    {
+      "name": "sampl2",
+      "category": "sy",
+      "status": "Completed",
+      "date": "14 May 2025",
+      "items": [
+        {
+          "itemName": "new44",
+          "quantity": "3",
+          "completed": true
+        }
+      ],
+      "userid": 1,
+      "id": 51
     }
   ]
 }

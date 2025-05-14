@@ -1,13 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { fetchShoppingLists, addShoppingListasync } from "../../services/api";
+import { fetchShoppingLists, addShoppingListasync } from "../services/api";
 import axios from "axios";
 const initialState = {
   shoppingLists: [],
-  name: "",
   currentList: null,
-  category: "",
   showItemInputs: false,
-
   error: "",
 };
 
@@ -15,12 +12,6 @@ const shoppingListSlice = createSlice({
   name: "shoppingLists",
   initialState,
   reducers: {
-    setName(state, action) {
-      state.name = action.payload;
-    },
-    setCategory(state, action) {
-      state.category = action.payload;
-    },
     showItemInputFields(state) {
       state.showItemInputs = true;
     },
@@ -65,7 +56,7 @@ const shoppingListSlice = createSlice({
       const { listId, status } = action.payload;
       const list = state.shoppingLists.find((list) => list.id === listId);
       if (list) {
-        list.status = status; 
+        list.status = status;
       }
     },
 
@@ -82,29 +73,7 @@ const shoppingListSlice = createSlice({
   },
 });
 
-extraReducers: (builder) => {
-  builder
-    .addCase(updateListStatus.fulfilled, (state, action) => {
-      const { listId, status } = action.payload;
-      const list = state.shoppingLists.find((list) => list.id === listId);
-      if (list) {
-        list.status = status;
-      }
-      if (state.currentList?.id === listId) {
-        state.currentList.status = status;
-      }
-    })
-    .addCase(updateItemsCompletedStatus.fulfilled, (state, action) => {
-      const updatedItems = action.payload.items;
-      if (state.currentList) {
-        state.currentList.items = updatedItems;
-      }
-    });
-};
-
 export const {
-  setName,
-  setCategory,
   showItemInputFields,
   hideItemInputFields,
   fetchAllSuccess,
@@ -171,7 +140,7 @@ export const updateListStatus = createAsyncThunk(
         `http://localhost:9000/list/${listId}`,
         { status, category }
       );
-      return { listId, status: response.data.status }; 
+      return { listId, status: response.data.status };
     } catch (error) {
       console.error("Update Status Error:", error);
       return rejectWithValue(error.response?.data || "Error updating status");

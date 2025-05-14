@@ -9,7 +9,7 @@ import {
   setCategory,
   updateCategory,
   deleteCategory,
-} from "../features/category/categorySlice";
+} from "../redux/categorySlice";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 

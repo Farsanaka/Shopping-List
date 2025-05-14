@@ -39,7 +39,6 @@ const authSlice = createSlice({
 export const { loginPending, loginSuccess, loginFailure, logout } =
   authSlice.actions;
 
-
 export const login =
   ({ username, password }) =>
   async (dispatch) => {

@@ -1,50 +1,30 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import {
   fetchListById,
   updateListStatus,
   updateItemsCompletedStatus,
-  fetchAll as fetchAllLists,
   toggleItemCompletion,
-} from "../features/shoppingList/shoppingListSlice";
-//
-import { fetchAll } from "../features/category/categorySlice";
-//
+} from "../redux/shoppingListSlice";
 
 const ListDetails = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
+  const navigate = useNavigate();
   const currentList = useSelector((state) => state.shoppingList.currentList);
-  const [editableCategory, setEditableCategory] = useState("");
-  //
-  const [formCategory, setFormCategory] = useState("");
-  //
-
   const [itemStates, setItemStates] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
-  const navigate = useNavigate();
-  const userId = useSelector((state) => state.auth.userId);
-  const auth = useSelector((state) => state.auth);
-  const user = auth?.user;
 
- 
   useEffect(() => {
-    if (id) {
-      dispatch(fetchListById(id));
-    }
+    if (id) dispatch(fetchListById(id));
   }, [dispatch, id]);
 
   useEffect(() => {
-    dispatch(fetchAllLists(userId));
-  }, [userId]);
-
-  useEffect(() => {
-    if (currentList && currentList.items) {
+    if (currentList?.items) {
       setItemStates(
         currentList.items.map((item) => ({
           ...item,
@@ -53,30 +33,6 @@ const ListDetails = () => {
       );
     }
   }, [currentList]);
-
-  useEffect(() => {
-    if (currentList && currentList.items) {
-      setItemStates(
-        currentList.items.map((item) => ({
-          ...item,
-          completed: item.completed || false,
-        }))
-      );
-      setEditableCategory(currentList.category || "");
-    }
-  }, [currentList]);
-
-  useEffect(() => {
-    dispatch(fetchAll());
-  }, [dispatch]);
-
-  //
-  useEffect(() => {
-    if (user?.id) {
-      dispatch(fetchAll(user.id));
-    }
-  }, [dispatch]);
-  //
 
   const handleItemChange = (index, field, value) => {
     const updatedItems = [...itemStates];
@@ -92,20 +48,23 @@ const ListDetails = () => {
       toggleItemCompletion({ listId: currentList.id, items: updatedItems })
     );
   };
-  const handleEdit = () => {
-    //
-    setFormCategory(currentList.category || "");
-    //
-    setIsEditing(true);
+
+  const handleEdit = () => setIsEditing(true);
+
+  const handleCancelEdit = () => {
+    setItemStates(
+      currentList.items.map((item) => ({
+        ...item,
+        completed: item.completed || false,
+      }))
+    );
+    setIsEditing(false);
   };
 
   const handleSave = () => {
-    //
     const updatedStatus = itemStates.every((item) => item.completed)
       ? "Completed"
       : "Pending";
-
-    const updatedCategory = formCategory || editableCategory;
 
     dispatch(
       updateItemsCompletedStatus({
@@ -118,15 +77,13 @@ const ListDetails = () => {
       updateListStatus({
         listId: currentList.id,
         status: updatedStatus,
-        category: updatedCategory,
+        category: currentList.category,
       })
     );
 
     dispatch(fetchListById(currentList.id));
-
-   
-    setFormCategory("");
     setIsEditing(false);
+
     Swal.fire({
       icon: "success",
       title: "Saved",
@@ -135,29 +92,14 @@ const ListDetails = () => {
       timer: 1500,
     });
   };
-  
-  const handleCancelEdit = () => {
-    
-    if (currentList && currentList.items) {
-      setItemStates(
-        currentList.items.map((item) => ({
-          ...item,
-          completed: item.completed || false,
-        }))
-      );
-      setEditableCategory(currentList.category || "");
-      setFormCategory(currentList.category || "");
-    }
 
-    setIsEditing(false);
-  };
-
-  const handleMarkAsComplete = async () => {
+  const handleMarkAsComplete = () => {
     const updatedItems = itemStates.map((item) => ({
       ...item,
       completed: true,
     }));
     setItemStates(updatedItems);
+
     dispatch(
       updateItemsCompletedStatus({
         listId: currentList.id,
@@ -166,7 +108,7 @@ const ListDetails = () => {
     );
     dispatch(updateListStatus({ listId: currentList.id, status: "Completed" }));
     dispatch(fetchListById(currentList.id));
-   
+
     Swal.fire({
       icon: "success",
       title: "Success!",
@@ -189,6 +131,7 @@ const ListDetails = () => {
           Back
         </button>
       </div>
+
       <div className="flex justify-center">
         <div className="flex flex-col bg-stone-200 rounded-lg m-4 w-fit p-10">
           <h2 className="text-xl font-bold mb-4 text-center">
@@ -199,9 +142,7 @@ const ListDetails = () => {
             Date: <strong>{currentList.date}</strong>
           </p>
           <p>
-            Category:{" "}
-          
-            <strong>{currentList.category}</strong>
+            Category: <strong>{currentList.category}</strong>
           </p>
           <p>
             Status: <strong>{currentList.status}</strong>
@@ -219,35 +160,33 @@ const ListDetails = () => {
                       handleCheckboxChange(index, e.target.checked)
                     }
                   />
-
-                  <span
-                 
-                  >
+                  <span>
                     <strong>Item {index + 1}</strong>:{" "}
                     {isEditing ? (
-                      <input
-                        type="text"
-                        value={item.itemName}
-                        onChange={(e) =>
-                          handleItemChange(index, "itemName", e.target.value)
-                        }
-                        className="border border-gray-400 rounded px-2 py-1 mr-2"
-                      />
+                      <>
+                        <input
+                          type="text"
+                          value={item.itemName}
+                          onChange={(e) =>
+                            handleItemChange(index, "itemName", e.target.value)
+                          }
+                          className="border border-gray-400 rounded px-2 py-1 mr-2"
+                        />
+                        Quantity:{" "}
+                        <input
+                          type="number"
+                          value={item.quantity}
+                          onChange={(e) =>
+                            handleItemChange(index, "quantity", e.target.value)
+                          }
+                          className="border border-gray-400 rounded px-2 py-1 w-16"
+                        />
+                      </>
                     ) : (
-                      item.itemName
-                    )}
-                    , Quantity:{" "}
-                    {isEditing ? (
-                      <input
-                        type="number"
-                        value={item.quantity}
-                        onChange={(e) =>
-                          handleItemChange(index, "quantity", e.target.value)
-                        }
-                        className="border border-gray-400 rounded px-2 py-1 w-16"
-                      />
-                    ) : (
-                      <strong>{item.quantity}</strong>
+                      <>
+                        {item.itemName}, Quantity:{" "}
+                        <strong>{item.quantity}</strong>
+                      </>
                     )}
                   </span>
                 </li>
@@ -262,18 +201,16 @@ const ListDetails = () => {
               <>
                 <button
                   onClick={handleEdit}
-                  className="shadow-lg shadow-gray-400/50 px-4 py-1 bg-gradient-to-r from-red-400 to-gray-400 rounded-lg font-semibold"
+                  className="px-4 py-1 bg-gradient-to-r from-red-400 to-gray-400 rounded-lg font-semibold"
                 >
                   Edit
                 </button>
-
                 <button
                   onClick={handleMarkAsComplete}
                   className="px-4 py-1 bg-gradient-to-r from-green-400 to-gray-400 rounded-lg font-semibold"
                 >
                   Mark All Complete
                 </button>
-
                 <button
                   onClick={handleSave}
                   className="px-4 py-1 bg-gradient-to-r from-green-400 to-gray-400 rounded-lg font-semibold"
@@ -291,7 +228,7 @@ const ListDetails = () => {
                 </button>
                 <button
                   onClick={handleCancelEdit}
-                  className="shadow-lg shadow-gray-400/50 px-4 py-1 bg-gradient-to-r from-red-400 to-gray-400 rounded-lg font-semibold"
+                  className="px-4 py-1 bg-gradient-to-r from-red-400 to-gray-400 rounded-lg font-semibold"
                 >
                   Cancel
                 </button>

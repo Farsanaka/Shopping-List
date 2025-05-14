@@ -2,10 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
 import Swal from "sweetalert2";
-import {
-  fetchAll,
-  deleteList,
-} from "../features/shoppingList/shoppingListSlice";
+import { fetchAll, deleteList } from "../redux/shoppingListSlice";
 
 function Home() {
   const dispatch = useDispatch();
@@ -18,7 +15,7 @@ function Home() {
 
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(7); // Default: 7 items per page
-  const [showDropdown, setShowDropdown] = useState(false); // For toggling the dropdown visibility
+  const [showDropdown, setShowDropdown] = useState(false);
 
   useEffect(() => {
     if (!user) {
@@ -111,10 +108,10 @@ function Home() {
               <div className="bg-gray-300 rounded-lg px-2 py-1 text-center w-[100px]">
                 STATUS
               </div>
-              <div className="bg-gray-300 rounded-lg px-2 py-1 text-center w-[70px]">
+              <div className="bg-gray-300 rounded-lg px-1 py-1 text-center w-[100px]">
                 DETAILS
               </div>
-              <div className="bg-gray-300 rounded-lg px-2 py-1 text-center w-[77px]">
+              <div className="bg-gray-300 rounded-lg px-2 py-1  text-center w-[77px]">
                 ACTION
               </div>
             </li>
