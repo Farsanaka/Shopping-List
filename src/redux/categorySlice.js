@@ -12,7 +12,6 @@ const categorySlice = createSlice({
   name: "category",
   initialState,
   reducers: {
-    // fetchAll(state) {},
 
     fetchAllSuccess(state, action) {
       state.categories = action.payload;

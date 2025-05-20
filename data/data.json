@@ -61,6 +61,30 @@
       "category": "TOYS",
       "userId": 1,
       "id": 10
+    },
+    {
+      "code": "C03",
+      "category": "Dairy",
+      "userId": "user1",
+      "id": 11
+    },
+    {
+      "code": "C03",
+      "category": "Dairy",
+      "userId": "user1",
+      "id": 12
+    },
+    {
+      "code": "C03",
+      "category": "Dairy",
+      "userId": "user1",
+      "id": 13
+    },
+    {
+      "code": "C03",
+      "category": "Dairy",
+      "userId": "user1",
+      "id": 14
     }
   ],
   "list": [
