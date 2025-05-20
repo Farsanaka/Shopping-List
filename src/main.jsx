@@ -1,15 +1,18 @@
+import "./index.css";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import "./index.css"; // this should be at the top
 import { Provider } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
 import store from "./store";
 
 import App from "./App.jsx";
 
 createRoot(document.getElementById("root")).render(
-  <StrictMode>
-<Provider store={store}>
-  <App />
-</Provider>
-  </StrictMode>
+  <BrowserRouter>
+    <StrictMode>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </StrictMode>
+  </BrowserRouter>
 );
