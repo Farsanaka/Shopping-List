@@ -53,7 +53,7 @@ function Home() {
   const handleItemsPerPage = (num) => {
     setItemsPerPage(num);
     setCurrentPage(1);
-    setShowDropdown(false); // Hide dropdown after selection
+    setShowDropdown(false); 
   };
 
   return (
@@ -61,7 +61,7 @@ function Home() {
       <div className="flex justify-center  mt-10">
         <div className="relative inline-block text-left mr-180">
           <button
-            onClick={() => setShowDropdown(!showDropdown)} // Toggle dropdown visibility
+            onClick={() => setShowDropdown(!showDropdown)} 
             className="px-4 py-2 bg-gray-300 text-gray-800 rounded-md"
           >
             Show

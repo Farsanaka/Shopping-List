@@ -1,3 +1,4 @@
+import React from "react";
 
 const BackgroundLayout = ({ bgImage, children }) => {
   return (
@@ -10,5 +11,5 @@ const BackgroundLayout = ({ bgImage, children }) => {
     </div>
   );
 };
- 
+
 export default BackgroundLayout;
