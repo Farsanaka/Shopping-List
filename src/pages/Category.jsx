@@ -71,61 +71,67 @@ function Category() {
 
   return (
     <div>
-      <div className="flex justify-center mr-130 mt-10 font-bold">
+      {/* Back Button */}
+      <div className="flex justify-center mr-[var(--spacing-3xl)] mt-[var(--spacing-xl)] font-bold">
         <button
           onClick={() => navigate(-1)}
-          className="flex items-center gap-2 px-4 py-2 text-white bg-gray-700 rounded hover:bg-gray-800"
+          className="flex items-center gap-2 px-[var(--spacing-md)] py-[var(--spacing-xs)] text-[var(--color-bg-light)] bg-[var(--color-gray-700)] rounded hover:bg-gray-800"
         >
           <FontAwesomeIcon icon={faArrowLeft} />
           Back
         </button>
       </div>
+
+      {/* Category Container */}
       <div className="flex justify-center">
-        <div className="bg-stone-300 rounded-lg m-4 w-fit">
-          <p className="p-2 text-center font-bold text-lg">CATEGORY LIST</p>
-          <div className="flex justify-center m-4 border p-4 rounded-lg border-gray-400 shadow">
+        <div className="bg-[var(--color-gray-300)] rounded-[var(--radius-lg)] m-[var(--spacing-md)] w-fit shadow-md">
+          <p className="p-[var(--spacing-sm)] text-center font-bold text-[var(--text-xl)]">
+            CATEGORY LIST
+          </p>
+
+          {/* Input and Add Button */}
+          <div className="flex justify-center m-[var(--spacing-md)] border border-gray-400 p-[var(--spacing-md)] rounded-[var(--radius-lg)] shadow-lg">
             <input
               type="text"
               placeholder="Code"
               value={code}
               onChange={(e) => dispatch(setCode(e.target.value))}
-              className="bg-white rounded-lg text-center mx-4  shadow-lg shadow-gray-400/50 focus:outline-none focus:ring-2 focus:ring-gray-400 "
+              className="bg-[var(--color-bg-light)] rounded-[var(--radius-lg)] text-center mx-[var(--spacing-md)] shadow-lg shadow-gray-400/50 focus:outline-none focus:ring-2 focus:ring-gray-400 px-3 py-1"
+              style={{ width: "120px" }}
             />
             <input
               type="text"
               placeholder="Name"
               value={category}
               onChange={(e) => dispatch(setCategory(e.target.value))}
-              className="bg-white rounded-lg text-center mx-4 shadow-lg shadow-gray-400/50 focus:outline-none focus:ring-2 focus:ring-gray-400"
+              className="bg-[var(--color-bg-light)] rounded-[var(--radius-lg)] text-center mx-[var(--spacing-md)] shadow-lg shadow-gray-400/50 focus:outline-none focus:ring-2 focus:ring-gray-400 px-3 py-1"
+              style={{ width: "180px" }}
             />
             <button
               onClick={handleAdd}
-              className="
-                    px-4
-                    py-1
-                    mx-4
-                    bg-gradient-to-r
-                    from-green-400
-                    to-gray-400
-                    rounded-lg shadow-lg shadow-gray-400/50
-                    font-semibold"
+              className="px-[var(--spacing-md)] py-[var(--spacing-xs)] mx-[var(--spacing-md)] bg-gradient-to-r from-[var(--color-green-400)] to-[var(--color-gray-300)] rounded-[var(--radius-lg)] shadow-lg shadow-gray-400/50 font-semibold"
             >
               Add
             </button>
           </div>
-          <ul className="m-4 mt-10">
+
+          {/* Category List */}
+          <ul className="m-[var(--spacing-md)] mt-[var(--spacing-xl)]">
+            {/* List Header */}
             <li className="flex gap-4 mb-2">
-              <div className="bg-gray-300 rounded-lg px-2 py-1 text-center w-[200px]">
+              <div className="bg-[var(--color-gray-200)] rounded-[var(--radius-lg)] px-2 py-1 text-center w-[200px] font-semibold">
                 CODE
               </div>
-              <div className="bg-gray-300 rounded-lg px-2 py-1 text-center w-[200px]">
+              <div className="bg-[var(--color-gray-200)] rounded-[var(--radius-lg)] px-2 py-1 text-center w-[200px] font-semibold">
                 CATEGORY NAME
               </div>
             </li>
+
+            {/* Category Items */}
             {categories
               .filter((cat) => cat.userId === currentUser.id)
               .map((cat, index) => (
-                <li key={index} className="flex gap-4 mb-2">
+                <li key={cat.id} className="flex gap-4 mb-2 items-center">
                   {editIndex === index ? (
                     <>
                       <input
@@ -134,7 +140,7 @@ function Category() {
                         onChange={(e) =>
                           setEditData({ ...editData, code: e.target.value })
                         }
-                        className="shadow-lg shadow-gray-400/50 bg-white rounded-lg px-2 py-1 text-center"
+                        className="shadow-lg shadow-gray-400/50 bg-[var(--color-bg-light)] rounded-[var(--radius-lg)] px-2 py-1 text-center w-[200px]"
                       />
                       <input
                         type="text"
@@ -142,21 +148,17 @@ function Category() {
                         onChange={(e) =>
                           setEditData({ ...editData, category: e.target.value })
                         }
-                        className="shadow-lg shadow-gray-400/50 bg-white rounded-lg px-2 py-1 text-center"
+                        className="shadow-lg shadow-gray-400/50 bg-[var(--color-bg-light)] rounded-[var(--radius-lg)] px-2 py-1 text-center w-[200px]"
                       />
-                      <div className="w-35 flex align-middle justify-center">
+                      <div className="w-[90px] flex items-center justify-center">
                         <button
                           onClick={() => {
-                            console.log("Sending to updateCategory:", {
-                              ...editData,
-                              id: cat.id,
-                            });
                             dispatch(
                               updateCategory({ ...editData, id: cat.id })
                             );
                             setEditIndex(null);
                           }}
-                          className="shadow-lg shadow-gray-400/50 px-4 py-1 bg-gradient-to-r from-green-300 to-gray-400 rounded-lg font-semibold"
+                          className="shadow-lg shadow-gray-400/50 px-4 py-1 bg-gradient-to-r from-green-400 to-[var(--color-gray-300)] rounded-[var(--radius-lg)] font-semibold"
                         >
                           Save
                         </button>
@@ -168,26 +170,26 @@ function Category() {
                         type="text"
                         readOnly
                         value={cat.code}
-                        className="shadow-lg shadow-gray-400/50 bg-white rounded-lg px-2 py-1 text-center"
+                        className="shadow-lg shadow-gray-400/50 bg-[var(--color-bg-light)] rounded-[var(--radius-lg)] px-2 py-1 text-center w-[200px]"
                       />
                       <input
                         type="text"
                         readOnly
                         value={cat.category}
-                        className="shadow-lg shadow-gray-400/50 bg-white rounded-lg px-2 py-1 text-center"
+                        className="shadow-lg shadow-gray-400/50 bg-[var(--color-bg-light)] rounded-[var(--radius-lg)] px-2 py-1 text-center w-[200px]"
                       />
                       <button
                         onClick={() => {
                           setEditIndex(index);
                           setEditData(cat);
                         }}
-                        className="shadow-lg shadow-gray-400/50 px-4 py-1 bg-gradient-to-r from-amber-300 to-gray-400 rounded-lg font-semibold"
+                        className="shadow-lg shadow-gray-400/50 px-4 py-1 bg-gradient-to-r from-amber-400 to-[var(--color-gray-300)] rounded-[var(--radius-lg)] font-semibold"
                       >
                         Edit
                       </button>
                       <button
                         onClick={() => handleDelete(cat.id)}
-                        className="shadow-lg shadow-gray-400/50 px-4 py-1 bg-gradient-to-r from-red-400 to-gray-400 rounded-lg font-semibold"
+                        className="shadow-lg shadow-gray-400/50 px-4 py-1 bg-gradient-to-r from-[var(--color-red-800)] to-[var(--color-secondary)]  rounded-[var(--radius-lg)] font-semibold"
                       >
                         Delete
                       </button>

@@ -1,4 +1,6 @@
 import reducer, {
+  showItemInputFields,
+  hideItemInputFields,
   fetchAllSuccess,
   fetchAllFailure,
   addShoppingListSuccess,
@@ -9,106 +11,132 @@ import reducer, {
   updateListStatusFailure,
   fetchListByIdSuccess,
   fetchListByIdFailure,
-  showItemInputFields,
-  hideItemInputFields,
-} from "./shoppingListSlice"; // Thunks not tested directly in this reducer suite
+} from "../redux/shoppingListSlice";
 
-describe("shoppingListSlice reducer", () => {
-  const initialState = {
-    shoppingLists: [],
-    currentList: null,
-    showItemInputs: false,
-    error: "",
-  };
+describe("shoppingListSlice Reducer Detailed Tests", () => {
+  let initialState;
 
-  it("should return the initial state", () => {
-    expect(reducer(undefined, { type: "@@INIT" })).toEqual(initialState);
-  });
-
-  it("should handle showItemInputFields", () => {
-    const state = reducer(initialState, showItemInputFields());
-    expect(state.showItemInputs).toBe(true);
-  });
-
-  it("should handle hideItemInputFields", () => {
-    const modifiedState = { ...initialState, showItemInputs: true };
-    const state = reducer(modifiedState, hideItemInputFields());
-    expect(state.showItemInputs).toBe(false);
-  });
-
-  it("should handle fetchAllSuccess", () => {
-    const lists = [{ id: 1, name: "Groceries" }];
-    const state = reducer(initialState, fetchAllSuccess(lists));
-    expect(state.shoppingLists).toEqual(lists);
-  });
-
-  it("should handle fetchAllFailure", () => {
-    const error = "Network error";
-    const state = reducer(initialState, fetchAllFailure(error));
-    expect(state.error).toBe("Error occurred - Network error");
-  });
-
-  it("should handle addShoppingListSuccess", () => {
-    const newList = { id: 2, name: "Books" };
-    const state = reducer(initialState, addShoppingListSuccess(newList));
-    expect(state.shoppingLists).toContainEqual(newList);
-  });
-
-  it("should handle addShoppingListFailure", () => {
-    const state = reducer(initialState, addShoppingListFailure("Add failed"));
-    expect(state.error).toBe("Add failed");
-  });
-
-  it("should handle deleteListSuccess", () => {
-    const prevState = {
-      ...initialState,
-      shoppingLists: [
-        { id: 1, name: "Test" },
-        { id: 2, name: "Another" },
-      ],
+  beforeEach(() => {
+    initialState = {
+      shoppingLists: [],
+      currentList: null,
+      showItemInputs: false,
+      error: "",
     };
-    const state = reducer(prevState, deleteListSuccess(1));
-    expect(state.shoppingLists).toEqual([{ id: 2, name: "Another" }]);
   });
 
-  it("should handle deleteListFailure", () => {
-    const state = reducer(initialState, deleteListFailure("Failed delete"));
-    expect(state.error).toBe("Delete failed - Failed delete");
+  it("should return the initial state when action is unknown", () => {
+    const action = { type: "unknown" };
+    const newState = reducer(undefined, action);
+    expect(newState).toEqual(initialState);
   });
 
-  it("should handle updateListStatusSuccess", () => {
-    const prevState = {
+  it("should set showItemInputs to true on showItemInputFields", () => {
+    const action = showItemInputFields();
+    const newState = reducer(initialState, action);
+    expect(newState.showItemInputs).toBe(true);
+    expect(newState).toEqual({
       ...initialState,
-      shoppingLists: [{ id: 1, name: "Test", status: "open" }],
-    };
-    const state = reducer(
-      prevState,
-      updateListStatusSuccess({ listId: 1, status: "closed" })
-    );
-    expect(state.shoppingLists[0].status).toBe("closed");
+      showItemInputs: true,
+    });
   });
 
-  it("should handle updateListStatusFailure", () => {
-    const state = reducer(
-      initialState,
-      updateListStatusFailure("Update failed")
-    );
-    expect(state.error).toBe("Status update failed: Update failed");
+  it("should set showItemInputs to false on hideItemInputFields", () => {
+    initialState.showItemInputs = true;
+    const action = hideItemInputFields();
+    const newState = reducer(initialState, action);
+    expect(newState.showItemInputs).toBe(false);
   });
 
-  it("should handle fetchListByIdSuccess", () => {
-    const list = { id: 5, name: "Fetched List" };
-    const state = reducer(initialState, fetchListByIdSuccess(list));
-    expect(state.currentList).toEqual(list);
+  it("should populate shoppingLists on fetchAllSuccess", () => {
+    const payload = [{ id: 1 }, { id: 2 }];
+    const action = fetchAllSuccess(payload);
+    const newState = reducer(initialState, action);
+    expect(newState.shoppingLists).toEqual(payload);
   });
 
-  it("should handle fetchListByIdFailure", () => {
-    const state = reducer(initialState, fetchListByIdFailure("Not found"));
-    expect(state.error).toBe("Not found");
+  it("should set error string correctly on fetchAllFailure", () => {
+    const error = "Fetch failed";
+    const action = fetchAllFailure(error);
+    const newState = reducer(initialState, action);
+    expect(newState.error).toBe("Error occurred - Fetch failed");
   });
 
-  it("should return unchanged state for unknown action", () => {
-    const state = reducer(initialState, { type: "UNKNOWN_ACTION" });
-    expect(state).toEqual(initialState);
+  it("should add a new list to shoppingLists on addShoppingListSuccess", () => {
+    const newList = { id: 3, name: "Bakery" };
+    const action = addShoppingListSuccess(newList);
+    const newState = reducer(initialState, action);
+    expect(newState.shoppingLists).toHaveLength(1);
+    expect(newState.shoppingLists[0]).toEqual(newList);
+  });
+
+  it("should update error on addShoppingListFailure", () => {
+    const error = "Add failed";
+    const action = addShoppingListFailure(error);
+    const newState = reducer(initialState, action);
+    expect(newState.error).toBe("Add failed");
+  });
+
+  it("should remove list with matching ID on deleteListSuccess", () => {
+    initialState.shoppingLists = [
+      { id: 1, name: "List A" },
+      { id: 2, name: "List B" },
+    ];
+    const action = deleteListSuccess(1);
+    const newState = reducer(initialState, action);
+    expect(newState.shoppingLists).toEqual([{ id: 2, name: "List B" }]);
+  });
+
+  it("should not delete anything if no matching ID is found", () => {
+    initialState.shoppingLists = [{ id: 5 }];
+    const action = deleteListSuccess(999);
+    const newState = reducer(initialState, action);
+    expect(newState.shoppingLists).toEqual([{ id: 5 }]);
+  });
+
+  it("should set error on deleteListFailure", () => {
+    const action = deleteListFailure("DeleteError");
+    const newState = reducer(initialState, action);
+    expect(newState.error).toBe("Delete failed - DeleteError");
+  });
+
+  it("should update list status correctly on updateListStatusSuccess", () => {
+    initialState.shoppingLists = [
+      { id: 1, name: "Old", status: "pending" },
+      { id: 2, name: "New", status: "pending" },
+    ];
+    const payload = { listId: 2, status: "done" };
+    const action = updateListStatusSuccess(payload);
+    const newState = reducer(initialState, action);
+    const updated = newState.shoppingLists.find((l) => l.id === 2);
+    expect(updated.status).toBe("done");
+  });
+
+  it("should not throw or change anything if no list matches updateListStatusSuccess", () => {
+    initialState.shoppingLists = [{ id: 1, status: "pending" }];
+    const action = updateListStatusSuccess({ listId: 99, status: "done" });
+    const newState = reducer(initialState, action);
+    expect(newState.shoppingLists[0].status).toBe("pending");
+  });
+
+  it("should set error on updateListStatusFailure", () => {
+    const error = "Server error";
+    const action = updateListStatusFailure(error);
+    const newState = reducer(initialState, action);
+    expect(newState.error).toBe("Status update failed: Server error");
+  });
+
+  it("should set currentList on fetchListByIdSuccess", () => {
+    const list = { id: 88, name: "Special" };
+    const action = fetchListByIdSuccess(list);
+    const newState = reducer(initialState, action);
+    expect(newState.currentList).toEqual(list);
+  });
+
+  it("should set error string on fetchListByIdFailure", () => {
+    const error = "No list found";
+    const action = fetchListByIdFailure(error);
+    const newState = reducer(initialState, action);
+    expect(newState.error).toBe("No list found");
   });
 });

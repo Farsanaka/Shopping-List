@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">81.48% </span>
+                <span class="strong">81.57% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>154/189</span>
+                <span class='fraction'>155/190</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">81.48% </span>
+                <span class="strong">81.57% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>154/189</span>
+                <span class='fraction'>155/190</span>
             </div>
         
             
@@ -282,7 +282,9 @@
 <a name='L217'></a><a href='#L217'>217</a>
 <a name='L218'></a><a href='#L218'>218</a>
 <a name='L219'></a><a href='#L219'>219</a>
-<a name='L220'></a><a href='#L220'>220</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L220'></a><a href='#L220'>220</a>
+<a name='L221'></a><a href='#L221'>221</a>
+<a name='L222'></a><a href='#L222'>222</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -408,6 +410,8 @@
 <span class="cline-any cline-yes">16x</span>
 <span class="cline-any cline-yes">16x</span>
 <span class="cline-any cline-yes">16x</span>
+<span class="cline-any cline-yes">16x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">16x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">16x</span>
@@ -606,11 +610,11 @@ function AddList() {
 <span class="cstat-no" title="statement not covered" >  };</span>
   return (
     &lt;div&gt;
-      &lt;div className="flex justify-center mt-10 gap-2.5"&gt;
-        &lt;div className="flex justify-center font-bold mr-56"&gt;
+      &lt;div className="flex justify-center mt-[var(--spacing-10xl)] gap-[var(--spacing-xl)]"&gt;
+        &lt;div className="flex justify-center font-bold mr-[var(--spacing-56)]"&gt;
           &lt;button
             onClick={<span class="fstat-no" title="function not covered" >() =&gt; navigate(-1)}</span>
-            className="flex items-center gap-2 px-4 py-2 text-white bg-gray-700 rounded hover:bg-gray-800"
+            className="flex items-center gap-[var(--spacing-sm)] px-[var(--spacing-2sm)] py-[var(--spacing-sm)] text-[var(--color-bg-light)] bg-[var(--color-gray-700)] rounded hover:bg-[var(--color-gray-800)]"
           &gt;
             &lt;FontAwesomeIcon icon={faArrowLeft} /&gt;
             Back
@@ -619,29 +623,31 @@ function AddList() {
         &lt;div className="flex justify-center "&gt;
           &lt;button
             onClick={<span class="fstat-no" title="function not covered" >() =&gt; navigate("/home/category")}</span>
-            className="px-4 py-1 bg-gradient-to-r from-green-400 to-gray-400 rounded-lg font-semibold  "
+            className="px-[var(--spacing-sm)] py-[var(--spacing-xs)] bg-gradient-to-r from-[var(--color-green-400)] to-[var(--color-gray-400)] rounded-lg font-semibold  "
           &gt;
             Add Category
           &lt;/button&gt;
         &lt;/div&gt;
       &lt;/div&gt;
       &lt;div className="flex justify-center"&gt;
-        &lt;div className="flex flex-col justify-center bg-stone-300 rounded-lg m-4 w-fit center"&gt;
-          &lt;p className="p-2 text-center font-bold text-lg"&gt;ADD NEW LIST&lt;/p&gt;
+        &lt;div className="flex flex-col justify-center bg-[var(--color-stone-300)] rounded-lg m-[var(--spacing-2sm)] w-fit center"&gt;
+          &lt;p className="p-[var(--spacing-sm)] text-center font-bold text-lg"&gt;
+            ADD NEW LIST
+          &lt;/p&gt;
 &nbsp;
-          &lt;div className="flex justify-center gap-15 mx-6 my-4 "&gt;
+          &lt;div className="flex justify-center gap-[var(--spacing-15xl)] mx-[var(--spacing-l)] my-[var(--spacing-2sm)] "&gt;
             &lt;input
               type="text"
               placeholder="Name"
               value={formName}
               onChange={(e) =&gt; setFormName(e.target.value)}
-              className="bg-white rounded-lg text-center mx-4  shadow-lg shadow-gray-400/50 focus:outline-none focus:ring-2 focus:ring-gray-400 "
+              className="bg-[var(--color-bg-light)] rounded-lg text-center mx-[var(--spacing-2sm)]  shadow-lg shadow-gray-400/50 focus:outline-none focus:ring-2 focus:ring-[var(--color-secondary)] "
             /&gt;
 &nbsp;
             &lt;select
               value={formCategory}
               onChange={(e) =&gt; setFormCategory(e.target.value)}
-              className="bg-white rounded-lg text-center"
+              className="bg-[var(--color-bg-light] rounded-lg text-center"
             &gt;
               &lt;option value=""&gt;Choose Category&lt;/option&gt;
               {categories
@@ -655,46 +661,46 @@ function AddList() {
           &lt;/div&gt;
 &nbsp;
           {canShowItemInput &amp;&amp; (
-            &lt;div className="flex flex-col mx-6 my-4 gap-4"&gt;
+            &lt;div className="flex flex-col mx-[var(--spacing-l)] my-[var(--spacing-2sm)] gap-[var(--spacing-2sm)]"&gt;
               &lt;div className="flex gap-4"&gt;
                 &lt;input
                   type="number"
                   placeholder="Quantity"
                   value={quantity}
                   onChange={(e) =&gt; setQuantity(e.target.value)}
-                  className="bg-white rounded-lg text-center mx-4  shadow-lg shadow-gray-400/50 focus:outline-none focus:ring-2 focus:ring-gray-400 "
+                  className="bg-white rounded-lg text-center mx-[var(--spacing-2sm)]  shadow-lg shadow-gray-400/50 focus:outline-none focus:ring-[var(--spacing-sm)] focus:ring-[var(--spacing-secondary)] "
                 /&gt;
                 &lt;input
                   type="text"
                   placeholder="Item Name / Description"
                   value={itemName}
                   onChange={(e) =&gt; setItemName(e.target.value)}
-                  className="bg-white rounded-lg text-center mx-4  shadow-lg shadow-gray-400/50 focus:outline-none focus:ring-2 focus:ring-gray-400 "
+                  className="bg-[var(--color-bg-light)] rounded-lg text-center mx-[var(--spacing-2sm)] shadow-lg shadow-gray-400/50 focus:outline-none focus:ring-[var(--spacing-sm)] focus:ring-[var(--spacing-secondary)] "
                 /&gt;
                 &lt;button
                   onClick={handleAddItem}
-                  className="px-4 py-1 bg-gradient-to-r from-green-400 to-gray-400 rounded-lg font-semibold"
+                  className="px-[var(--spacing-2sm)] py-[var(--spacing-xs)] bg-gradient-to-r from-[var(--color-green-400t)] to-[var(--color-secondary)] rounded-lg font-semibold"
                 &gt;
                   Add Item
                 &lt;/button&gt;
               &lt;/div&gt;
 &nbsp;
-              &lt;div className="flex flex-col items-center justify-center p-6"&gt;
+              &lt;div className="flex flex-col items-center justify-center p-[var(--spacing-l)] "&gt;
                 {items.map((item, index) =&gt; (
                   &lt;div
                     key={index}
-                    className="flex items-center justify-center space-x-2 mb-2"
+                    className="flex items-center justify-center space-x-[var(--spacing-sm)]  mb-[var(--spacing-sm)] "
                   &gt;
-                    &lt;div className="bg-gray-200 px-4 py-2 rounded-md h-8 flex items-center justify-center"&gt;
+                    &lt;div className="bg-[var(--color-gray-200)] px-[var(--spacing-2sm)] py-[var(--spacing-sm)] rounded-md h-[var(--spacing-xl)] flex items-center justify-center"&gt;
                       {item.quantity}
                     &lt;/div&gt;
                     &lt;div className="text-lg font-semibold"&gt;×&lt;/div&gt;
-                    &lt;div className="bg-gray-200 px-4 py-2 rounded-md h-8 flex items-center justify-center"&gt;
+                    &lt;div className="bg-[var(--color-gray-200)] px-[var(--spacing-2sm)] py-[var(--spacing-sm)] rounded-md h-[var(--spacing-xl)] flex items-center justify-center"&gt;
                       {item.itemName}
                     &lt;/div&gt;
 &nbsp;
                     &lt;button
-                      className="bg-red-500 text-white rounded-md h-8 w-8 flex items-center justify-center hover:bg-red-600"
+                      className="bg-[var(--color-red-500)]  text-[var(--color-bg-light)]  rounded-md h-[var(--spacing-xl)] w-[var(--spacing-xl)] flex items-center justify-center hover:bg-[var(--color-red-600)] "
                       onClick={<span class="fstat-no" title="function not covered" >() =&gt; handleRemove(index)}</span>
                     &gt;
                       ×
@@ -703,10 +709,10 @@ function AddList() {
                 ))}
               &lt;/div&gt;
 &nbsp;
-              &lt;div className="flex justify-center my-4"&gt;
+              &lt;div className="flex justify-center my-[var(--spacing-2sm)]"&gt;
                 &lt;button
                   onClick={handleSaveList}
-                  className="px-6 py-2 bg-gradient-to-r from-blue-400 to-gray-400 rounded-lg font-bold"
+                  className="px-[var(--spacing-l)]  py-[var(--spacing-sm)]  bg-gradient-to-r from-blue-400 to-gray-400 rounded-lg font-bold"
                 &gt;
                   Save
                 &lt;/button&gt;
@@ -727,7 +733,7 @@ export default AddList;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-05-20T07:35:29.377Z
+                at 2025-05-25T16:29:12.162Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

@@ -1,63 +1,60 @@
 import { describe, it, expect, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
-import { MemoryRouter } from "react-router-dom";
+import { createMemoryRouter, RouterProvider } from "react-router-dom";
 import App from "./App";
 
-// ✅ Correct way to mock ES modules with default exports
+// Mocking all pages and components
 vi.mock("./pages/Home", () => ({ default: () => <div>Home Page</div> }));
 vi.mock("./pages/Login", () => ({ default: () => <div>Login Page</div> }));
 vi.mock("./pages/AddList", () => ({ default: () => <div>Add List Page</div> }));
-vi.mock("./pages/ListDetails", () => ({ default: () => <div>List Details Page</div> }));
-vi.mock("./pages/Category", () => ({ default: () => <div>Category Page</div> }));
-
-// ✅ ProtectedRoute mock should also return a default component
+vi.mock("./pages/ListDetails", () => ({
+  default: () => <div>List Details Page</div>,
+}));
+vi.mock("./pages/Category", () => ({
+  default: () => <div>Category Page</div>,
+}));
 vi.mock("./components/ProtectedRoute", () => ({
   default: ({ children }) => <>{children}</>,
 }));
 
 describe("App routing", () => {
   it("redirects / to /home", () => {
-    render(
-      <MemoryRouter initialEntries={["/"]}>
-        <App />
-      </MemoryRouter>
-    );
+    const router = createMemoryRouter(App().props.router.routes, {
+      initialEntries: ["/"],
+    });
+    render(<RouterProvider router={router} />);
     expect(screen.getByText("Home Page")).toBeInTheDocument();
   });
 
   it("renders login page at /login", () => {
-    render(
-      <MemoryRouter initialEntries={["/login"]}>
-        <App />
-      </MemoryRouter>
-    );
+    const router = createMemoryRouter(App().props.router.routes, {
+      initialEntries: ["/login"],
+    });
+    render(<RouterProvider router={router} />);
     expect(screen.getByText("Login Page")).toBeInTheDocument();
   });
 
   it("renders AddList page at /home/list", () => {
-    render(
-      <MemoryRouter initialEntries={["/home/list"]}>
-        <App />
-      </MemoryRouter>
-    );
+    const router = createMemoryRouter(App().props.router.routes, {
+      initialEntries: ["/home/list"],
+    });
+    render(<RouterProvider router={router} />);
     expect(screen.getByText("Add List Page")).toBeInTheDocument();
   });
 
   it("renders ListDetails page at /home/list/123", () => {
-    render(
-      <MemoryRouter initialEntries={["/home/list/123"]}>
-        <App />
-      </MemoryRouter>
-    );
+    const router = createMemoryRouter(App().props.router.routes, {
+      initialEntries: ["/home/list/123"],
+    });
+    render(<RouterProvider router={router} />);
     expect(screen.getByText("List Details Page")).toBeInTheDocument();
   });
 
   it("renders Category page at /home/category", () => {
-    render(
-      <MemoryRouter initialEntries={["/home/category"]}>
-        <App />
-      </MemoryRouter>
-    );
+    const router = createMemoryRouter(App().props.router.routes, {
+      initialEntries: ["/home/category"],
+    });
+    render(<RouterProvider router={router} />);
     expect(screen.getByText("Category Page")).toBeInTheDocument();
   });
 });

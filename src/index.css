@@ -1,1 +1,70 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap");
+
 @import "tailwindcss";
+
+@theme {
+  /* 🎨 Colors */
+  --color-primary: #a21caf; /* fuchsia-700 */
+  --color-secondary: #6b7280; /* gray-400 */
+  --color-gray-300: #d1d5db; /* gray-300 */
+  --color-bg-light: #ffffff;
+  --color-red-800: #b91c1c;
+  --color-red-600: #dc2626;
+  --color-red-500: #b91c1c
+  --color-blue-500: #3b82f6;
+  --color-gray-200: #e7e5e4;
+  --color-green-400: #4ade80;
+  --color-black: #000000;
+--color-stone-300:#d6d3d1;
+--color-gray-400-50: rgba(156, 163, 175, 0.5);
+  /* gray */
+  --color-gray-900: #111827;
+ --color-gray-700: #6b7280;
+ --color-gray-800:#1f2937;
+  /* 🔤 Fonts */
+  --font-primary: "Poppins", sans-serif;
+
+  /* 🅱️ Font Weights */
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* height */
+--height-190: 500px;
+
+  /* width */
+  --width-40: 10rem;
+  --width-198: 198px;
+  --width-188: 188px;
+  --width-100: 100px;
+  --width-77: 77px;
+  /* 🔠 Text Sizes */
+  --text-xs: 10px;
+  --text-sm: 12px;
+  --text-base: 16px;
+  --text-lg: 18px;
+  --text-xl: 24px;
+
+  /* 📦 Spacing */
+  --spacing-xs: 0.25rem; /* = 1 */
+  --spacing-sm: 0.5rem; /* = 2 */
+  --spacing-2sm:1rem;  /*4*/
+  --spacing-md: 1.25rem; /* = 5 */
+  --spacing-l: 1.5rem; /*6*/
+  --spacing-xl: 2rem;
+  --spacing-10xl:2.5rem;
+  --spacing-15xl:3.7rem;
+  --spacing-2xl: 4rem;
+  --spacing-13xl: 13.5rem;
+  --spacing-45xl: 45rem;
+  --spacing-3xl: 33rem;
+  --spacing-56: 14rem;
+  /* ⭕ Border Radius */
+  --radius-sm: 0.5rem;
+  --radius-lg: 1rem;
+
+  /* 🌫️ Shadows */
+  --shadow-light: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --shadow-medium: 0 4px 6px rgba(0, 0, 0, 0.1);
+}

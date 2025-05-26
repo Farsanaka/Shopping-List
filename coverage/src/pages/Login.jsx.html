@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>83/83</span>
+                <span class='fraction'>86/86</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>83/83</span>
+                <span class='fraction'>86/86</span>
             </div>
         
             
@@ -155,7 +155,12 @@
 <a name='L90'></a><a href='#L90'>90</a>
 <a name='L91'></a><a href='#L91'>91</a>
 <a name='L92'></a><a href='#L92'>92</a>
-<a name='L93'></a><a href='#L93'>93</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L93'></a><a href='#L93'>93</a>
+<a name='L94'></a><a href='#L94'>94</a>
+<a name='L95'></a><a href='#L95'>95</a>
+<a name='L96'></a><a href='#L96'>96</a>
+<a name='L97'></a><a href='#L97'>97</a>
+<a name='L98'></a><a href='#L98'>98</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -180,6 +185,7 @@
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
@@ -206,6 +212,10 @@
 <span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-yes">12x</span>
@@ -263,7 +273,7 @@ function Login() {
   });
   const { username, password } = data;
 &nbsp;
-  const changeHandler = async (e) =&gt; {
+  const changeHandler = (e) =&gt; {
     setData({ ...data, [e.target.name]: e.target.value });
   };
 &nbsp;
@@ -272,6 +282,7 @@ function Login() {
     dispatch(loginPending());
     await checkUser();
   };
+&nbsp;
   const checkUser = async () =&gt; {
     try {
       const response = await fetchUsers();
@@ -296,13 +307,14 @@ function Login() {
   };
 &nbsp;
   return (
-    &lt;div className="relative bg-[url(/img/bg.jpg)] h-screen bg-cover bg-center"&gt;
+    &lt;div className="relative bg-[url(/img/bg.jpg)] h-screen bg-cover bg-center font-poppins"&gt;
       &lt;div className="relative z-10"&gt;
         &lt;Logo /&gt;
       &lt;/div&gt;
-      &lt;div className="absolute inset-0 bg-black opacity-70"&gt;&lt;/div&gt;
-      &lt;div className="relative flex items-center justify-center h-120"&gt;
-        &lt;div className="bg-white p-8 rounded-xl shadow-lg text-center w-full max-w-md"&gt;
+      &lt;div className="absolute inset-0 bg-[var(--color-black)] opacity-70"&gt;&lt;/div&gt;
+&nbsp;
+      &lt;div className="relative flex items-center justify-center h-[var(--height-190)]"&gt;
+        &lt;div className="bg-[var(--color-bg-light)] p-[var(--spacing-xl)] rounded-[var(--radius-lg)] shadow-lg text-center"&gt;
           &lt;form onSubmit={handleSubmit}&gt;
             &lt;div&gt;
               &lt;input
@@ -311,7 +323,7 @@ function Login() {
                 name="username"
                 value={username}
                 onChange={changeHandler}
-                className="px-20 my-2 py-1 text-center border border-gray-300 rounded-lg"
+                className="px-[80px] my-[var(--spacing-sm)] py-[var(--spacing-xs)] text-center border border-[var(--color-border)] rounded-[var(--radius-sm)]"
                 required
               /&gt;
             &lt;/div&gt;
@@ -322,12 +334,15 @@ function Login() {
                 name="password"
                 value={password}
                 onChange={changeHandler}
-                className="px-20 my-2 py-1 text-center border border-gray-300 rounded-lg"
+                className="px-[80px] my-[var(--spacing-sm)] py-[var(--spacing-xs)] text-center border border-[var(--color-border)] rounded-[var(--radius-sm)]"
                 required
               /&gt;
             &lt;/div&gt;
             &lt;div&gt;
-              &lt;button className="px-5 py-1 mt-3 bg-gradient-to-r from-fuchsia-700  to-gray-400 rounded-lg font-semibold"&gt;
+              &lt;button
+                type="submit"
+                className="px-[var(--spacing-md)] py-[var(--spacing-xs)] mt-[var(--spacing-sm)] bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-secondary)] rounded-[var(--radius-sm)] font-semibold text-[var(--color-bg-light)]"
+              &gt;
                 Login
               &lt;/button&gt;
             &lt;/div&gt;
@@ -346,7 +361,7 @@ export default Login;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-05-20T07:35:29.377Z
+                at 2025-05-25T16:29:12.162Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">95.78% </span>
+                <span class="strong">95.75% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>159/166</span>
+                <span class='fraction'>158/165</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">95.78% </span>
+                <span class="strong">95.75% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>159/166</span>
+                <span class='fraction'>158/165</span>
             </div>
         
             
@@ -268,7 +268,9 @@
 <a name='L203'></a><a href='#L203'>203</a>
 <a name='L204'></a><a href='#L204'>204</a>
 <a name='L205'></a><a href='#L205'>205</a>
-<a name='L206'></a><a href='#L206'>206</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L206'></a><a href='#L206'>206</a>
+<a name='L207'></a><a href='#L207'>207</a>
+<a name='L208'></a><a href='#L208'>208</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -341,6 +343,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-yes">11x</span>
@@ -350,6 +353,15 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-yes">11x</span>
@@ -372,18 +384,12 @@
 <span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">11x</span>
-<span class="cline-any cline-yes">11x</span>
-<span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -392,6 +398,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-yes">11x</span>
@@ -417,10 +425,6 @@
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -546,61 +550,67 @@ function Category() {
 &nbsp;
   return (
     &lt;div&gt;
-      &lt;div className="flex justify-center mr-130 mt-10 font-bold"&gt;
+      {/* Back Button */}
+      &lt;div className="flex justify-center mr-[var(--spacing-3xl)] mt-[var(--spacing-xl)] font-bold"&gt;
         &lt;button
           onClick={<span class="fstat-no" title="function not covered" >() =&gt; navigate(-1)}</span>
-          className="flex items-center gap-2 px-4 py-2 text-white bg-gray-700 rounded hover:bg-gray-800"
+          className="flex items-center gap-2 px-[var(--spacing-md)] py-[var(--spacing-xs)] text-[var(--color-bg-light)] bg-[var(--color-gray-700)] rounded hover:bg-gray-800"
         &gt;
           &lt;FontAwesomeIcon icon={faArrowLeft} /&gt;
           Back
         &lt;/button&gt;
       &lt;/div&gt;
+&nbsp;
+      {/* Category Container */}
       &lt;div className="flex justify-center"&gt;
-        &lt;div className="bg-stone-300 rounded-lg m-4 w-fit"&gt;
-          &lt;p className="p-2 text-center font-bold text-lg"&gt;CATEGORY LIST&lt;/p&gt;
-          &lt;div className="flex justify-center m-4 border p-4 rounded-lg border-gray-400 shadow"&gt;
+        &lt;div className="bg-[var(--color-gray-300)] rounded-[var(--radius-lg)] m-[var(--spacing-md)] w-fit shadow-md"&gt;
+          &lt;p className="p-[var(--spacing-sm)] text-center font-bold text-[var(--text-xl)]"&gt;
+            CATEGORY LIST
+          &lt;/p&gt;
+&nbsp;
+          {/* Input and Add Button */}
+          &lt;div className="flex justify-center m-[var(--spacing-md)] border border-gray-400 p-[var(--spacing-md)] rounded-[var(--radius-lg)] shadow-lg"&gt;
             &lt;input
               type="text"
               placeholder="Code"
               value={code}
               onChange={(e) =&gt; dispatch(setCode(e.target.value))}
-              className="bg-white rounded-lg text-center mx-4  shadow-lg shadow-gray-400/50 focus:outline-none focus:ring-2 focus:ring-gray-400 "
+              className="bg-[var(--color-bg-light)] rounded-[var(--radius-lg)] text-center mx-[var(--spacing-md)] shadow-lg shadow-gray-400/50 focus:outline-none focus:ring-2 focus:ring-gray-400 px-3 py-1"
+              style={{ width: "120px" }}
             /&gt;
             &lt;input
               type="text"
               placeholder="Name"
               value={category}
               onChange={(e) =&gt; dispatch(setCategory(e.target.value))}
-              className="bg-white rounded-lg text-center mx-4 shadow-lg shadow-gray-400/50 focus:outline-none focus:ring-2 focus:ring-gray-400"
+              className="bg-[var(--color-bg-light)] rounded-[var(--radius-lg)] text-center mx-[var(--spacing-md)] shadow-lg shadow-gray-400/50 focus:outline-none focus:ring-2 focus:ring-gray-400 px-3 py-1"
+              style={{ width: "180px" }}
             /&gt;
             &lt;button
               onClick={handleAdd}
-              className="
-                    px-4
-                    py-1
-                    mx-4
-                    bg-gradient-to-r
-                    from-green-400
-                    to-gray-400
-                    rounded-lg shadow-lg shadow-gray-400/50
-                    font-semibold"
+              className="px-[var(--spacing-md)] py-[var(--spacing-xs)] mx-[var(--spacing-md)] bg-gradient-to-r from-[var(--color-green-400)] to-[var(--color-gray-300)] rounded-[var(--radius-lg)] shadow-lg shadow-gray-400/50 font-semibold"
             &gt;
               Add
             &lt;/button&gt;
           &lt;/div&gt;
-          &lt;ul className="m-4 mt-10"&gt;
+&nbsp;
+          {/* Category List */}
+          &lt;ul className="m-[var(--spacing-md)] mt-[var(--spacing-xl)]"&gt;
+            {/* List Header */}
             &lt;li className="flex gap-4 mb-2"&gt;
-              &lt;div className="bg-gray-300 rounded-lg px-2 py-1 text-center w-[200px]"&gt;
+              &lt;div className="bg-[var(--color-gray-200)] rounded-[var(--radius-lg)] px-2 py-1 text-center w-[200px] font-semibold"&gt;
                 CODE
               &lt;/div&gt;
-              &lt;div className="bg-gray-300 rounded-lg px-2 py-1 text-center w-[200px]"&gt;
+              &lt;div className="bg-[var(--color-gray-200)] rounded-[var(--radius-lg)] px-2 py-1 text-center w-[200px] font-semibold"&gt;
                 CATEGORY NAME
               &lt;/div&gt;
             &lt;/li&gt;
+&nbsp;
+            {/* Category Items */}
             {categories
               .filter((cat) =&gt; cat.userId === currentUser.id)
               .map((cat, index) =&gt; (
-                &lt;li key={index} className="flex gap-4 mb-2"&gt;
+                &lt;li key={cat.id} className="flex gap-4 mb-2 items-center"&gt;
                   {editIndex === index ? (
                     &lt;&gt;
                       &lt;input
@@ -609,7 +619,7 @@ function Category() {
                         onChange={<span class="fstat-no" title="function not covered" >(e) =&gt;</span>
 <span class="cstat-no" title="statement not covered" >                          setEditData({ ...editData, code: e.target.value })</span>
                         }
-                        className="shadow-lg shadow-gray-400/50 bg-white rounded-lg px-2 py-1 text-center"
+                        className="shadow-lg shadow-gray-400/50 bg-[var(--color-bg-light)] rounded-[var(--radius-lg)] px-2 py-1 text-center w-[200px]"
                       /&gt;
                       &lt;input
                         type="text"
@@ -617,21 +627,17 @@ function Category() {
                         onChange={(e) =&gt;
                           setEditData({ ...editData, category: e.target.value })
                         }
-                        className="shadow-lg shadow-gray-400/50 bg-white rounded-lg px-2 py-1 text-center"
+                        className="shadow-lg shadow-gray-400/50 bg-[var(--color-bg-light)] rounded-[var(--radius-lg)] px-2 py-1 text-center w-[200px]"
                       /&gt;
-                      &lt;div className="w-35 flex align-middle justify-center"&gt;
+                      &lt;div className="w-[90px] flex items-center justify-center"&gt;
                         &lt;button
                           onClick={() =&gt; {
-                            console.log("Sending to updateCategory:", {
-                              ...editData,
-                              id: cat.id,
-                            });
                             dispatch(
                               updateCategory({ ...editData, id: cat.id })
                             );
                             setEditIndex(null);
                           }}
-                          className="shadow-lg shadow-gray-400/50 px-4 py-1 bg-gradient-to-r from-green-300 to-gray-400 rounded-lg font-semibold"
+                          className="shadow-lg shadow-gray-400/50 px-4 py-1 bg-gradient-to-r from-green-400 to-[var(--color-gray-300)] rounded-[var(--radius-lg)] font-semibold"
                         &gt;
                           Save
                         &lt;/button&gt;
@@ -643,26 +649,26 @@ function Category() {
                         type="text"
                         readOnly
                         value={cat.code}
-                        className="shadow-lg shadow-gray-400/50 bg-white rounded-lg px-2 py-1 text-center"
+                        className="shadow-lg shadow-gray-400/50 bg-[var(--color-bg-light)] rounded-[var(--radius-lg)] px-2 py-1 text-center w-[200px]"
                       /&gt;
                       &lt;input
                         type="text"
                         readOnly
                         value={cat.category}
-                        className="shadow-lg shadow-gray-400/50 bg-white rounded-lg px-2 py-1 text-center"
+                        className="shadow-lg shadow-gray-400/50 bg-[var(--color-bg-light)] rounded-[var(--radius-lg)] px-2 py-1 text-center w-[200px]"
                       /&gt;
                       &lt;button
                         onClick={() =&gt; {
                           setEditIndex(index);
                           setEditData(cat);
                         }}
-                        className="shadow-lg shadow-gray-400/50 px-4 py-1 bg-gradient-to-r from-amber-300 to-gray-400 rounded-lg font-semibold"
+                        className="shadow-lg shadow-gray-400/50 px-4 py-1 bg-gradient-to-r from-amber-400 to-[var(--color-gray-300)] rounded-[var(--radius-lg)] font-semibold"
                       &gt;
                         Edit
                       &lt;/button&gt;
                       &lt;button
                         onClick={<span class="fstat-no" title="function not covered" >() =&gt; handleDelete(cat.id)}</span>
-                        className="shadow-lg shadow-gray-400/50 px-4 py-1 bg-gradient-to-r from-red-400 to-gray-400 rounded-lg font-semibold"
+                        className="shadow-lg shadow-gray-400/50 px-4 py-1 bg-gradient-to-r from-[var(--color-red-800)] to-[var(--color-secondary)]  rounded-[var(--radius-lg)] font-semibold"
                       &gt;
                         Delete
                       &lt;/button&gt;
@@ -685,7 +691,7 @@ export default Category;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-05-20T07:35:29.377Z
+                at 2025-05-25T16:29:12.162Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

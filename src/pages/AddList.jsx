@@ -103,11 +103,11 @@ function AddList() {
   };
   return (
     <div>
-      <div className="flex justify-center mt-10 gap-2.5">
-        <div className="flex justify-center font-bold mr-56">
+      <div className="flex justify-center mt-[var(--spacing-10xl)] gap-[var(--spacing-xl)]">
+        <div className="flex justify-center font-bold mr-[var(--spacing-56)]">
           <button
             onClick={() => navigate(-1)}
-            className="flex items-center gap-2 px-4 py-2 text-white bg-gray-700 rounded hover:bg-gray-800"
+            className="flex items-center gap-[var(--spacing-sm)] px-[var(--spacing-2sm)] py-[var(--spacing-sm)] text-[var(--color-bg-light)] bg-[var(--color-gray-700)] rounded hover:bg-[var(--color-gray-800)]"
           >
             <FontAwesomeIcon icon={faArrowLeft} />
             Back
@@ -116,29 +116,31 @@ function AddList() {
         <div className="flex justify-center ">
           <button
             onClick={() => navigate("/home/category")}
-            className="px-4 py-1 bg-gradient-to-r from-green-400 to-gray-400 rounded-lg font-semibold  "
+            className="px-[var(--spacing-sm)] py-[var(--spacing-xs)] bg-gradient-to-r from-[var(--color-green-400)] to-[var(--color-gray-400)] rounded-lg font-semibold  "
           >
             Add Category
           </button>
         </div>
       </div>
       <div className="flex justify-center">
-        <div className="flex flex-col justify-center bg-stone-300 rounded-lg m-4 w-fit center">
-          <p className="p-2 text-center font-bold text-lg">ADD NEW LIST</p>
+        <div className="flex flex-col justify-center bg-[var(--color-stone-300)] rounded-lg m-[var(--spacing-2sm)] w-fit center">
+          <p className="p-[var(--spacing-sm)] text-center font-bold text-lg">
+            ADD NEW LIST
+          </p>
 
-          <div className="flex justify-center gap-15 mx-6 my-4 ">
+          <div className="flex justify-center gap-[var(--spacing-15xl)] mx-[var(--spacing-l)] my-[var(--spacing-2sm)] ">
             <input
               type="text"
               placeholder="Name"
               value={formName}
               onChange={(e) => setFormName(e.target.value)}
-              className="bg-white rounded-lg text-center mx-4  shadow-lg shadow-gray-400/50 focus:outline-none focus:ring-2 focus:ring-gray-400 "
+              className="bg-[var(--color-bg-light)] rounded-lg text-center mx-[var(--spacing-2sm)]  shadow-lg shadow-[var(--color-gray-400-50)] focus:outline-none focus:ring-2 focus:ring-[var(--color-secondary)] "
             />
 
             <select
               value={formCategory}
               onChange={(e) => setFormCategory(e.target.value)}
-              className="bg-white rounded-lg text-center"
+              className="bg-[var(--color-bg-light] rounded-lg text-center"
             >
               <option value="">Choose Category</option>
               {categories
@@ -152,46 +154,46 @@ function AddList() {
           </div>
 
           {canShowItemInput && (
-            <div className="flex flex-col mx-6 my-4 gap-4">
+            <div className="flex flex-col mx-[var(--spacing-l)] my-[var(--spacing-2sm)] gap-[var(--spacing-2sm)]">
               <div className="flex gap-4">
                 <input
                   type="number"
                   placeholder="Quantity"
                   value={quantity}
                   onChange={(e) => setQuantity(e.target.value)}
-                  className="bg-white rounded-lg text-center mx-4  shadow-lg shadow-gray-400/50 focus:outline-none focus:ring-2 focus:ring-gray-400 "
+                  className="bg-white rounded-lg text-center mx-[var(--spacing-2sm)]  shadow-lg shadow-gray-400/50 focus:outline-none focus:ring-[var(--spacing-sm)] focus:ring-[var(--spacing-secondary)] "
                 />
                 <input
                   type="text"
                   placeholder="Item Name / Description"
                   value={itemName}
                   onChange={(e) => setItemName(e.target.value)}
-                  className="bg-white rounded-lg text-center mx-4  shadow-lg shadow-gray-400/50 focus:outline-none focus:ring-2 focus:ring-gray-400 "
+                  className="bg-[var(--color-bg-light)] rounded-lg text-center mx-[var(--spacing-2sm)] shadow-lg shadow-gray-400/50 focus:outline-none focus:ring-[var(--spacing-sm)] focus:ring-[var(--spacing-secondary)] "
                 />
                 <button
                   onClick={handleAddItem}
-                  className="px-4 py-1 bg-gradient-to-r from-green-400 to-gray-400 rounded-lg font-semibold"
+                  className="px-[var(--spacing-2sm)] py-[var(--spacing-xs)] bg-gradient-to-r from-[var(--color-green-400)] to-[var(--color-secondary)] rounded-lg font-semibold"
                 >
                   Add Item
                 </button>
               </div>
 
-              <div className="flex flex-col items-center justify-center p-6">
+              <div className="flex flex-col items-center justify-center p-[var(--spacing-l)] ">
                 {items.map((item, index) => (
                   <div
                     key={index}
-                    className="flex items-center justify-center space-x-2 mb-2"
+                    className="flex items-center justify-center space-x-[var(--spacing-sm)]  mb-[var(--spacing-sm)] "
                   >
-                    <div className="bg-gray-200 px-4 py-2 rounded-md h-8 flex items-center justify-center">
+                    <div className="bg-[var(--color-gray-200)] px-[var(--spacing-2sm)] py-[var(--spacing-sm)] rounded-md h-[var(--spacing-xl)] flex items-center justify-center">
                       {item.quantity}
                     </div>
                     <div className="text-lg font-semibold">×</div>
-                    <div className="bg-gray-200 px-4 py-2 rounded-md h-8 flex items-center justify-center">
+                    <div className="bg-[var(--color-gray-200)] px-[var(--spacing-2sm)] py-[var(--spacing-sm)] rounded-md h-[var(--spacing-xl)] flex items-center justify-center">
                       {item.itemName}
                     </div>
 
                     <button
-                      className="bg-red-500 text-white rounded-md h-8 w-8 flex items-center justify-center hover:bg-red-600"
+                      className="bg-[var(--color-red-500)]  text-[var(--color-bg-light)]  rounded-md h-[var(--spacing-xl)] w-[var(--spacing-xl)] flex items-center justify-center hover:bg-[var(--color-red-600)] "
                       onClick={() => handleRemove(index)}
                     >
                       ×
@@ -200,10 +202,10 @@ function AddList() {
                 ))}
               </div>
 
-              <div className="flex justify-center my-4">
+              <div className="flex justify-center my-[var(--spacing-2sm)]">
                 <button
                   onClick={handleSaveList}
-                  className="px-6 py-2 bg-gradient-to-r from-blue-400 to-gray-400 rounded-lg font-bold"
+                  className="px-[var(--spacing-l)]  py-[var(--spacing-sm)]  bg-gradient-to-r from-blue-400 to-gray-400 rounded-lg font-bold"
                 >
                   Save
                 </button>

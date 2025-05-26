@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">99.38% </span>
+                <span class="strong">99.39% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>162/163</span>
+                <span class='fraction'>163/164</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">99.38% </span>
+                <span class="strong">99.39% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>162/163</span>
+                <span class='fraction'>163/164</span>
             </div>
         
             
@@ -258,7 +258,12 @@
 <a name='L193'></a><a href='#L193'>193</a>
 <a name='L194'></a><a href='#L194'>194</a>
 <a name='L195'></a><a href='#L195'>195</a>
-<a name='L196'></a><a href='#L196'>196</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L196'></a><a href='#L196'>196</a>
+<a name='L197'></a><a href='#L197'>197</a>
+<a name='L198'></a><a href='#L198'>198</a>
+<a name='L199'></a><a href='#L199'>199</a>
+<a name='L200'></a><a href='#L200'>200</a>
+<a name='L201'></a><a href='#L201'>201</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -318,6 +323,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-yes">12x</span>
@@ -469,7 +479,7 @@ function Home() {
   );
 &nbsp;
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(7); // Default: 7 items per page
+  const [itemsPerPage, setItemsPerPage] = useState(7);
   const [showDropdown, setShowDropdown] = useState(false);
 &nbsp;
   useEffect(() =&gt; {
@@ -508,26 +518,31 @@ function Home() {
   const handleItemsPerPage = (num) =&gt; {
     setItemsPerPage(num);
     setCurrentPage(1);
-    setShowDropdown(false); 
+    setShowDropdown(false);
   };
 &nbsp;
   return (
-    &lt;div&gt;
-      &lt;div className="flex justify-center  mt-10"&gt;
-        &lt;div className="relative inline-block text-left mr-180"&gt;
+    &lt;div
+      className="
+        fontFamily-[var(--font-primary)],
+        fontWeight-[var(--font-weight-regular)],
+    "
+    &gt;
+      &lt;div className="flex justify-center mt-[var(--spacing-xl)]"&gt;
+        &lt;div className="relative inline-block text-left mr-[var(--spacing-45xl)]"&gt;
           &lt;button
-            onClick={() =&gt; setShowDropdown(!showDropdown)} 
-            className="px-4 py-2 bg-gray-300 text-gray-800 rounded-md"
+            onClick={() =&gt; setShowDropdown(!showDropdown)}
+            className="px-[var(--spacing-md)] py-[var(--spacing-sm)] bg-[var(--color-secondary)] text-[var(--color-gray-900)] rounded-[var(--radius-sm)] shadow-[var(--shadow-light)]"
           &gt;
             Show
           &lt;/button&gt;
           {showDropdown &amp;&amp; (
-            &lt;div className="absolute right-0 mt-2 w-40 bg-white border rounded-md shadow-lg"&gt;
+            &lt;div className="absolute right-0 mt-[var(--spacing-sm)] w-[var(--width-40)] bg-[var(--color-bg-light)] border border-[var(--color-gray-300)] rounded-[var(--radius-sm)] shadow-[var(--shadow-light)]"&gt;
               {[5, 10, 20].map((num) =&gt; (
                 &lt;button
                   key={num}
                   onClick={() =&gt; handleItemsPerPage(num)}
-                  className="w-full text-left px-4 py-2 hover:bg-gray-200"
+                  className="w-full text-left px-[var(--spacing-md)] py-[var(--spacing-sm)] hover:bg-[var(--color-gray-300)]"
                 &gt;
                   Show {num}
                 &lt;/button&gt;
@@ -538,35 +553,35 @@ function Home() {
         &lt;div&gt;
           &lt;button
             onClick={<span class="fstat-no" title="function not covered" >() =&gt; navigate("/home/list")}</span>
-            className="px-4 py-1 bg-gradient-to-r from-green-400 to-gray-400 rounded-lg font-semibold"
+            className="px-[var(--spacing-md)] py-[var(--spacing-xs)] bg-gradient-to-r from-[var(--color-green-400)] to-[var(--color-secondary)] rounded-[var(--radius-sm)] font-semibold text-[var(--color-bg-light)] shadow-[var(--shadow-light)]"
           &gt;
             Add New List
           &lt;/button&gt;
         &lt;/div&gt;
       &lt;/div&gt;
 &nbsp;
-      &lt;div className="flex  mt-6 ml-55"&gt;&lt;/div&gt;
+      &lt;div className="flex mt-[var(--spacing-l)] ml-[var(--spacing-13xl)]"&gt;&lt;/div&gt;
 &nbsp;
       &lt;div className="flex justify-center"&gt;
-        &lt;div className="flex flex-col items-center bg-stone-200 rounded-lg m-4 w-fit"&gt;
+        &lt;div className="flex flex-col items-center bg-[var(--color-gray-200)] rounded-[var(--radius-sm)] m-[var(--spacing-md)] w-fit p-[var(--spacing-sm)] shadow-[var(--shadow-medium)]"&gt;
           &lt;ul&gt;
-            &lt;li className="flex gap-2 m-2"&gt;
-              &lt;div className="bg-gray-300 rounded-lg px-2 py-1 text-center w-[198px]"&gt;
+            &lt;li className="flex gap-2 m-[var(--spacing-sm)] font-semibold"&gt;
+              &lt;div className="bg-[var(----color-border)] rounded-[var(--radius-sm)] px-[var(--spacing-xs)] py-[var(--spacing-xs)] text-center w-[var(--width-198)]"&gt;
                 DATE
               &lt;/div&gt;
-              &lt;div className="bg-gray-300 rounded-lg px-2 py-1 text-center w-[188px]"&gt;
+              &lt;div className="bg-[var(--color-gray-300)] rounded-[var(--radius-sm)] px-[var(--spacing-xs)] py-[var(--spacing-xs)] text-center w-[var(--width-188)]"&gt;
                 CATEGORY
               &lt;/div&gt;
-              &lt;div className="bg-gray-300 rounded-lg px-2 py-1 text-center w-[198px]"&gt;
+              &lt;div className="bg-[var(--color-gray-300)] rounded-[var(--radius-sm)] px-[var(--spacing-xs)] py-[var(--spacing-xs)] text-center w-[var(--width-198)]"&gt;
                 NAME
               &lt;/div&gt;
-              &lt;div className="bg-gray-300 rounded-lg px-2 py-1 text-center w-[100px]"&gt;
+              &lt;div className="bg-[var(--color-gray-300)] rounded-[var(--radius-sm)] px-[var(--spacing-xs)] py-[var(--spacing-xs)] text-center w-[var(--width-100)]"&gt;
                 STATUS
               &lt;/div&gt;
-              &lt;div className="bg-gray-300 rounded-lg px-1 py-1 text-center w-[100px]"&gt;
+              &lt;div className="bg-[var(--color-gray-300)] rounded-[var(--radius-sm)] px-[var(--spacing-sm)] py-[var(--spacing-xs)] text-center w-[var(--width-100)]"&gt;
                 DETAILS
               &lt;/div&gt;
-              &lt;div className="bg-gray-300 rounded-lg px-2 py-1  text-center w-[77px]"&gt;
+              &lt;div className="bg-[var(--color-gray-300)] rounded-[var(--radius-sm)] px-[var(--spacing-xs)] py-[var(--spacing-xs)] text-center w-[var(--width-77)]"&gt;
                 ACTION
               &lt;/div&gt;
             &lt;/li&gt;
@@ -574,47 +589,47 @@ function Home() {
             {status === "loading" || status === "idle" ? (
               &lt;p&gt;Loading...&lt;/p&gt;
             ) : status === "failed" ? (
-              &lt;p className="text-red-500"&gt;Error: {error}&lt;/p&gt;
+              &lt;p className="text-[var(--color-red-500)]"&gt;Error: {error}&lt;/p&gt;
             ) : !<span class="branch-0 cbranch-no" title="branch not covered" >user ? (</span>
 <span class="cstat-no" title="statement not covered" >              &lt;p&gt;Please login to view your shopping lists.&lt;/p&gt;</span>
             ) : currentItems.length === 0 ? (
               &lt;p&gt;You do not have any lists yet!&lt;/p&gt;
             ) : (
               currentItems.map((list) =&gt; (
-                &lt;li key={list.id} className="flex gap-2 m-2"&gt;
+                &lt;li key={list.id} className="flex gap-2 m-[var(--spacing-sm)]"&gt;
                   &lt;input
                     type="text"
                     readOnly
                     value={list.date}
-                    className="shadow-lg shadow-gray-400/50 bg-white rounded-lg px-2 py-1 text-center w-auto"
+                    className="shadow-[var(--shadow-light)] bg-[var(--color-bg-light)] rounded-[var(--radius-sm)] px-[var(--spacing-sm)] py-[var(--spacing-xs)] text-center w-auto"
                   /&gt;
                   &lt;input
                     type="text"
                     readOnly
                     value={list.category}
-                    className="shadow-lg shadow-gray-400/50 bg-white rounded-lg px-1 py-1 text-center w-auto"
+                    className="shadow-[var(--shadow-light)] bg-[var(--color-bg-light)] rounded-[var(--radius-sm)] px-[var(--spacing-xs)] py-[var(--spacing-xs)] text-center w-auto"
                   /&gt;
                   &lt;input
                     type="text"
                     readOnly
                     value={list.name}
-                    className="shadow-lg shadow-gray-400/50 bg-white rounded-lg px-2 py-1 text-center w-auto"
+                    className="shadow-[var(--shadow-light)] bg-[var(--color-bg-light)] rounded-[var(--radius-sm)] px-[var(--spacing-sm)] py-[var(--spacing-xs)] text-center w-auto"
                   /&gt;
                   &lt;input
                     type="text"
                     readOnly
                     value={list.status}
-                    className="shadow-lg shadow-gray-400/50 bg-white rounded-lg px-2 py-1 text-center w-[100px]"
+                    className="shadow-[var(--shadow-light)] bg-[var(--color-bg-light)] rounded-[var(--radius-sm)] px-[var(--spacing-sm)] py-[var(--spacing-xs)] text-center w-[var(--width-100)]"
                   /&gt;
                   &lt;Link
                     to={`/home/list/${list.id}`}
-                    className="w-fit shadow-lg shadow-gray-400/50 bg-white rounded-lg px-2 py-1 text-center text-blue-500 cursor-pointer inline-block"
+                    className="w-fit shadow-[var(--shadow-light)] bg-[var(--color-bg-light)] rounded-[var(--radius-sm)] px-[var(--spacing-sm)] py-[var(--spacing-xs)] text-center text-[var(--color-blue-500)] cursor-pointer inline-block"
                   &gt;
                     View Details
                   &lt;/Link&gt;
                   &lt;button
                     onClick={() =&gt; handleDelete(list.id)}
-                    className="shadow-lg shadow-gray-400/50 px-4 py-1 bg-gradient-to-r from-red-400 to-gray-400 rounded-lg font-semibold"
+                    className="shadow-[var(--shadow-light)] px-[var(--spacing-md)] py-[var(--spacing-xs)] bg-gradient-to-r from-[var(--color-red-800)] to-[var(--color-secondary)] rounded-[var(--radius-sm)] font-semibold text-[var(--color-bg-light)]"
                   &gt;
                     Delete
                   &lt;/button&gt;
@@ -624,18 +639,18 @@ function Home() {
           &lt;/ul&gt;
 &nbsp;
           {shoppingLists.length &gt; itemsPerPage &amp;&amp; (
-            &lt;div className="flex justify-center mt-4 gap-4 mb-4"&gt;
+            &lt;div className="flex justify-center mt-[var(--spacing-md)] gap-[var(--spacing-sm)] mb-[var(--spacing-md)]"&gt;
               &lt;button
                 onClick={handlePrevPage}
                 disabled={currentPage === 1}
-                className="px-4 py-1 bg-gray-300 rounded-md disabled:opacity-50"
+                className="px-[var(--spacing-md)] py-[var(--spacing-xs)] bg-[var(--color-gray-300)] rounded-[var(--radius-sm)] disabled:opacity-50"
               &gt;
                 Previous
               &lt;/button&gt;
               &lt;button
                 onClick={handleNextPage}
                 disabled={indexOfLastItem &gt;= shoppingLists.length}
-                className="px-4 py-1 bg-gray-300 rounded-md disabled:opacity-50"
+                className="px-[var(--spacing-md)] py-[var(--spacing-xs)] bg-[var(--color-gray-300)] rounded-[var(--radius-sm)] disabled:opacity-50"
               &gt;
                 Next
               &lt;/button&gt;
@@ -655,7 +670,7 @@ export default Home;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-05-20T07:35:29.377Z
+                at 2025-05-25T16:29:12.162Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

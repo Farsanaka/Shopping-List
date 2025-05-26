@@ -14,7 +14,7 @@ function Login() {
   });
   const { username, password } = data;
 
-  const changeHandler = async (e) => {
+  const changeHandler = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
 
@@ -23,6 +23,7 @@ function Login() {
     dispatch(loginPending());
     await checkUser();
   };
+
   const checkUser = async () => {
     try {
       const response = await fetchUsers();
@@ -47,13 +48,14 @@ function Login() {
   };
 
   return (
-    <div className="relative bg-[url(/img/bg.jpg)] h-screen bg-cover bg-center">
+    <div className="relative bg-[url(/img/bg.jpg)] h-screen bg-cover bg-center font-poppins">
       <div className="relative z-10">
         <Logo />
       </div>
-      <div className="absolute inset-0 bg-black opacity-70"></div>
-      <div className="relative flex items-center justify-center h-120">
-        <div className="bg-white p-8 rounded-xl shadow-lg text-center w-full max-w-md">
+      <div className="absolute inset-0 bg-[var(--color-black)] opacity-70"></div>
+
+      <div className="relative flex items-center justify-center h-[var(--height-190)]">
+        <div className="bg-[var(--color-bg-light)] p-[var(--spacing-xl)] rounded-[var(--radius-lg)] shadow-lg text-center">
           <form onSubmit={handleSubmit}>
             <div>
               <input
@@ -62,7 +64,7 @@ function Login() {
                 name="username"
                 value={username}
                 onChange={changeHandler}
-                className="px-20 my-2 py-1 text-center border border-gray-300 rounded-lg"
+                className="px-[80px] my-[var(--spacing-sm)] py-[var(--spacing-xs)] text-center border border-[var(--color-border)] rounded-[var(--radius-sm)]"
                 required
               />
             </div>
@@ -73,12 +75,15 @@ function Login() {
                 name="password"
                 value={password}
                 onChange={changeHandler}
-                className="px-20 my-2 py-1 text-center border border-gray-300 rounded-lg"
+                className="px-[80px] my-[var(--spacing-sm)] py-[var(--spacing-xs)] text-center border border-[var(--color-border)] rounded-[var(--radius-sm)]"
                 required
               />
             </div>
             <div>
-              <button className="px-5 py-1 mt-3 bg-gradient-to-r from-fuchsia-700  to-gray-400 rounded-lg font-semibold">
+              <button
+                type="submit"
+                className="px-[var(--spacing-md)] py-[var(--spacing-xs)] mt-[var(--spacing-sm)] bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-secondary)] rounded-[var(--radius-sm)] font-semibold text-[var(--color-bg-light)]"
+              >
                 Login
               </button>
             </div>

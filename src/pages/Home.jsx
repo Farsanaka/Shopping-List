@@ -14,7 +14,7 @@ function Home() {
   );
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(7); // Default: 7 items per page
+  const [itemsPerPage, setItemsPerPage] = useState(7);
   const [showDropdown, setShowDropdown] = useState(false);
 
   useEffect(() => {
@@ -53,26 +53,31 @@ function Home() {
   const handleItemsPerPage = (num) => {
     setItemsPerPage(num);
     setCurrentPage(1);
-    setShowDropdown(false); 
+    setShowDropdown(false);
   };
 
   return (
-    <div>
-      <div className="flex justify-center  mt-10">
-        <div className="relative inline-block text-left mr-180">
+    <div
+      className="
+        fontFamily-[var(--font-primary)],
+        fontWeight-[var(--font-weight-regular)],
+    "
+    >
+      <div className="flex justify-center mt-[var(--spacing-xl)]">
+        <div className="relative inline-block text-left mr-[var(--spacing-45xl)]">
           <button
-            onClick={() => setShowDropdown(!showDropdown)} 
-            className="px-4 py-2 bg-gray-300 text-gray-800 rounded-md"
+            onClick={() => setShowDropdown(!showDropdown)}
+            className="px-[var(--spacing-md)] py-[var(--spacing-sm)] bg-[var(--color-secondary)] text-[var(--color-gray-900)] rounded-[var(--radius-sm)] shadow-[var(--shadow-light)]"
           >
             Show
           </button>
           {showDropdown && (
-            <div className="absolute right-0 mt-2 w-40 bg-white border rounded-md shadow-lg">
+            <div className="absolute right-0 mt-[var(--spacing-sm)] w-[var(--width-40)] bg-[var(--color-bg-light)] border border-[var(--color-gray-300)] rounded-[var(--radius-sm)] shadow-[var(--shadow-light)]">
               {[5, 10, 20].map((num) => (
                 <button
                   key={num}
                   onClick={() => handleItemsPerPage(num)}
-                  className="w-full text-left px-4 py-2 hover:bg-gray-200"
+                  className="w-full text-left px-[var(--spacing-md)] py-[var(--spacing-sm)] hover:bg-[var(--color-gray-300)]"
                 >
                   Show {num}
                 </button>
@@ -83,35 +88,35 @@ function Home() {
         <div>
           <button
             onClick={() => navigate("/home/list")}
-            className="px-4 py-1 bg-gradient-to-r from-green-400 to-gray-400 rounded-lg font-semibold"
+            className="px-[var(--spacing-md)] py-[var(--spacing-xs)] bg-gradient-to-r from-[var(--color-green-400)] to-[var(--color-secondary)] rounded-[var(--radius-sm)] font-semibold text-[var(--color-bg-light)] shadow-[var(--shadow-light)]"
           >
             Add New List
           </button>
         </div>
       </div>
 
-      <div className="flex  mt-6 ml-55"></div>
+      <div className="flex mt-[var(--spacing-l)] ml-[var(--spacing-13xl)]"></div>
 
       <div className="flex justify-center">
-        <div className="flex flex-col items-center bg-stone-200 rounded-lg m-4 w-fit">
+        <div className="flex flex-col items-center bg-[var(--color-gray-200)] rounded-[var(--radius-sm)] m-[var(--spacing-md)] w-fit p-[var(--spacing-sm)] shadow-[var(--shadow-medium)]">
           <ul>
-            <li className="flex gap-2 m-2">
-              <div className="bg-gray-300 rounded-lg px-2 py-1 text-center w-[198px]">
+            <li className="flex gap-2 m-[var(--spacing-sm)] font-semibold">
+              <div className="bg-[var(----color-border)] rounded-[var(--radius-sm)] px-[var(--spacing-xs)] py-[var(--spacing-xs)] text-center w-[var(--width-198)]">
                 DATE
               </div>
-              <div className="bg-gray-300 rounded-lg px-2 py-1 text-center w-[188px]">
+              <div className="bg-[var(--color-gray-300)] rounded-[var(--radius-sm)] px-[var(--spacing-xs)] py-[var(--spacing-xs)] text-center w-[var(--width-188)]">
                 CATEGORY
               </div>
-              <div className="bg-gray-300 rounded-lg px-2 py-1 text-center w-[198px]">
+              <div className="bg-[var(--color-gray-300)] rounded-[var(--radius-sm)] px-[var(--spacing-xs)] py-[var(--spacing-xs)] text-center w-[var(--width-198)]">
                 NAME
               </div>
-              <div className="bg-gray-300 rounded-lg px-2 py-1 text-center w-[100px]">
+              <div className="bg-[var(--color-gray-300)] rounded-[var(--radius-sm)] px-[var(--spacing-xs)] py-[var(--spacing-xs)] text-center w-[var(--width-100)]">
                 STATUS
               </div>
-              <div className="bg-gray-300 rounded-lg px-1 py-1 text-center w-[100px]">
+              <div className="bg-[var(--color-gray-300)] rounded-[var(--radius-sm)] px-[var(--spacing-sm)] py-[var(--spacing-xs)] text-center w-[var(--width-100)]">
                 DETAILS
               </div>
-              <div className="bg-gray-300 rounded-lg px-2 py-1  text-center w-[77px]">
+              <div className="bg-[var(--color-gray-300)] rounded-[var(--radius-sm)] px-[var(--spacing-xs)] py-[var(--spacing-xs)] text-center w-[var(--width-77)]">
                 ACTION
               </div>
             </li>
@@ -119,47 +124,47 @@ function Home() {
             {status === "loading" || status === "idle" ? (
               <p>Loading...</p>
             ) : status === "failed" ? (
-              <p className="text-red-500">Error: {error}</p>
+              <p className="text-[var(--color-red-500)]">Error: {error}</p>
             ) : !user ? (
               <p>Please login to view your shopping lists.</p>
             ) : currentItems.length === 0 ? (
               <p>You do not have any lists yet!</p>
             ) : (
               currentItems.map((list) => (
-                <li key={list.id} className="flex gap-2 m-2">
+                <li key={list.id} className="flex gap-2 m-[var(--spacing-sm)]">
                   <input
                     type="text"
                     readOnly
                     value={list.date}
-                    className="shadow-lg shadow-gray-400/50 bg-white rounded-lg px-2 py-1 text-center w-auto"
+                    className="shadow-[var(--shadow-light)] bg-[var(--color-bg-light)] rounded-[var(--radius-sm)] px-[var(--spacing-sm)] py-[var(--spacing-xs)] text-center w-auto"
                   />
                   <input
                     type="text"
                     readOnly
                     value={list.category}
-                    className="shadow-lg shadow-gray-400/50 bg-white rounded-lg px-1 py-1 text-center w-auto"
+                    className="shadow-[var(--shadow-light)] bg-[var(--color-bg-light)] rounded-[var(--radius-sm)] px-[var(--spacing-xs)] py-[var(--spacing-xs)] text-center w-auto"
                   />
                   <input
                     type="text"
                     readOnly
                     value={list.name}
-                    className="shadow-lg shadow-gray-400/50 bg-white rounded-lg px-2 py-1 text-center w-auto"
+                    className="shadow-[var(--shadow-light)] bg-[var(--color-bg-light)] rounded-[var(--radius-sm)] px-[var(--spacing-sm)] py-[var(--spacing-xs)] text-center w-auto"
                   />
                   <input
                     type="text"
                     readOnly
                     value={list.status}
-                    className="shadow-lg shadow-gray-400/50 bg-white rounded-lg px-2 py-1 text-center w-[100px]"
+                    className="shadow-[var(--shadow-light)] bg-[var(--color-bg-light)] rounded-[var(--radius-sm)] px-[var(--spacing-sm)] py-[var(--spacing-xs)] text-center w-[var(--width-100)]"
                   />
                   <Link
                     to={`/home/list/${list.id}`}
-                    className="w-fit shadow-lg shadow-gray-400/50 bg-white rounded-lg px-2 py-1 text-center text-blue-500 cursor-pointer inline-block"
+                    className="w-fit shadow-[var(--shadow-light)] bg-[var(--color-bg-light)] rounded-[var(--radius-sm)] px-[var(--spacing-sm)] py-[var(--spacing-xs)] text-center text-[var(--color-blue-500)] cursor-pointer inline-block"
                   >
                     View Details
                   </Link>
                   <button
                     onClick={() => handleDelete(list.id)}
-                    className="shadow-lg shadow-gray-400/50 px-4 py-1 bg-gradient-to-r from-red-400 to-gray-400 rounded-lg font-semibold"
+                    className="shadow-[var(--shadow-light)] px-[var(--spacing-md)] py-[var(--spacing-xs)] bg-gradient-to-r from-[var(--color-red-800)] to-[var(--color-secondary)] rounded-[var(--radius-sm)] font-semibold text-[var(--color-bg-light)]"
                   >
                     Delete
                   </button>
@@ -169,18 +174,18 @@ function Home() {
           </ul>
 
           {shoppingLists.length > itemsPerPage && (
-            <div className="flex justify-center mt-4 gap-4 mb-4">
+            <div className="flex justify-center mt-[var(--spacing-md)] gap-[var(--spacing-sm)] mb-[var(--spacing-md)]">
               <button
                 onClick={handlePrevPage}
                 disabled={currentPage === 1}
-                className="px-4 py-1 bg-gray-300 rounded-md disabled:opacity-50"
+                className="px-[var(--spacing-md)] py-[var(--spacing-xs)] bg-[var(--color-gray-300)] rounded-[var(--radius-sm)] disabled:opacity-50"
               >
                 Previous
               </button>
               <button
                 onClick={handleNextPage}
                 disabled={indexOfLastItem >= shoppingLists.length}
-                className="px-4 py-1 bg-gray-300 rounded-md disabled:opacity-50"
+                className="px-[var(--spacing-md)] py-[var(--spacing-xs)] bg-[var(--color-gray-300)] rounded-[var(--radius-sm)] disabled:opacity-50"
               >
                 Next
               </button>

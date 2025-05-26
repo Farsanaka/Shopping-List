@@ -63,9 +63,9 @@
       "id": 10
     },
     {
-      "code": "C03",
-      "category": "Dairy",
-      "userId": "user1",
+      "code": "ui",
+      "category": "mk",
+      "userId": 1,
       "id": 11
     },
     {
@@ -85,6 +85,210 @@
       "category": "Dairy",
       "userId": "user1",
       "id": 14
+    },
+    {
+      "code": "C03",
+      "category": "Dairy",
+      "userId": "user1",
+      "id": 15
+    },
+    {
+      "code": "C03",
+      "category": "Dairy",
+      "userId": "user1",
+      "id": 16
+    },
+    {
+      "code": "C03",
+      "category": "Dairy",
+      "userId": "user1",
+      "id": 17
+    },
+    {
+      "code": "C03",
+      "category": "Dairy",
+      "userId": "user1",
+      "id": 18
+    },
+    {
+      "code": "C03",
+      "category": "Dairy",
+      "userId": "user1",
+      "id": 19
+    },
+    {
+      "code": "C03",
+      "category": "Dairy",
+      "userId": "user1",
+      "id": 20
+    },
+    {
+      "code": "C03",
+      "category": "Dairy",
+      "userId": "user1",
+      "id": 21
+    },
+    {
+      "code": "C03",
+      "category": "Dairy",
+      "userId": "user1",
+      "id": 22
+    },
+    {
+      "code": "C03",
+      "category": "Dairy",
+      "userId": "user1",
+      "id": 23
+    },
+    {
+      "code": "C03",
+      "category": "Dairy",
+      "userId": "user1",
+      "id": 24
+    },
+    {
+      "code": "C03",
+      "category": "Dairy",
+      "userId": "user1",
+      "id": 25
+    },
+    {
+      "code": "C03",
+      "category": "Dairy",
+      "userId": "user1",
+      "id": 26
+    },
+    {
+      "code": "C03",
+      "category": "Dairy",
+      "userId": "user1",
+      "id": 27
+    },
+    {
+      "code": "C03",
+      "category": "Dairy",
+      "userId": "user1",
+      "id": 28
+    },
+    {
+      "code": "C03",
+      "category": "Dairy",
+      "userId": "user1",
+      "id": 29
+    },
+    {
+      "code": "C03",
+      "category": "Dairy",
+      "userId": "user1",
+      "id": 30
+    },
+    {
+      "code": "C03",
+      "category": "Dairy",
+      "userId": "user1",
+      "id": 31
+    },
+    {
+      "code": "C03",
+      "category": "Dairy",
+      "userId": "user1",
+      "id": 32
+    },
+    {
+      "code": "C03",
+      "category": "Dairy",
+      "userId": "user1",
+      "id": 33
+    },
+    {
+      "code": "C03",
+      "category": "Dairy",
+      "userId": "user1",
+      "id": 34
+    },
+    {
+      "code": "C03",
+      "category": "Dairy",
+      "userId": "user1",
+      "id": 35
+    },
+    {
+      "code": "C03",
+      "category": "Dairy",
+      "userId": "user1",
+      "id": 36
+    },
+    {
+      "code": "C03",
+      "category": "Dairy",
+      "userId": "user1",
+      "id": 37
+    },
+    {
+      "code": "C03",
+      "category": "Dairy",
+      "userId": "user1",
+      "id": 38
+    },
+    {
+      "code": "C03",
+      "category": "Dairy",
+      "userId": "user1",
+      "id": 39
+    },
+    {
+      "code": "C03",
+      "category": "Dairy",
+      "userId": "user1",
+      "id": 40
+    },
+    {
+      "code": "C03",
+      "category": "Dairy",
+      "userId": "user1",
+      "id": 41
+    },
+    {
+      "code": "C03",
+      "category": "Dairy",
+      "userId": "user1",
+      "id": 42
+    },
+    {
+      "code": "C03",
+      "category": "Dairy",
+      "userId": "user1",
+      "id": 43
+    },
+    {
+      "code": "C03",
+      "category": "Dairy",
+      "userId": "user1",
+      "id": 44
+    },
+    {
+      "code": "C03",
+      "category": "Dairy",
+      "userId": "user1",
+      "id": 45
+    },
+    {
+      "code": "C03",
+      "category": "Dairy",
+      "userId": "user1",
+      "id": 46
+    },
+    {
+      "code": "C03",
+      "category": "Dairy",
+      "userId": "user1",
+      "id": 47
+    },
+    {
+      "code": "C03",
+      "category": "Dairy",
+      "userId": "user1",
+      "id": 48
     }
   ],
   "list": [
@@ -105,21 +309,6 @@
       "status": "Pending",
       "items": [],
       "userid": 2
-    },
-    {
-      "name": "Shoping",
-      "category": "toy",
-      "status": "Pending",
-      "date": "07/05/2025",
-      "items": [
-        {
-          "itemName": "Ban",
-          "quantity": "2",
-          "completed": false
-        }
-      ],
-      "userid": 1,
-      "id": 6
     },
     {
       "status": "Completed",
@@ -209,21 +398,6 @@
       "id": 48
     },
     {
-      "name": "s",
-      "category": "sy",
-      "status": "Pending",
-      "date": "14 May 2025",
-      "items": [
-        {
-          "itemName": "sd56",
-          "quantity": "15",
-          "completed": false
-        }
-      ],
-      "userid": 1,
-      "id": 49
-    },
-    {
       "name": "new",
       "category": "PR",
       "status": "Completed",
@@ -239,19 +413,483 @@
       "id": 50
     },
     {
-      "name": "sampl2",
-      "category": "sy",
+      "name": "List 1",
+      "category": "sample",
       "status": "Completed",
       "date": "14 May 2025",
       "items": [
         {
-          "itemName": "new44",
+          "itemName": "item1",
+          "quantity": "2",
+          "completed": true
+        }
+      ],
+      "userid": 1,
+      "id": 52
+    },
+    {
+      "name": "List 2",
+      "category": "PARTY",
+      "status": "Completed",
+      "date": "14 May 2025",
+      "items": [
+        {
+          "itemName": "item2",
+          "quantity": "1",
+          "completed": true
+        }
+      ],
+      "userid": 1,
+      "id": 53
+    },
+    {
+      "name": "List 3",
+      "category": "TOYS",
+      "status": "Pending",
+      "date": "14 May 2025",
+      "items": [
+        {
+          "itemName": "item3",
+          "quantity": "3",
+          "completed": false
+        }
+      ],
+      "userid": 1,
+      "id": 54
+    },
+    {
+      "name": "List 4",
+      "category": "sample",
+      "status": "Completed",
+      "date": "14 May 2025",
+      "items": [
+        {
+          "itemName": "item4",
+          "quantity": "4",
+          "completed": true
+        }
+      ],
+      "userid": 1,
+      "id": 55
+    },
+    {
+      "name": "List 5",
+      "category": "PARTY",
+      "status": "Pending",
+      "date": "14 May 2025",
+      "items": [
+        {
+          "itemName": "item5",
+          "quantity": "2",
+          "completed": false
+        }
+      ],
+      "userid": 1,
+      "id": 56
+    },
+    {
+      "name": "List 6",
+      "category": "TOYS",
+      "status": "Completed",
+      "date": "14 May 2025",
+      "items": [
+        {
+          "itemName": "item6",
+          "quantity": "2",
+          "completed": true
+        }
+      ],
+      "userid": 1,
+      "id": 57
+    },
+    {
+      "name": "List 7",
+      "category": "sample",
+      "status": "Pending",
+      "date": "14 May 2025",
+      "items": [
+        {
+          "itemName": "item7",
+          "quantity": "1",
+          "completed": false
+        }
+      ],
+      "userid": 1,
+      "id": 58
+    },
+    {
+      "name": "List 8",
+      "category": "PARTY",
+      "status": "Completed",
+      "date": "14 May 2025",
+      "items": [
+        {
+          "itemName": "item8",
           "quantity": "3",
           "completed": true
         }
       ],
       "userid": 1,
-      "id": 51
+      "id": 59
+    },
+    {
+      "name": "List 9",
+      "category": "TOYS",
+      "status": "Pending",
+      "date": "14 May 2025",
+      "items": [
+        {
+          "itemName": "item9",
+          "quantity": "1",
+          "completed": false
+        }
+      ],
+      "userid": 1,
+      "id": 60
+    },
+    {
+      "name": "List 10",
+      "category": "sample",
+      "status": "Completed",
+      "date": "14 May 2025",
+      "items": [
+        {
+          "itemName": "item10",
+          "quantity": "4",
+          "completed": true
+        }
+      ],
+      "userid": 1,
+      "id": 61
+    },
+    {
+      "name": "List 11",
+      "category": "PARTY",
+      "status": "Pending",
+      "date": "14 May 2025",
+      "items": [
+        {
+          "itemName": "item11",
+          "quantity": "2",
+          "completed": false
+        }
+      ],
+      "userid": 1,
+      "id": 62
+    },
+    {
+      "name": "List 12",
+      "category": "TOYS",
+      "status": "Completed",
+      "date": "14 May 2025",
+      "items": [
+        {
+          "itemName": "item12",
+          "quantity": "3",
+          "completed": true
+        }
+      ],
+      "userid": 1,
+      "id": 63
+    },
+    {
+      "name": "List 13",
+      "category": "sample",
+      "status": "Pending",
+      "date": "14 May 2025",
+      "items": [
+        {
+          "itemName": "item13",
+          "quantity": "2",
+          "completed": false
+        }
+      ],
+      "userid": 1,
+      "id": 64
+    },
+    {
+      "name": "List 14",
+      "category": "PARTY",
+      "status": "Completed",
+      "date": "14 May 2025",
+      "items": [
+        {
+          "itemName": "item14",
+          "quantity": "1",
+          "completed": true
+        }
+      ],
+      "userid": 1,
+      "id": 65
+    },
+    {
+      "name": "List 15",
+      "category": "TOYS",
+      "status": "Pending",
+      "date": "14 May 2025",
+      "items": [
+        {
+          "itemName": "item15",
+          "quantity": "2",
+          "completed": false
+        }
+      ],
+      "userid": 1,
+      "id": 66
+    },
+    {
+      "name": "List 16",
+      "category": "sample",
+      "status": "Completed",
+      "date": "14 May 2025",
+      "items": [
+        {
+          "itemName": "item16",
+          "quantity": "4",
+          "completed": true
+        }
+      ],
+      "userid": 1,
+      "id": 67
+    },
+    {
+      "name": "List 17",
+      "category": "PARTY",
+      "status": "Pending",
+      "date": "14 May 2025",
+      "items": [
+        {
+          "itemName": "item17",
+          "quantity": "1",
+          "completed": false
+        }
+      ],
+      "userid": 1,
+      "id": 68
+    },
+    {
+      "name": "List 18",
+      "category": "TOYS",
+      "status": "Completed",
+      "date": "14 May 2025",
+      "items": [
+        {
+          "itemName": "item18",
+          "quantity": "3",
+          "completed": true
+        }
+      ],
+      "userid": 1,
+      "id": 69
+    },
+    {
+      "name": "List 19",
+      "category": "sample",
+      "status": "Pending",
+      "date": "14 May 2025",
+      "items": [
+        {
+          "itemName": "item19",
+          "quantity": "1",
+          "completed": false
+        }
+      ],
+      "userid": 1,
+      "id": 70
+    },
+    {
+      "name": "List 20",
+      "category": "PARTY",
+      "status": "Completed",
+      "date": "14 May 2025",
+      "items": [
+        {
+          "itemName": "item20",
+          "quantity": "2",
+          "completed": true
+        }
+      ],
+      "userid": 1,
+      "id": 71
+    },
+    {
+      "name": "List A",
+      "category": "toy",
+      "status": "Pending",
+      "date": "14 May 2025",
+      "items": [
+        {
+          "itemName": "itemA",
+          "quantity": "2",
+          "completed": false
+        }
+      ],
+      "userid": 2,
+      "id": 72
+    },
+    {
+      "name": "List B",
+      "category": "Cosmeti",
+      "status": "Completed",
+      "date": "14 May 2025",
+      "items": [
+        {
+          "itemName": "itemB",
+          "quantity": "1",
+          "completed": true
+        }
+      ],
+      "userid": 2,
+      "id": 73
+    },
+    {
+      "name": "List C",
+      "category": "Coded",
+      "status": "Pending",
+      "date": "14 May 2025",
+      "items": [
+        {
+          "itemName": "itemC",
+          "quantity": "3",
+          "completed": false
+        }
+      ],
+      "userid": 2,
+      "id": 74
+    },
+    {
+      "name": "List D",
+      "category": "Electrnics",
+      "status": "Completed",
+      "date": "14 May 2025",
+      "items": [
+        {
+          "itemName": "itemD",
+          "quantity": "4",
+          "completed": true
+        }
+      ],
+      "userid": 2,
+      "id": 75
+    },
+    {
+      "name": "List E",
+      "category": "Party",
+      "status": "Pending",
+      "date": "14 May 2025",
+      "items": [
+        {
+          "itemName": "itemE",
+          "quantity": "2",
+          "completed": false
+        }
+      ],
+      "userid": 2,
+      "id": 76
+    },
+    {
+      "name": "List F",
+      "category": "Home",
+      "status": "Completed",
+      "date": "14 May 2025",
+      "items": [
+        {
+          "itemName": "itemF",
+          "quantity": "2",
+          "completed": true
+        }
+      ],
+      "userid": 2,
+      "id": 77
+    },
+    {
+      "name": "List G",
+      "category": "toy",
+      "status": "Pending",
+      "date": "14 May 2025",
+      "items": [
+        {
+          "itemName": "itemG",
+          "quantity": "1",
+          "completed": false
+        }
+      ],
+      "userid": 2,
+      "id": 78
+    },
+    {
+      "name": "List H",
+      "category": "Cosmeti",
+      "status": "Completed",
+      "date": "14 May 2025",
+      "items": [
+        {
+          "itemName": "itemH",
+          "quantity": "3",
+          "completed": true
+        }
+      ],
+      "userid": 2,
+      "id": 79
+    },
+    {
+      "name": "List I",
+      "category": "Coded",
+      "status": "Pending",
+      "date": "14 May 2025",
+      "items": [
+        {
+          "itemName": "itemI",
+          "quantity": "1",
+          "completed": false
+        }
+      ],
+      "userid": 2,
+      "id": 80
+    },
+    {
+      "name": "List J",
+      "category": "Electrnics",
+      "status": "Completed",
+      "date": "14 May 2025",
+      "items": [
+        {
+          "itemName": "itemJ",
+          "quantity": "4",
+          "completed": true
+        }
+      ],
+      "userid": 2,
+      "id": 81
+    },
+    {
+      "name": "List K",
+      "category": "Party",
+      "status": "Pending",
+      "date": "14 May 2025",
+      "items": [
+        {
+          "itemName": "itemK",
+          "quantity": "2",
+          "completed": false
+        }
+      ],
+      "userid": 2,
+      "id": 82
+    },
+    {
+      "name": "yy",
+      "category": "sy",
+      "status": "Pending",
+      "date": "20 May 2025",
+      "items": [
+        {
+          "itemName": "hh",
+          "quantity": "6"
+        }
+      ],
+      "userid": 1,
+      "id": 83
     }
   ]
 }
