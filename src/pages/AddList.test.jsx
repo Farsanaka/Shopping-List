@@ -9,7 +9,6 @@ import categoryReducer from "../redux/categorySlice";
 import authReducer from "../redux/authSlice";
 import Swal from "sweetalert2";
 
-// Mock SweetAlert2
 vi.mock("sweetalert2", async () => {
   return {
     default: {
@@ -18,7 +17,6 @@ vi.mock("sweetalert2", async () => {
   };
 });
 
-// Custom store builder with initial state
 const createTestStore = (preloadedState = {}) =>
   configureStore({
     reducer: {

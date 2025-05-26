@@ -52,7 +52,7 @@ describe("Category Component", () => {
       },
     });
 
-    vi.spyOn(store, "dispatch"); // Spy on dispatch
+    vi.spyOn(store, "dispatch");
   });
 
   it("renders inputs and add button", () => {
@@ -99,22 +99,20 @@ describe("Category Component", () => {
     });
   });
 
-it("renders categories and allows editing", async () => {
-  renderWithProviders();
+  it("renders categories and allows editing", async () => {
+    renderWithProviders();
 
-  const fruitsInput = await screen.findByDisplayValue("Fruits");
-  expect(fruitsInput).toBeInTheDocument();
+    const fruitsInput = await screen.findByDisplayValue("Fruits");
+    expect(fruitsInput).toBeInTheDocument();
 
-  fireEvent.click(screen.getAllByText("Edit")[0]);
+    fireEvent.click(screen.getAllByText("Edit")[0]);
 
-  fireEvent.change(fruitsInput, { target: { value: "Fresh Fruits" } });
+    fireEvent.change(fruitsInput, { target: { value: "Fresh Fruits" } });
 
-  fireEvent.click(screen.getByText("Save"));
+    fireEvent.click(screen.getByText("Save"));
 
-  await waitFor(() => {
-    expect(store.dispatch).toHaveBeenCalledWith(expect.any(Function));
+    await waitFor(() => {
+      expect(store.dispatch).toHaveBeenCalledWith(expect.any(Function));
+    });
   });
-});
-
-
 });

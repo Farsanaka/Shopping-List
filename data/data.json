@@ -69,264 +69,16 @@
       "id": 11
     },
     {
-      "code": "C03",
-      "category": "Dairy",
-      "userId": "user1",
-      "id": 12
-    },
-    {
-      "code": "C03",
-      "category": "Dairy",
-      "userId": "user1",
-      "id": 13
-    },
-    {
-      "code": "C03",
-      "category": "Dairy",
-      "userId": "user1",
-      "id": 14
-    },
-    {
-      "code": "C03",
-      "category": "Dairy",
-      "userId": "user1",
-      "id": 15
-    },
-    {
-      "code": "C03",
-      "category": "Dairy",
-      "userId": "user1",
-      "id": 16
-    },
-    {
-      "code": "C03",
-      "category": "Dairy",
-      "userId": "user1",
-      "id": 17
-    },
-    {
-      "code": "C03",
-      "category": "Dairy",
-      "userId": "user1",
-      "id": 18
-    },
-    {
-      "code": "C03",
-      "category": "Dairy",
-      "userId": "user1",
-      "id": 19
-    },
-    {
-      "code": "C03",
-      "category": "Dairy",
-      "userId": "user1",
-      "id": 20
-    },
-    {
-      "code": "C03",
-      "category": "Dairy",
-      "userId": "user1",
-      "id": 21
-    },
-    {
-      "code": "C03",
-      "category": "Dairy",
-      "userId": "user1",
-      "id": 22
-    },
-    {
-      "code": "C03",
-      "category": "Dairy",
-      "userId": "user1",
-      "id": 23
-    },
-    {
-      "code": "C03",
-      "category": "Dairy",
-      "userId": "user1",
-      "id": 24
-    },
-    {
-      "code": "C03",
-      "category": "Dairy",
-      "userId": "user1",
-      "id": 25
-    },
-    {
-      "code": "C03",
-      "category": "Dairy",
-      "userId": "user1",
-      "id": 26
-    },
-    {
-      "code": "C03",
-      "category": "Dairy",
-      "userId": "user1",
-      "id": 27
-    },
-    {
-      "code": "C03",
-      "category": "Dairy",
-      "userId": "user1",
-      "id": 28
-    },
-    {
-      "code": "C03",
-      "category": "Dairy",
-      "userId": "user1",
-      "id": 29
-    },
-    {
-      "code": "C03",
-      "category": "Dairy",
-      "userId": "user1",
-      "id": 30
-    },
-    {
-      "code": "C03",
-      "category": "Dairy",
-      "userId": "user1",
-      "id": 31
-    },
-    {
-      "code": "C03",
-      "category": "Dairy",
-      "userId": "user1",
-      "id": 32
-    },
-    {
-      "code": "C03",
-      "category": "Dairy",
-      "userId": "user1",
-      "id": 33
-    },
-    {
-      "code": "C03",
-      "category": "Dairy",
-      "userId": "user1",
-      "id": 34
-    },
-    {
-      "code": "C03",
-      "category": "Dairy",
-      "userId": "user1",
-      "id": 35
-    },
-    {
-      "code": "C03",
-      "category": "Dairy",
-      "userId": "user1",
-      "id": 36
-    },
-    {
-      "code": "C03",
-      "category": "Dairy",
-      "userId": "user1",
-      "id": 37
-    },
-    {
-      "code": "C03",
-      "category": "Dairy",
-      "userId": "user1",
-      "id": 38
-    },
-    {
-      "code": "C03",
-      "category": "Dairy",
-      "userId": "user1",
-      "id": 39
-    },
-    {
-      "code": "C03",
-      "category": "Dairy",
-      "userId": "user1",
-      "id": 40
-    },
-    {
-      "code": "C03",
-      "category": "Dairy",
-      "userId": "user1",
-      "id": 41
-    },
-    {
-      "code": "C03",
-      "category": "Dairy",
-      "userId": "user1",
-      "id": 42
-    },
-    {
-      "code": "C03",
-      "category": "Dairy",
-      "userId": "user1",
-      "id": 43
-    },
-    {
-      "code": "C03",
-      "category": "Dairy",
-      "userId": "user1",
-      "id": 44
-    },
-    {
-      "code": "C03",
-      "category": "Dairy",
-      "userId": "user1",
-      "id": 45
-    },
-    {
-      "code": "C03",
-      "category": "Dairy",
-      "userId": "user1",
-      "id": 46
-    },
-    {
-      "code": "C03",
-      "category": "Dairy",
-      "userId": "user1",
-      "id": 47
-    },
-    {
-      "code": "C03",
-      "category": "Dairy",
-      "userId": "user1",
-      "id": 48
+      "code": "ko",
+      "category": "kol",
+      "userId": 2,
+      "id": 54
     }
   ],
   "list": [
     {
-      "id": 3,
-      "date": "19-05-2025",
-      "name": "Weekend Shopping",
-      "category": "toy",
-      "status": "completed",
-      "items": [],
-      "userid": 2
-    },
-    {
-      "id": 4,
-      "date": "27-12-2024",
-      "name": "festival",
-      "category": "Clothes",
-      "status": "Pending",
-      "items": [],
-      "userid": 2
-    },
-    {
       "status": "Completed",
       "id": 10
-    },
-    {
-      "name": "festive",
-      "category": "Clothes",
-      "status": "Pending",
-      "date": "8 May 2025",
-      "items": [
-        {
-          "itemName": "shirt",
-          "quantity": "3"
-        }
-      ],
-      "userid": 2,
-      "id": 18
     },
     {
       "name": "holiday cosmetics",
@@ -863,21 +615,6 @@
       "id": 81
     },
     {
-      "name": "List K",
-      "category": "Party",
-      "status": "Pending",
-      "date": "14 May 2025",
-      "items": [
-        {
-          "itemName": "itemK",
-          "quantity": "2",
-          "completed": false
-        }
-      ],
-      "userid": 2,
-      "id": 82
-    },
-    {
       "name": "yy",
       "category": "sy",
       "status": "Pending",
@@ -890,6 +627,20 @@
       ],
       "userid": 1,
       "id": 83
+    },
+    {
+      "name": "newsam3",
+      "category": "ko",
+      "status": "Pending",
+      "date": "26 May 2025",
+      "items": [
+        {
+          "itemName": "43",
+          "quantity": "12"
+        }
+      ],
+      "userid": 2,
+      "id": 84
     }
   ]
 }

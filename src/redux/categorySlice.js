@@ -12,23 +12,19 @@ const categorySlice = createSlice({
   name: "category",
   initialState,
   reducers: {
-
     fetchAllSuccess(state, action) {
       state.categories = action.payload;
     },
 
     fetchAllFailure(state, action) {
-      console.log("within failure", action.payload);
       state.error = `Error occurred - ${action.payload}`;
     },
 
     addCategorySuccess(state, action) {
-      console.log("Category added ", action.payload);
       state.categories.push(action.payload);
     },
 
     addCategoryFailure(state, action) {
-      console.log("Category added- failed", action.payload);
       state.error = `Error occurred - ${action.payload}`;
       state.category = "";
       state.code = "";
@@ -55,12 +51,10 @@ const categorySlice = createSlice({
     },
     deleteCategory(state, action) {},
     deleteCategorySuccess(state, action) {
-      console.log("Category Deletion- success", action.payload);
       const deletedId = action.payload;
       state.categories = state.categories.filter((cat) => cat.id !== deletedId);
     },
     deleteCategoryFailure(state, action) {
-      console.log("Category deletion- failed", action.payload);
       state.error = `Error occurred - ${action.payload}`;
     },
   },
@@ -78,7 +72,6 @@ export const {
   deleteCategorySuccess,
   deleteCategoryFailure,
 } = categorySlice.actions;
-
 
 export function fetchAll(userId) {
   return async function (dispatch) {

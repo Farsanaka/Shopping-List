@@ -28,8 +28,6 @@ function Login() {
     try {
       const response = await fetchUsers();
       const users = Array.isArray(response) ? response : response.users;
-
-      console.log("Fetched users:", users);
       const usercheck = users.find(
         (user) => user.username === username && user.password === password
       );
@@ -43,7 +41,6 @@ function Login() {
       }
     } catch (error) {
       dispatch(loginFailure(error.message));
-      console.log(error);
     }
   };
 

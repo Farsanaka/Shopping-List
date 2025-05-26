@@ -25,7 +25,6 @@ function NavBar() {
             <div className="text-white">
               {" "}
               Welcome, {user ? user.name : "Guest"}{" "}
-              {/* Display user name or Guest */}
             </div>
             <div className="flex justify-end">
               <FontAwesomeIcon icon={faUser} className="mt-4 text-white" />

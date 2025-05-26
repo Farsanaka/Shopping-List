@@ -18,8 +18,6 @@ vi.mock("react-router-dom", async (original) => {
     useNavigate: () => mockNavigate,
   };
 });
-
-// Mock API
 vi.mock("../services/api", () => ({
   fetchUsers: vi.fn(),
 }));

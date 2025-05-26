@@ -10,7 +10,7 @@ import categoryReducer, {
   updateCategoryFailure,
   deleteCategorySuccess,
   deleteCategoryFailure,
-} from '../redux/categorySlice'; // update path if needed
+} from '../redux/categorySlice'; 
 
 describe('categorySlice reducer', () => {
   const initialState = {

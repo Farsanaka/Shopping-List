@@ -3,12 +3,11 @@ import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { MemoryRouter, Routes, Route } from "react-router-dom";
-import { configureStore } from '@reduxjs/toolkit';
-import authReducer from '../redux/authSlice';
-import '@testing-library/jest-dom';
+import { configureStore } from "@reduxjs/toolkit";
+import authReducer from "../redux/authSlice";
+import "@testing-library/jest-dom";
 import ProtectedRoute from "../components/ProtectedRoute";
 
-// Dummy login component for testing redirection
 const Login = () => <div>Login Page</div>;
 
 describe("ProtectedRoute", () => {
@@ -73,6 +72,6 @@ describe("ProtectedRoute", () => {
     );
 
     expect(screen.getByText("Protected Content")).toBeInTheDocument();
-    expect(screen.getByText("Shoppie")).toBeInTheDocument(); // If Header renders text containing "Header"
+    expect(screen.getByText("Shoppie")).toBeInTheDocument();
   });
 });

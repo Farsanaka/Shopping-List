@@ -15,12 +15,16 @@
   --color-gray-200: #e7e5e4;
   --color-green-400: #4ade80;
   --color-black: #000000;
+  --color-blue-400: #60a5fa;
 --color-stone-300:#d6d3d1;
 --color-gray-400-50: rgba(156, 163, 175, 0.5);
+--color-stone-200:#e7e5e4;
   /* gray */
   --color-gray-900: #111827;
  --color-gray-700: #6b7280;
  --color-gray-800:#1f2937;
+ --color-gray-400:#9ca3af;
+ --color-red-400:#f87171;
   /* 🔤 Fonts */
   --font-primary: "Poppins", sans-serif;
 
@@ -53,13 +57,14 @@
   --spacing-md: 1.25rem; /* = 5 */
   --spacing-l: 1.5rem; /*6*/
   --spacing-xl: 2rem;
-  --spacing-10xl:2.5rem;
+  --spacing-10xl:2.5rem; /*10*/
   --spacing-15xl:3.7rem;
-  --spacing-2xl: 4rem;
+  --spacing-2xl: 4rem; /*16*/
   --spacing-13xl: 13.5rem;
   --spacing-45xl: 45rem;
   --spacing-3xl: 33rem;
   --spacing-56: 14rem;
+  --spacing-78:19.5rem;
   /* ⭕ Border Radius */
   --radius-sm: 0.5rem;
   --radius-lg: 1rem;

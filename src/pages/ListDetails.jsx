@@ -122,10 +122,10 @@ const ListDetails = () => {
 
   return (
     <div>
-      <div className="flex justify-center mr-78 mt-10 font-bold">
+      <div className="flex justify-center mr-[var(--spacing-78)] mt-[var(--spacing-10xl)] font-bold">
         <button
           onClick={() => navigate(-1)}
-          className="flex items-center gap-2 px-4 py-2 text-white bg-gray-700 rounded hover:bg-gray-800"
+          className="flex items-center gap-[var(--spacing-sm)] px-[var(--spacing-2sm)] py-[var(--spacing-sm)] text-[var(--color-bg-light)] bg-transparent hover:bg-[var(--color-gray-800)] rounded-lg font-semibold transition duration-300"
         >
           <FontAwesomeIcon icon={faArrowLeft} />
           Back
@@ -133,8 +133,8 @@ const ListDetails = () => {
       </div>
 
       <div className="flex justify-center">
-        <div className="flex flex-col bg-stone-200 rounded-lg m-4 w-fit p-10">
-          <h2 className="text-xl font-bold mb-4 text-center">
+        <div className="flex flex-col bg-[var(--color-stone-200)] rounded-lg m-[var(--spacing-2sm)] w-fit p-[var(--spacing-10xl)]">
+          <h2 className="text-xl font-bold mb-[var(--spacing-2sm)] text-center">
             {currentList.name}
           </h2>
 
@@ -152,7 +152,10 @@ const ListDetails = () => {
           {itemStates.length > 0 ? (
             <ul className="list-none">
               {itemStates.map((item, index) => (
-                <li key={index} className="flex items-center gap-2 my-1">
+                <li
+                  key={index}
+                  className="flex items-center gap-[var(--spacing-sm)] my-[var(--spacing-xs)]"
+                >
                   <input
                     type="checkbox"
                     checked={item.completed || false}
@@ -170,7 +173,7 @@ const ListDetails = () => {
                           onChange={(e) =>
                             handleItemChange(index, "itemName", e.target.value)
                           }
-                          className="border border-gray-400 rounded px-2 py-1 mr-2"
+                          className="border border-[var(--color-gray-400)] rounded px-[var(--spacing-sm)] py-[var(--spacing-xs)] mr-[var(--spacing-sm)]"
                         />
                         Quantity:{" "}
                         <input
@@ -179,7 +182,7 @@ const ListDetails = () => {
                           onChange={(e) =>
                             handleItemChange(index, "quantity", e.target.value)
                           }
-                          className="border border-gray-400 rounded px-2 py-1 w-16"
+                          className="border border-[var(--color-gray-400)] rounded px-[var(--spacing-sm)] py-[var(--spacing-xs)] w-[var(--spacing-2xl)]"
                         />
                       </>
                     ) : (
@@ -196,24 +199,24 @@ const ListDetails = () => {
             <p>No items listed.</p>
           )}
 
-          <div className="flex gap-4 mt-6 justify-center">
+          <div className="flex gap-[var(--spacing-2sm)] mt-[var(--spacing-l)] justify-center">
             {!isEditing ? (
               <>
                 <button
                   onClick={handleEdit}
-                  className="px-4 py-1 bg-gradient-to-r from-red-400 to-gray-400 rounded-lg font-semibold"
+                  className="px-[var(--spacing-2sm)] py-[var(--spacing-xs)] bg-gradient-to-r from-[var(--color-red-400)] to-[var(--color-gray-400)]  rounded-lg font-semibold"
                 >
                   Edit
                 </button>
                 <button
                   onClick={handleMarkAsComplete}
-                  className="px-4 py-1 bg-gradient-to-r from-green-400 to-gray-400 rounded-lg font-semibold"
+                  className="px-[var(--spacing-2sm)] py-[var(--spacing-xs)] bg-gradient-to-r from-[var(--color-green-400)] to-[var(--color-gray-400)] rounded-lg font-semibold"
                 >
                   Mark All Complete
                 </button>
                 <button
                   onClick={handleSave}
-                  className="px-4 py-1 bg-gradient-to-r from-green-400 to-gray-400 rounded-lg font-semibold"
+                  className="px-[var(--spacing-2sm)] py-[var(--spacing-xs)] bg-gradient-to-r from-[var(--color-green-400)] to-[var(--color-gray-400)] rounded-lg font-semibold"
                 >
                   Save
                 </button>
@@ -222,13 +225,13 @@ const ListDetails = () => {
               <>
                 <button
                   onClick={handleSave}
-                  className="px-4 py-1 bg-gradient-to-r from-green-400 to-gray-400 rounded-lg font-semibold"
+                  className="px-[var(--spacing-2sm)] py-[var(--spacing-xs)] bg-gradient-to-r from-[var(--color-green-400)] to-[var(--color-gray-400)] rounded-lg font-semibold"
                 >
                   Save
                 </button>
                 <button
                   onClick={handleCancelEdit}
-                  className="px-4 py-1 bg-gradient-to-r from-red-400 to-gray-400 rounded-lg font-semibold"
+                  className="px-[var(--spacing-2sm)] py-[var(--spacing-xs)] bg-gradient-to-r from-[var(--color-red-400)] to-[var(--color-gray-400)] rounded-lg font-semibold"
                 >
                   Cancel
                 </button>

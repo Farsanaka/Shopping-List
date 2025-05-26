@@ -71,25 +71,20 @@ function Category() {
 
   return (
     <div>
-      {/* Back Button */}
       <div className="flex justify-center mr-[var(--spacing-3xl)] mt-[var(--spacing-xl)] font-bold">
         <button
           onClick={() => navigate(-1)}
-          className="flex items-center gap-2 px-[var(--spacing-md)] py-[var(--spacing-xs)] text-[var(--color-bg-light)] bg-[var(--color-gray-700)] rounded hover:bg-gray-800"
+          className="flex items-center gap-[var(--spacing-sm)] px-[var(--spacing-2sm)] py-[var(--spacing-sm)] text-[var(--color-bg-light)] bg-transparent hover:bg-[var(--color-gray-800)] rounded-lg font-semibold transition duration-300"
         >
           <FontAwesomeIcon icon={faArrowLeft} />
           Back
         </button>
       </div>
-
-      {/* Category Container */}
       <div className="flex justify-center">
         <div className="bg-[var(--color-gray-300)] rounded-[var(--radius-lg)] m-[var(--spacing-md)] w-fit shadow-md">
           <p className="p-[var(--spacing-sm)] text-center font-bold text-[var(--text-xl)]">
             CATEGORY LIST
           </p>
-
-          {/* Input and Add Button */}
           <div className="flex justify-center m-[var(--spacing-md)] border border-gray-400 p-[var(--spacing-md)] rounded-[var(--radius-lg)] shadow-lg">
             <input
               type="text"
@@ -114,8 +109,6 @@ function Category() {
               Add
             </button>
           </div>
-
-          {/* Category List */}
           <ul className="m-[var(--spacing-md)] mt-[var(--spacing-xl)]">
             {/* List Header */}
             <li className="flex gap-4 mb-2">
@@ -126,8 +119,6 @@ function Category() {
                 CATEGORY NAME
               </div>
             </li>
-
-            {/* Category Items */}
             {categories
               .filter((cat) => cat.userId === currentUser.id)
               .map((cat, index) => (

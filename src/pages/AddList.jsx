@@ -107,7 +107,7 @@ function AddList() {
         <div className="flex justify-center font-bold mr-[var(--spacing-56)]">
           <button
             onClick={() => navigate(-1)}
-            className="flex items-center gap-[var(--spacing-sm)] px-[var(--spacing-2sm)] py-[var(--spacing-sm)] text-[var(--color-bg-light)] bg-[var(--color-gray-700)] rounded hover:bg-[var(--color-gray-800)]"
+            className="flex items-center gap-[var(--spacing-sm)] px-[var(--spacing-2sm)] py-[var(--spacing-sm)] text-[var(--color-bg-light)] bg-transparent hover:bg-[var(--color-gray-800)] rounded-lg font-semibold transition duration-300"
           >
             <FontAwesomeIcon icon={faArrowLeft} />
             Back
@@ -161,14 +161,14 @@ function AddList() {
                   placeholder="Quantity"
                   value={quantity}
                   onChange={(e) => setQuantity(e.target.value)}
-                  className="bg-white rounded-lg text-center mx-[var(--spacing-2sm)]  shadow-lg shadow-gray-400/50 focus:outline-none focus:ring-[var(--spacing-sm)] focus:ring-[var(--spacing-secondary)] "
+                  className="bg-white rounded-lg text-center mx-[var(--spacing-2sm)]  shadow-lg shadow-[var(--color-gray-400-50)] focus:outline-none focus:ring-[var(--spacing-sm)] focus:ring-[var(--spacing-secondary)] "
                 />
                 <input
                   type="text"
                   placeholder="Item Name / Description"
                   value={itemName}
                   onChange={(e) => setItemName(e.target.value)}
-                  className="bg-[var(--color-bg-light)] rounded-lg text-center mx-[var(--spacing-2sm)] shadow-lg shadow-gray-400/50 focus:outline-none focus:ring-[var(--spacing-sm)] focus:ring-[var(--spacing-secondary)] "
+                  className="bg-[var(--color-bg-light)] rounded-lg text-center mx-[var(--spacing-2sm)] shadow-lg shadow-[var(--color-gray-400-50)] focus:outline-none focus:ring-[var(--spacing-sm)] focus:ring-[var(--spacing-secondary)] "
                 />
                 <button
                   onClick={handleAddItem}
@@ -205,7 +205,7 @@ function AddList() {
               <div className="flex justify-center my-[var(--spacing-2sm)]">
                 <button
                   onClick={handleSaveList}
-                  className="px-[var(--spacing-l)]  py-[var(--spacing-sm)]  bg-gradient-to-r from-blue-400 to-gray-400 rounded-lg font-bold"
+                  className="px-[var(--spacing-l)]  py-[var(--spacing-sm)]  bg-gradient-to-r from-[var(--color-blue-400)] to-[var(--color-secondary)] rounded-lg font-bold"
                 >
                   Save
                 </button>

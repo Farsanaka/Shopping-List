@@ -25,11 +25,9 @@ const shoppingListSlice = createSlice({
     //payload->data u r sending
     //dispatch->fn u call to send an actn to redux
     fetchAllSuccess(state, action) {
-      console.log("Fetch success:", action.payload);
       state.shoppingLists = action.payload;
     },
     fetchAllFailure(state, action) {
-      console.log("Fetch failure:", action.payload);
       state.error = `Error occurred - ${action.payload}`;
     },
 
@@ -98,24 +96,20 @@ export function fetchAll(userId) {
         payload: filteredLists,
       });
     } catch (err) {
-      console.log("Dispatching error:", err.message);
       dispatch({ type: "shoppingLists/fetchAllFailure", payload: err.message });
     }
   };
 }
 export function addShoppingList(newList) {
   return async function (dispatch) {
-    console.log("entered addshopping list in slice");
     try {
       const response = await addShoppingListasync(newList);
-      console.log("response is", response);
       if (response.status == 200) {
         dispatch(addShoppingListSuccess(newList));
       } else {
         dispatch(addShoppingListFailure("list could not be added"));
       }
     } catch (err) {
-      console.log("Dispatching error:", err.message);
       dispatch({ type: "shoppingLists/fetchAllFailure", payload: err.message });
     }
   };
@@ -127,7 +121,6 @@ export function deleteList(id) {
       await axios.delete(`http://localhost:9000/list/${id}`);
       dispatch(deleteListSuccess(id));
     } catch (err) {
-      console.log("Delete Error:", err.message);
       dispatch(deleteListFailure(err.message));
     }
   };
@@ -142,7 +135,6 @@ export const updateListStatus = createAsyncThunk(
       );
       return { listId, status: response.data.status };
     } catch (error) {
-      console.error("Update Status Error:", error);
       return rejectWithValue(error.response?.data || "Error updating status");
     }
   }
@@ -151,13 +143,9 @@ export const updateListStatus = createAsyncThunk(
 export function fetchListById(id) {
   return async function (dispatch) {
     try {
-      console.log("Fetching list by ID:", id);
-
       const response = await axios.get(`http://localhost:9000/list/${id}`);
       dispatch(fetchListByIdSuccess(response.data));
-      console.log("fetchlistbyid:", response.data);
     } catch (err) {
-      console.log("Fetch Error:", err.message);
       dispatch(fetchListByIdFailure(err.message));
     }
   };
@@ -190,7 +178,6 @@ export const toggleItemCompletion = createAsyncThunk(
       );
       return { listId, items: response.data.items };
     } catch (error) {
-      console.error("Toggle Item Completion Error:", error);
       return rejectWithValue("Could not update item completion");
     }
   }
