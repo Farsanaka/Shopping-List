@@ -1,12 +1,57 @@
-# React + Vite
+# 🛍️ Shoppie App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Shoppie** is a shopping list web application that helps users organize and manage their shopping lists efficiently. It allows users to view, add, edit, and delete shopping lists and categories with ease.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Features
 
-## Expanding the ESLint configuration
+- ✅ View all shopping lists with details
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+  - Date of creation
+  - Category
+  - Shopping list name
+  - Item names and quantities
+  - Status (e.g., Pending, Purchased)
+
+- ✏️ **Edit** and 🗑️ **Delete** individual shopping lists
+
+- ➕ **Add new categories**
+
+- 👀 **View categories** along with their associated lists
+
+- ✏️ **Edit** and 🗑️ **Delete** categories
+
+- **Status Management**: Easily toggle between pending and completed states.
+- **Unit Testing** included for component validation.
+- **Mock API**: Uses `data.json` with JSON Server.
+
+---
+
+## 🛠️ Tech Stack
+
+- **Frontend:** React.js
+- **Styling:** Tailwind CSS
+- **State Management:** Redux Toolkit
+- **UI Feedback:** SweetAlert2 (or similar)
+- **Routing:** React Router DOM
+- **Mock Backend:** JSON Server
+- **Package Manager:** pnpm
+- **Testing:** Unit tests with your preferred framework (e.g., Jest, Testing Library)
+
+---
+
+## 📦 Installation & Setup
+
+# Navigate into the project directory
+
+cd shopping-list
+
+# Install dependencies
+
+pnpm install
+
+# Run the development server
+
+pnpm run server
+pnpm run dev
